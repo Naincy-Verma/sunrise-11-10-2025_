@@ -27,7 +27,8 @@ class SpecialityController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'icon' => 'nullable|image|mimes:png,jpg,jpeg,svg',
-            'image' => 'nullable|image|mimes:png,jpg,jpeg'
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
+            'status' => 'required|boolean'
         ]);
 
         $data = $request->only(['title','description']);
@@ -68,7 +69,8 @@ class SpecialityController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'icon' => 'nullable|image|mimes:png,jpg,jpeg,svg',
-            'image' => 'nullable|image|mimes:png,jpg,jpeg'
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
+            'status' => 'required|boolean'
         ]);
 
         $data = $request->only(['title','description']);

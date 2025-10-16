@@ -21,6 +21,7 @@
                                     <th>Description</th>
                                     <th>Image</th>
                                     <th>Icon</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -41,6 +42,7 @@
                                                 <img src="{{ asset($specialty->icon) }}" alt="Icon" style="width:50px;">
                                             @endif
                                         </td>
+                                        <td>{{ $specialty->status ? 'Active' : 'Inactive' }}</td>
                                         <td>
                                             <!-- View Button -->
                                             <a href="{{ route('specialties.show', $specialty->id) }}" class="btn btn-info btn-sm" title="View">

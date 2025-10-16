@@ -100,14 +100,16 @@
             <h2 class="text-center">Event Gallery</h2>
             <p class="text-center text-muted mb-4">Explore moments from our previous medical summits and conferences</p>
             <div class="gallery-grid">
-                @foreach($images as $img)
-                    <a href="{{ asset($img) }}" data-fancybox="gallery" data-caption="Medical Conference Hall" class="gallery-item">
-                        <img src="{{ asset($img) }}" alt="Conference Hall">
+                    @forelse($galleries as $gallery)
+                    <a href="{{ asset('admin-assets/images/admin-image/community-events/gallery/' . $gallery->images) }}" data-fancybox="gallery" data-caption="Medical Conference Hall" class="gallery-item">
+                        <img src="{{ asset('admin-assets/images/admin-image/community-events/gallery/'.$gallery->images) }}" alt="Conference Hall">
                         <div class="gallery-overlay">
                             <span class="plus-icon">+</span>
                         </div>
                     </a>
-                @endforeach
+                @empty
+                    <p class="text-muted">No gallery images found for this event.</p>
+                @endforelse
             </div>
         </div>
     </section>

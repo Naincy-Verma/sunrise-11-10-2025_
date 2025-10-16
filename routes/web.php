@@ -38,13 +38,12 @@ Route::view('doctor-detail','pages.team-details');
 Route::view('team-detail2','pages.team-details2');
 Route::view('c2','pages.contact');
 Route::view('team1','pages.team');
-Route::view('blogs','pages.blog');
-Route::view('event','pages.event');
-//Route::view('event-detail','pages.event-detail');
+Route::get('event',  [HomeController::class, 'event'])->name('event');
 Route::get('/event/{event_url}', [HomeController::class, 'Event_detail']);
 Route::view('award','pages.award');
-Route::view('rare_case','pages.rare_case');
-Route::view('blog-detail','pages.blog-detail');
+Route::get('/rare_case', [HomeController::class, 'rarecase'])->name('rare_case');
+Route::get('/blog-list', [HomeController::class, 'blog'])->name('blogs'); 
+Route::get('/blog-detail/{slug}', [HomeController::class, 'blogdetail'])->name('blog-detail');
 Route::view('doctors','pages.doctor');
 Route::view('gynae-laparoscopic-surgeries','pages.specialties.gynae_laparoscopic');
 Route::view('obstetrics-and-gynaecology','pages.specialties.obstetrics');
@@ -59,7 +58,8 @@ Route::view('internal-medicine','pages.specialties.internal_medicine');
 Route::view('patient_education','pages.patient_education');
 Route::view('video-testimonial','pages.video-testimonial');
 Route::view('patient-testimonial','pages.patient-testimonial');
-Route::view('faq','pages.faq');
+Route::get('faq', [HomeController::class, 'faq'])->name('faq');
+Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
 
 //Frontend Rputes
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');

@@ -102,6 +102,9 @@
 </head>
 
 <body>
+    @php
+    $specialties = \App\Models\Speciality::where('status', 'active')->get();
+    @endphp
     <!-- Top Bar -->
     <div class="top-bar text-white py-2 sticky-top" style="background:#0097a7; z-index: 1031;">
         <div class="container d-flex flex-wrap justify-content-between">
@@ -144,22 +147,21 @@
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="specialtiesDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
+                        data-bs-toggle="dropdown" aria-expanded="false">
                             Our Specialties
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="specialtiesDropdown">
-                            <li><a class="dropdown-item" href="{{url('/gynae-laparoscopic-surgeries')}}">Gynae Laparoscopic Surgeries</a></li>
-                            <li><a class="dropdown-item" href="{{url('/obstetrics-and-gynaecology')}}">Obstetrics and Gynaecology</a></li>
-                            <li><a class="dropdown-item" href="{{url('/pediatricians')}}">Pediatricians</a></li>
-                            <li><a class="dropdown-item" href="{{url('/ent')}}">ENT</a></li>
-                            <li><a class="dropdown-item" href="{{url('/general-surgery')}}">General Surgery</a></li>
-                            <li><a class="dropdown-item" href="{{url('/orthopedics')}}">Orthopedics</a></li>
-                            <li><a class="dropdown-item" href="{{url('/reconstructive-uro-surgery')}}">Reconstructive URO Surgery</a></li>
-                            <li><a class="dropdown-item" href="{{url('/critical-cases-icu')}}">Critical Cases & ICU</a></li>
-                            <li><a class="dropdown-item" href="{{url('/bariatric-surgery')}}">Bariatric Surgery</a></li>
-                            <li><a class="dropdown-item" href="{{url('/internal-medicine')}}">Internal Medicine</a></li>
+                      <ul class="dropdown-menu" aria-labelledby="specialtiesDropdown">
+                            @foreach($specialties as $specialty)
+                                <li>
+                                    <a class="dropdown-item" href="{{ url('specialties', $specialty->slug) }}">
+                                        {{ $specialty->title }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
+
                     </li>
+
                     <!-- End Dropdown -->
                     <li class="nav-item"><a class="nav-link" href="#">Health Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/doctors')}}">Doctors</a></li>

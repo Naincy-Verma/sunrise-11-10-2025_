@@ -14,6 +14,7 @@ class FaqController extends Controller
         return view('admin.pages.faqs.index', compact('faqs'));
     }
 
+    
     // Show single FAQ
     public function show($id)
     {

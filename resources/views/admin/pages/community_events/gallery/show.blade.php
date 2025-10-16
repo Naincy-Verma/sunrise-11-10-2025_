@@ -39,7 +39,8 @@
     <h4>Gallery for Event: <span class="text-primary">{{ $event->title }}</span>
     </h4>
   </div>
-  <div class="row g-3"> @forelse($galleries as $gallery) <div class="col-sm-6 col-md-4 col-lg-3">
+  <div class="row g-3">
+     @forelse($galleries as $gallery) <div class="col-sm-6 col-md-4 col-lg-3">
       <div class="card shadow-sm gallery-card">
         <div class="position-relative overflow-hidden">
           <img src="{{ asset('admin-assets/images/admin-image/community-events/gallery/'.$gallery->images) }}" class="card-img-top" style="height:200px; object-fit:cover;"> @if($gallery->caption) <div class="card-body py-2 px-3">
@@ -54,7 +55,8 @@
           </form>
         </div>
       </div>
-    </div> @empty <p class="text-muted">No gallery images found for this event.</p> @endforelse </div>
+    </div> 
+    @empty <p class="text-muted">No gallery images found for this event.</p> @endforelse </div>
   <div class="row">
     <div class="col-12">
       <a href="{{ route('community-events.index') }}" class="btn btn-primary text-white">

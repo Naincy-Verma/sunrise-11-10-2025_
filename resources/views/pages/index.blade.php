@@ -1722,9 +1722,9 @@
     <section class="testimonial-slider">
         <div class="container">
             <div class="text-center">
-                <h2>Video Testimonials – Patient Experiences at Sunrise Hospital
+                <h2>Video Testimonials –- Patient Experiences at Sunrise Hospital
 
-                
+
                 </h2>
                 <p>
                     Hear directly from our patients about their experiences at Sunrise Hospital, South Delhi. Watch real

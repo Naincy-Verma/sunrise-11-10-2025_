@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -26,20 +26,23 @@ class CountryController extends Controller
         return redirect()->route('admin.countries.index')->with('success', 'Country added successfully.');
     }
 
-    public function edit(Country $country)
+    public function edit($id)
     {
+        $country = Country::all();
         return view('admin.pages.book-appointment.country.edit', compact('country'));
     }
 
-    public function update(Request $request, Country $country)
+    public function update(Request $request, $id)
     {
+        $country = Country::all();
         $request->validate(['name' => 'required|unique:countries,name,' . $country->id]);
         $country->update($request->all());
         return redirect()->route('admin.countries.index')->with('success', 'Country updated successfully.');
     }
 
-    public function destroy(Country $country)
+    public function destroy($id)
     {
+        $country = Country::all();
         $country->delete();
         return redirect()->route('admin.countries.index')->with('success', 'Country deleted successfully.');
     }

@@ -61,6 +61,8 @@ Route::view('video-testimonial','pages.video-testimonial');
 Route::view('patient-testimonial','pages.patient-testimonial');
 Route::view('faq','pages.faq');
 
+//Frontend Rputes
+Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
 
 // admin Route
 Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -238,6 +240,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/cities/{id}/edit', [CityController::class, 'edit'])->name('cities.edit');
     Route::put('/cities/{id}', [CityController::class, 'update'])->name('cities.update');
     Route::delete('/cities/{id}', [CityController::class, 'destroy'])->name('cities.destroy');
+    Route::get('/get-states/{id}', [CityController::class, 'getStates'])->name('cities.get-states');
 
     // --- TimeSlot Routes ---
     Route::get('/time-slots', [TimeSlotController::class, 'index'])->name('time-slots.index');
@@ -254,6 +257,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
     Route::put('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update');
     Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
+    Route::get('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.show');
 
 });
 

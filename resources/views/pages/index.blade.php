@@ -74,6 +74,7 @@
         </div>
     </section>
 
+    <!-- Our Specialties -->
     <section class="specialties-section text-center py-5">
         <div class="container">
             <h2 class="fw-bold mb-3">Our Specialties</h2>
@@ -237,8 +238,7 @@
         </div>
     </section>
 
-
-
+    <!-- Compassionate Care, Advanced Treatment, Trusted Expertise. -->
     <section class="intro-content">
         <div class="container">
             <div class="row">
@@ -266,11 +266,14 @@
         </div>
     </section>
 
-
+        <!-- Book Your appointment -->
     <section class="appointment-section">
         <h2>Book Your Appointment Now</h2>
 
-        <form class="appointment-form" action="#" method="post">
+        <form class="appointment-form" action="{{ route('appointments.store') }}" method="post">
+            @csrf
+             <input type="hidden" name="source" value="index-page">
+
             <div class="row g-3">
 
                 <div class="col-md-6">
@@ -298,14 +301,10 @@
                     <div class="form-group">
                         <i class="bi bi-hospital"></i>
                         <select class="form-control" name="speciality" required>
-                            <option value="">Select Speciality</option>
-                            <option value="gynae">Gynae Laparoscopic Surgeries</option>
-                            <option value="obg">Obstetrics & Gynaecology</option>
-                            <option value="pediatrics">Pediatrics</option>
-                            <option value="ivf">Infertility & IVF</option>
-                            <option value="orthopedics">Orthopedics</option>
-                            <option value="cardiac">Cardiac Sciences</option>
-                            <option value="icu">Critical Care & ICU</option>
+                             <option value="">Select Speciality</option>
+                            @foreach($specialties_form as $speciality)
+                                <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -329,6 +328,7 @@
         </form>
     </section>
 
+    <!-- About Dr. Nikita -->
     <section class="doctor-section">
         <div class="container">
             <div class="row align-items-center">

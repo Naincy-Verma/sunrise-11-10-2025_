@@ -8,8 +8,9 @@ class TimeSlot extends Model
 {
     //
     protected $fillable = [
-        'slot', 
-        'is_active'
+        'start_time',
+        'end_time',
+        'status',
     ];
 
      protected $table = 'time_slots';

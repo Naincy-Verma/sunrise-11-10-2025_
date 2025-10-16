@@ -27,6 +27,7 @@ return new class extends Migration
             
             // Status
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->string('source');
 
 
             // Foreign keys (nullable for set null)
@@ -49,3 +50,7 @@ return new class extends Migration
         Schema::dropIfExists('appointments');
     }
 };
+
+
+
+

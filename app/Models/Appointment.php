@@ -18,6 +18,7 @@ class Appointment extends Model
         'pin_code',
         'appointment_date',
         'status',
+        'source',
         'country_id',
         'state_id',
         'city_id',
@@ -66,9 +67,25 @@ class Appointment extends Model
         return "{$this->first_name} {$this->middle_name} {$this->last_name}";
     }
 
+    public function getSourceAttribute($value)
+    {
+        return $value ?: 'N/A';  // or 'Index Page'
+    }
+
+
     // Scope
     public function scopePending($query)
     {
         return $query->where('status', 'pending');
+    }
+
+    public function scopeConfirmed($query)
+    {
+        return $query->where('status', 'confirmed');
+    }
+
+    public function scopeCancelled($query)
+    {
+        return $query->where('status', 'cancelled');
     }
 }

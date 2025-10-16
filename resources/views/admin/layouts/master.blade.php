@@ -19,6 +19,9 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin-assets/images/favicon.png')}}" />
 
+    <!-- Font-awesone cdn -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- PAGE TITLE HERE -->
     <title>Edumin - Bootstrap Admin Dashboard</title>
 
@@ -192,6 +195,8 @@
                            <span class="nav-text">Dashboard </span></a>
                         </a> 
                     </li>
+
+                    <!-- Our Specialities -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-home"></i>
@@ -206,6 +211,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Our Doctors -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -220,6 +227,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Rare Cases -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -234,6 +243,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Blog -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -248,6 +259,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Community Events -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -262,6 +275,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Patient Testimonials -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -276,6 +291,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Video Testimonials -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -290,6 +307,8 @@
                             </li>
                         </ul>
                     </li>
+
+                        <!-- FAQ -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -304,6 +323,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- About -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -318,6 +339,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Vision Mission -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-users"></i>
@@ -332,6 +355,8 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- Milestones -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-users"></i>
@@ -346,6 +371,8 @@
                             </li>
                         </ul>
                     </li>
+
+                        <!-- Facility -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -360,6 +387,7 @@
                             </li>
                         </ul>
                     </li>
+                            <!-- Package -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -374,6 +402,85 @@
                             </li>
                         </ul>
                     </li>
+
+                        <!-- Country -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Country</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.countries.index')}}">All Country</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.countries.create')}}">Add Country</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                        <!-- States -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">State</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.states.index')}}">All Sate</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.states.create')}}">Add Sate</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                        <!-- City -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">City</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.cities.index')}}">All City</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.cities.create')}}">Add City</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                        <!-- Time Slot -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Time Slot</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.time-slots.index')}}">All Time Slot</a>
+                            </li>
+                            <li>
+                                <a href="{{route('admin.time-slots.create')}}">Add Time Slot</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                        <!-- Book Appointments -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Appointment</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.appointments.index')}}">All Appointments</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="page-lock-screen.html">Lock Screen</a>
                     </li>

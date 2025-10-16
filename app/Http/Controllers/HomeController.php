@@ -11,6 +11,7 @@ use App\Models\VideoTestimonial;
 use App\Models\PatientTestimonial;
 
 use Illuminate\Http\Request;
+USE App\Models\Appointment;
 
 class HomeController extends Controller
 {
@@ -45,8 +46,12 @@ class HomeController extends Controller
         $faqs = Faq::get();
         $videos = VideoTestimonial::all();
         $testimonials = PatientTestimonial::all();
-        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials'));
+         $specialties_form = Speciality::select('id', 'title')->get();
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials'));
+     // Only fetch id and title for the dropdown
+
     }
+
 
 
     public function BookAppointment()
@@ -105,4 +110,34 @@ class HomeController extends Controller
         return view('pages.video-testimonial', compact('videos' ));
     }
 
+     public function storeAppointment(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:200',
+            'email' => 'required|email|max:150',
+            'phone' => 'required|string|max:12',
+            'speciality' => 'required|exists:our_specialties,id',
+            'source' => 'nullable|string|max:50',
+        ]);
+
+        // Save to appointments table
+        Appointment::create([
+            'title' => 'Mr.', // default placeholder
+            'first_name' => $request->name,
+            'middle_name' => '',
+            'last_name' => '',
+            'gender' => 'N/A',
+            'dob' => now(),
+            'email' => $request->email,
+            'mobile_no' => $request->phone,
+            'pin_code' => '',
+            'appointment_date' => now(),
+            'status' => 'pending',
+            'source' => $request->source ?? 'N/A',
+            'speciality_id' => $request->speciality,
+        ]);
+
+        return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
+    }
+    
 }

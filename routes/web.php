@@ -56,11 +56,10 @@ Route::view('critical-cases-icu','pages.specialties.cardiac_science');
 Route::view('bariatric-surgery','pages.specialties.bariatric_surgery');
 Route::view('internal-medicine','pages.specialties.internal_medicine');
 Route::view('patient_education','pages.patient_education');
-Route::view('video-testimonial','pages.video-testimonial');
+Route::get('video-testimonial', [HomeController::class, 'video_testimonial'])->name('video-testimonial');
 Route::view('patient-testimonial','pages.patient-testimonial');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
-
 
 // admin Route
 Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');

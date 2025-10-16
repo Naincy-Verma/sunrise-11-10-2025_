@@ -28,46 +28,14 @@
             </div>
             <div class="swiper TestimonialSwiper">
                 <div class="swiper-wrapper">
-
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <div class="video-card">
-                            <iframe src="https://www.youtube.com/embed/6IktPd0diPg?si=FtzXDAOFKHBPKlso" title="YouTube video"
-                                allowfullscreen></iframe>
+                    @foreach($videos as $video)
+                        <div class="swiper-slide">
+                            <div class="video-card">
+                                <iframe src="{{ asset('admin-assets/images/admin-image/video-testimonials/' . $video->video) }}" title="{{ $video->title ?? 'Video Testimonial' }}" allowfullscreen></iframe>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <div class="video-card">
-                            <iframe src="https://www.youtube.com/embed/58WtNQrVCE0?si=Rxf_k-1dPqoV9F7j" title="YouTube video"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <div class="video-card">
-                            <iframe src="https://www.youtube.com/embed/0qmyp8DQiAM?si=61Rvh1M0G5DvuIGN" title="YouTube video"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <div class="video-card">
-                            <iframe src="https://www.youtube.com/embed/yMhOmL3qtgk?si=0zLVpEiYlAz5p3cM" title="YouTube video"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <div class="video-card">
-                            <iframe src="https://www.youtube.com/embed/60nxxbOFcYw?si=tnFF_pFpserpF65a" title="YouTube video"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                  </div>
+                    @endforeach
+                </div>
 
                 <!-- Swiper Pagination + Navigation -->
                 <div class="swiper-pagination"></div>

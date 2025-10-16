@@ -7,6 +7,8 @@ use App\Models\RareCase;
 use App\Models\CommunityEvent;
 use App\Models\Blog;
 use App\Models\Faq;
+use App\Models\VideoTestimonial;
+use App\Models\PatientTestimonial;
 
 use Illuminate\Http\Request;
 
@@ -41,7 +43,9 @@ class HomeController extends Controller
         $events = CommunityEvent::get();
         $blogs = Blog::get();
         $faqs = Faq::get();
-        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs'));
+        $videos = VideoTestimonial::all();
+        $testimonials = PatientTestimonial::all();
+        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials'));
     }
 
 
@@ -95,6 +99,10 @@ class HomeController extends Controller
         return view('pages.faq', compact('faqs' ));
     }
 
-
+    public function video_testimonial()
+    {
+        $videos = VideoTestimonial::all();
+        return view('pages.video-testimonial', compact('videos' ));
+    }
 
 }

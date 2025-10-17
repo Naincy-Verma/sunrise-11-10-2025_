@@ -7,6 +7,8 @@ use App\Models\RareCase;
 use App\Models\CommunityEvent;
 use App\Models\Blog;
 use App\Models\Faq;
+use App\Models\VideoTestimonial;
+use App\Models\PatientTestimonial;
 
 use Illuminate\Http\Request;
 USE App\Models\Appointment;
@@ -42,9 +44,13 @@ class HomeController extends Controller
         $events = CommunityEvent::get();
         $blogs = Blog::get();
         $faqs = Faq::get();
-         // Only fetch id and title for the dropdown
-        $specialties_form = Speciality::select('id', 'title')->get();
-        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs', 'specialties_form'));
+        $videos = VideoTestimonial::all();
+        $testimonials = PatientTestimonial::all();
+         $specialties_form = Speciality::select('id', 'title')->get();
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials'));
+     // Only fetch id and title for the dropdown
+
+         
 
     }
 
@@ -102,8 +108,11 @@ class HomeController extends Controller
         return view('pages.faq', compact('faqs' ));
     }
 
-
-
+    public function video_testimonial()
+    {
+        $videos = VideoTestimonial::all();
+        return view('pages.video-testimonial', compact('videos' ));
+    }
 
      public function storeAppointment(Request $request)
     {

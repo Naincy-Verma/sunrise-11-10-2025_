@@ -257,7 +257,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
     Route::put('/appointments/{id}', [AppointmentController::class, 'update'])->name('appointments.update');
     Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
-    Route::get('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.show');
+    Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
 
 });
 

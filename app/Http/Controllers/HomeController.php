@@ -42,10 +42,10 @@ class HomeController extends Controller
         $events = CommunityEvent::get();
         $blogs = Blog::get();
         $faqs = Faq::get();
-        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs'));
-        // Only fetch id and title for the dropdown
+         // Only fetch id and title for the dropdown
         $specialties_form = Speciality::select('id', 'title')->get();
-        return view('pages.index', compact('type', 'specialties_form'));
+        return view('pages.index', compact('type', 'specialties', 'cases', 'events', 'blogs', 'faqs', 'specialties_form'));
+
     }
 
 
@@ -53,7 +53,8 @@ class HomeController extends Controller
     public function BookAppointment()
     {
         $type = $this->is_mobile();
-        return view('pages.book-appointment', compact('type'));
+        $specialties_form = Speciality::select('id', 'title')->get();
+        return view('pages.book-appointment', compact('type', 'specialties_form'));
     }
 
 
@@ -61,7 +62,8 @@ class HomeController extends Controller
     {
         // $specialties = Speciality::get();
         $specialty = Speciality::where('slug', $slug)->firstOrFail();
-        return view('pages.specialties.specialty_detail', compact('specialty', ));
+         $specialties_form = Speciality::select('id', 'title')->get();
+        return view('pages.specialties.specialty_detail', compact('specialty', 'specialties_form'));
     }
     public function rarecase()
     {
@@ -110,6 +112,7 @@ class HomeController extends Controller
             'email' => 'required|email|max:150',
             'phone' => 'required|string|max:12',
             'speciality' => 'required|exists:our_specialties,id',
+             'appointment_date' => 'required|date',
             'source' => 'nullable|string|max:50',
         ]);
 

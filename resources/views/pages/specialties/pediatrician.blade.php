@@ -122,46 +122,41 @@
                         <h4 class="mb-4">
                             <i class="fas fa-calendar-alt me-2"></i>Book Appointment
                         </h4>
-                        <form>
+                        <form action="{{ route('appointments.store') }}" method="POST">
+                            @csrf
+                             <input type="hidden" name="source" value="specialties_pediatrician-page">
                             <div class="row g-3">
                                 <!-- Full Name -->
                                 <div class="col-12">
-                                    <input type="text" class="form-control" placeholder="Enter your full name">
+                                    <input type="text" class="form-control" placeholder="Enter your full name" name="name">
                                 </div>
 
                                 <!-- Phone Number -->
                                 <div class="col-12">
-                                    <input type="tel" class="form-control" placeholder="Enter your phone number">
+                                    <input type="tel" class="form-control" placeholder="Enter your phone number" name ="phone">
                                 </div>
 
                                 <!-- Appointment Date -->
                                 <div class="col-12">
-                                    <input type="date" class="form-control" placeholder="Appointment Date">
+                                    <input type="date" class="form-control" placeholder="Appointment Date" name="appointment_date">
                                 </div>
 
                                 <!-- Specialist -->
                                 <div class="col-12">
                                     <select class="form-select">
                                         <option>Select Speciality</option>
-                                        <option value="Gynae Laparoscopic Surgeries"> Gynae Laparoscopic Surgeries</option>
-                                        <option value="Obstetrics and Gynaecology">Obstetrics and Gynaecology</option>
-                                        <option value="Pediatricians">Pediatricians</option>
-                                        <option value="ENT">ENT</option>
-                                        <option value="General Surgery">General Surgery</option>
-                                        <option value="Orthopedics">Orthopedics</option>
-                                        <option value="Reconstructive URO Surgery">Reconstructive URO Surgery</option>
-                                        <option value="Critical Cases & ICU">Critical Cases & ICU</option>
-                                        <option value="Bariatric Surgery">Bariatric Surgery</option>
-                                        <option value="Internal Medicine">Internal Medicine</option>
+                                        @foreach($specialties_form as $specialty)
+                                            <option value="{{ $specialty->id }}">{{ $specialty->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="col-12">
-                                    <input type="email" class="form-control" placeholder="Enter your email address">
+                                    <input type="email" class="form-control" placeholder="Enter your email address" name="email">
                                 </div>
 
-                                <!-- Message -->
+                                <!--Recaptcha -->
                                 <div class="col-12">
                                     <div class="captcha-box">
                                         <div class="captcha-text" id="captcha">AB12C</div>

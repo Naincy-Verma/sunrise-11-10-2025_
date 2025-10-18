@@ -13,17 +13,24 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="image-gallery">
                         <div class="main-image">
-                            <img src="{{ asset('assets/images/about/about1.jpg') }}" alt="Modern Gynecology Facility">
+                           @if($about && $about->image)
+                                <img src="{{ asset('admin-assets/images/admin-image/abouts/' . $about->image) }}" alt="{{ $about->heading }}">
+                            @endif
+                            
                             <div class="stats-badge">
                                 <span class="number">15+</span>
                                 <span class="label">Years</span>
                             </div>
                         </div>
                         <div class="small-image accent-orange">
-                            <img src="{{ asset('assets/images/about/about2.jpg') }}" alt="Patient Care">
+                           @if($about && $about->image_small1)
+                            <img src="{{ asset('admin-assets/images/admin-image/abouts/' . $about->image_small1) }}" alt="{{ $about->heading }}">
+                        @endif
                         </div>
                         <div class="small-image accent-green">
-                            <img src="{{ asset('assets/images/about/about3.jpeg') }}" alt="Medical Team">
+                           @if($about && $about->image_small2)
+                            <img src="{{ asset('admin-assets/images/admin-image/abouts/' . $about->image_small2) }}" alt="{{ $about->heading }}">
+                        @endif
                         </div>
                     </div>
                 </div>
@@ -31,7 +38,11 @@
                 <!-- Right Content -->
                 <div class="col-lg-6">
                     <div class="content-area">
-                        <h2>About Sunrise Hospital</h2>
+                         @if($about)
+                        <h2>{{ $about->heading }}</h2>
+                        <p>{!! nl2br(e($about->description)) !!}</p>
+                    @endif
+                        <!-- <h2>About Sunrise Hospital</h2>
                         <p>At Sunrise Hospital, located in Kalindi Colony near New Friends Colony, New Delhi, we specialize
                             in Minimally Invasive Surgery with global accreditation. Our expertise spans Laparoscopy,
                             Thoracoscopy, Arthroscopy, and Cystoscopy, performed by some of the most experienced doctors.
@@ -42,7 +53,7 @@
                             expert medical care. Situated just a 30-minute drive from Indira Gandhi International Airport,
                             it provides easy access for patients. </p>
                         <p>Discover more about us and our advanced healthcare services, including cutting-edge laparoscopic
-                            surgery.</p>
+                            surgery.</p> -->
                     </div>
                 </div>
             </div>
@@ -51,7 +62,7 @@
     <!-- About SEction End -->
 
     <!-- Vision Mission -->
-    <section class="vision-mission-section">
+    <!-- <section class="vision-mission-section">
         <div class="floating-elements">
             <i class="fas fa-female floating-element" style="font-size: 3.5rem;"></i>
             <i class="fas fa-baby floating-element" style="font-size: 3rem;"></i>
@@ -81,12 +92,6 @@
                             obstetric services, where every woman receives personalized, compassionate, and comprehensive
                             care.
                         </p>
-{{--                        <ul class="bullet-points">--}}
-{{--                            <li>Pioneering advanced minimally invasive surgical techniques</li>--}}
-{{--                            <li>Creating a comfortable and supportive environment for all patients</li>--}}
-{{--                            <!-- <li>Establishing centers of excellence in women's specialized healthcare</li>--}}
-{{--                                                                <li>Leading research in gynecological health and maternal care</li> -->--}}
-{{--                        </ul>--}}
                     </div>
                 </div>
 
@@ -100,12 +105,6 @@
                             To provide comprehensive, patient-centered gynecological and obstetric care through skilled
                             specialists, state-of-the-art technology, and a commitment to women's health and well-being.
                         </p>
-{{--                        <ul class="bullet-points">--}}
-{{--                            <li>Delivering expert care in pregnancy, childbirth, and reproductive health</li>--}}
-{{--                            <li>Offering specialized treatments for gynecological conditions</li>--}}
-{{--                            <!-- <li>Providing education and preventive care for women's health</li>--}}
-{{--                                                                <li>Maintaining the highest standards of safety and medical ethics</li> -->--}}
-{{--                        </ul>--}}
                     </div>
                 </div>
             </div>
@@ -139,7 +138,58 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+ <section class="vision-mission-section">
+    <div class="floating-elements">
+        <i class="fas fa-female floating-element" style="font-size: 3.5rem;"></i>
+        <i class="fas fa-baby floating-element" style="font-size: 3rem;"></i>
+        <i class="fas fa-heart floating-element" style="font-size: 2.8rem;"></i>
+        <i class="fas fa-stethoscope floating-element" style="font-size: 3.2rem;"></i>
+    </div>
+
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Vision & Mission</h2>
+            <p class="section-subtitle">
+                Empowering women through exceptional gynecological and obstetric care. We are committed to supporting
+                women at every stage of their healthcare journey with compassion, expertise, and cutting-edge medical
+                technology.
+            </p>
+        </div>
+
+        <div class="row">
+            @foreach($visions as $vision)
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <div class="mission-vision-card">
+                        <div class="card-icon vision-icon">
+                            <i class="{{ $vision->icon }}"></i>
+                        </div>
+                        <h3 class="card-title">{{ $vision->heading }}</h3>
+                        <p class="card-content">
+                            {{ $vision->description }}
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Stats Section --}}
+        <div class="stats-section mt-5">
+            <div class="row justify-content-center">
+                @foreach($visions as $vision)
+                    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                        <div class="stat-item card text-center p-4 shadow-sm h-100">
+                            <span class="stat-number d-block mb-2">{{ $vision->stats }}</span>
+                            <span class="stat-label fw-semibold">{{ $vision->heading }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 
     <!-- Milestones and Achievements -->

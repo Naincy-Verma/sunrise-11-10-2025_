@@ -32,7 +32,9 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp',
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image_small1' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image_small2' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'heading' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
@@ -49,6 +51,21 @@ class AboutController extends Controller
             $file->move(public_path('admin-assets/images/admin-image/abouts/'), $filename);
             $data['image'] = $filename;
         }
+
+        if ($request->hasFile('image_small1')) {
+            $file1 = $request->file('image_small1');
+            $filename1 = time() . '_1.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path('admin-assets/images/admin-image/abouts/'), $filename1);
+            $data['image_small1'] = $filename1;
+        }
+
+        if ($request->hasFile('image_small2')) {
+            $file2 = $request->file('image_small2');
+            $filename2 = time() . '_2.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('admin-assets/images/admin-image/abouts/'), $filename2);
+            $data['image_small2'] = $filename2;
+        }
+
 
         About::create($data);
 
@@ -69,7 +86,9 @@ class AboutController extends Controller
 
         $request->validate([
 
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+             'image_small1' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image_small2' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'heading' => 'required|string|max:255',
             'description' => 'required|string'
         ]);
@@ -88,6 +107,29 @@ class AboutController extends Controller
             $file->move(public_path('admin-assets/images/admin-image/abouts/'), $filename);
             $data['image'] = $filename;
         }
+
+        if ($request->hasFile('image_small1')) {
+            if ($about->image_small1 && file_exists(public_path('admin-assets/images/admin-image/abouts/' . $about->image_small1))) {
+                unlink(public_path('admin-assets/images/admin-image/abouts/' . $about->image_small1));
+            }
+
+            $file1 = $request->file('image_small1');
+            $filename1 = time() . '_1.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path('admin-assets/images/admin-image/abouts/'), $filename1);
+            $data['image_small1'] = $filename1;
+        }
+
+        if ($request->hasFile('image_small2')) {
+            if ($about->image_small2 && file_exists(public_path('admin-assets/images/admin-image/abouts/' . $about->image_small2))) {
+                unlink(public_path('admin-assets/images/admin-image/abouts/' . $about->image_small2));
+            }
+
+            $file2 = $request->file('image_small2');
+            $filename2 = time() . '_2.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('admin-assets/images/admin-image/abouts/'), $filename2);
+            $data['image_small2'] = $filename2;
+        }
+
 
         $about->update($data);
 

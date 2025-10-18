@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class PatientEducation extends Model
 {
     //
     protected $fillable = [
-        'image',
-         'image_small1', 
-         'image_small2',
         'heading',
-        'description',
-        'slug'
+        'description'
     ];
 
     public $timestamps = true;
-    protected $table = "abouts";
+    protected $table = "patient_educations";
 }

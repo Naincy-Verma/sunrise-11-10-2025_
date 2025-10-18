@@ -469,13 +469,28 @@
 
                         <!-- Book Appointments -->
                     <li>
+                        <a class="has-arrow" href="{{route('admin.appointments.index')}}" aria-expanded="false">
+                            <!-- <i class="la la-user"></i> -->
+                            <span class="nav-text">Appointment</span>
+                        </a>
+                        <!-- <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.appointments.index')}}">All Appointments</a>
+                            </li>
+                           
+                        </ul> -->
+                    </li>
+
+                        <!-- Payment Education -->
+                    <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
-                            <span class="nav-text">Appointment</span>
+                            <span class="nav-text">Patient Education</span>
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{route('admin.appointments.index')}}">All Appointments</a>
+                                <a href="{{route('admin.patient-education.index')}}">All Patient Education</a>
+                                <a href="{{route('admin.patient-education.create')}}">Add Patient Education</a>
                             </li>
                            
                         </ul>

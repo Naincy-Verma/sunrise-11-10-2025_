@@ -81,7 +81,7 @@
             <div class="col-lg-12">
                <div class="card mt-3">
                     <div class="card-header">
-                        <h4 class="card-title">About Image</h4>
+                        <h4 class="card-title">About Main Image</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form custom_file_input">
@@ -95,6 +95,52 @@
                                 </div>
                             </div>
                             <img id="imagePreview" class="preview-img" alt="About Image Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🖼️ Small IMAGE 1 -->
+            <div class="col-lg-12">
+               <div class="card mt-3">
+                    <div class="card-header">
+                        <h4 class="card-title">Small Image 1</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form custom_file_input">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="image_small1" id="image_small1" class="custom-file-input" accept=".jpg,.jpeg,.png,.webp" required>
+                                    <label class="custom-file-label" for="image_small1">Choose image</label>
+                                </div>
+                            </div>
+                            <img id="imagePreviewSmall1" class="preview-img" alt="About Small Image 1 Preview">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🖼️ Small IMAGE 2 -->
+            <div class="col-lg-12">
+               <div class="card mt-3">
+                    <div class="card-header">
+                        <h4 class="card-title">Small Image 2</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form custom_file_input">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="image_small2" id="image_small2" class="custom-file-input" accept=".jpg,.jpeg,.png,.webp" required>
+                                    <label class="custom-file-label" for="image_small2">Choose image</label>
+                                </div>
+                            </div>
+                            <img id="imagePreviewSmall2" class="preview-img" alt="About Small Image 2 Preview">
                         </div>
                     </div>
                 </div>
@@ -132,6 +178,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const label = this.nextElementSibling;
                 if(label) label.textContent = file.name;
+            }
+        });
+    }
+
+    // Small Image 1 preview
+    const smallImage1 = document.getElementById('image_small1');
+    const smallPreview1 = document.getElementById('imagePreviewSmall1');
+    if (smallImage1) {
+        smallImage1.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    smallPreview1.src = e.target.result;
+                    smallPreview1.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+                this.nextElementSibling.textContent = file.name;
+            }
+        });
+    }
+
+    // Small Image 2 preview
+    const smallImage2 = document.getElementById('image_small2');
+    const smallPreview2 = document.getElementById('imagePreviewSmall2');
+    if (smallImage2) {
+        smallImage2.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    smallPreview1.src = e.target.result;
+                    smallPreview1.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+                this.nextElementSibling.textContent = file.name;
             }
         });
     }

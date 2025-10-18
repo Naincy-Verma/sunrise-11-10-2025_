@@ -9,6 +9,8 @@ use App\Models\Blog;
 use App\Models\Faq;
 use App\Models\VideoTestimonial;
 use App\Models\PatientTestimonial;
+use App\Models\About;
+use App\Models\Vision_Mission; 
 
 use Illuminate\Http\Request;
 USE App\Models\Appointment;
@@ -144,5 +146,13 @@ class HomeController extends Controller
 
         return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
     }
+
+    public function about()
+    {
+         $about = About::first(); // or ->get() if multiple entries
+          $visions = Vision_Mission::all();
+        return view('pages.about', compact('about', 'visions'));
+    }
+
     
 }

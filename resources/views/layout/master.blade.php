@@ -163,7 +163,7 @@
                     </li>
 
                     <!-- End Dropdown -->
-                    <li class="nav-item"><a class="nav-link" href="#">Health Packages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url('health_package')}}">Health Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/doctors')}}">Doctors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Quick Enquiry</a></li>
                 </ul>
@@ -220,18 +220,19 @@
                 <!-- Quick Links -->
                 <div class="col-lg-2 col-md-6">
                     <h5>Quick Links</h5>
-                    <a href="#">Home</a>
+                    <!-- <a href="#">Home</a> -->
                     <a href="{{url('doctors')}}">Doctors</a>
                     <a href="{{url('blogs')}}">Blogs</a>
                     <a href="{{url('rare_case')}}">Rare Cases</a>
-                    <a href="#">Departments</a>
-                    <a href="#">Health Packages</a>
+                     <a href="{{url('patient-education')}}">Patient Education</a>
+                    <a href="{{url('health_package')}}">Health Packages</a>
+                    <a href="{{url('training')}}">Training</a>
                     <a href="#">Contact</a>
                 </div>
 
                 <!-- Specialties -->
                 <div class="col-lg-3 col-md-6">
-                    <h5>Specialties</h5>
+                    <h5> Our Specialties</h5>
                     <a href="#">Gynae Laparoscopic Surgery</a>
                     <a href="#">Cardiac Sciences</a>
                     <a href="#">Orthopedics</a>

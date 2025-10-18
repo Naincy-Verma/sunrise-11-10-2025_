@@ -25,6 +25,8 @@
                                     <th>Slug</th>
                                     <th>Description</th>
                                     <th>Image</th>
+                                    <th>Small Image 1</th>
+                                    <th>Small Image 2</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -42,6 +44,22 @@
                                                 <span class="text-muted">No Image</span>
                                             @endif
                                         </td>
+                                        <td>
+                                            @if($about->image_small1)
+                                                <img src="{{ asset('admin-assets/images/admin-image/abouts/' . $about->image_small1) }}" alt="Small Image 1" style="width:50px; height:50px; object-fit:cover;">
+                                            @else
+                                                <span class="text-muted">No Image</span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @if($about->image_small2)
+                                                <img src="{{ asset('admin-assets/images/admin-image/abouts/' . $about->image_small2) }}" alt="Small Image 2" style="width:50px; height:50px; object-fit:cover;">
+                                            @else
+                                                <span class="text-muted">No Image</span>
+                                            @endif
+                                        </td>
+
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <!-- View -->

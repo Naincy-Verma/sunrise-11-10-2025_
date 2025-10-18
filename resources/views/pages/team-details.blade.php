@@ -296,14 +296,13 @@
 @section('content')
     <section class="hero-section">
         <div class="container container-custom">
-            <!-- Breadcrumb -->
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <h5 class="mb-3">DR. NIKITA TREHAN</h5>
+                    <h5 class="mb-3">{{ $doctor->name }}</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">DR. NIKITA TREHAN</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $doctor->name }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -314,24 +313,21 @@
     <section>
         <div class="container">
             <div class="row align-items-center">
-                <!-- Left Side: Doctor Image -->
+                <!-- Left: Image -->
                 <div class="col-lg-5 mb-5 mb-lg-0">
                     <div class="doctor-img">
-                        <img src="{{ asset('assets/images/home-page/nikita.webp') }}" alt="Doctor" />
+                        <img src="{{ asset('admin-assets/images/admin-image/doctors/' . $doctor->profile_image) }}" alt="{{ $doctor->name }}">
                     </div>
                 </div>
 
-                <!-- Right Side: Doctor Info -->
+                <!-- Right: Info -->
                 <div class="col-lg-7 doctor-details">
-                    <h5>World Renowned Gynae Laparoscopic Surgeon</h5>
-                    <h2>DR. NIKITA TREHAN</h2>
-                    <p>
-                        Consult with internationally acclaimed surgeon having record-breaking
-                        achievements in laparoscopic surgeries.
-                    </p>
-                    <p><strong>Designation:</strong> World Renowned Gynae Laparoscopic Surgeon</p>
-                    <p><strong>Areas of Expertise:</strong> Gynae Laparoscopic Surgery</p>
-                    <p><strong>Qualification:</strong> MBBS, DNB, MNAMS Diploma in Laparoscopic Surgery (Kochi, Germany)</p>
+                    <h5>{{ $doctor->designation }}</h5>
+                    <h2>{{ $doctor->name }}</h2>
+                    <p>{{ $doctor->description }}</p>
+                    <p><strong>Designation:</strong> {{ $doctor->designation }}</p>
+                    <p><strong>Areas of Expertise:</strong> {{ $doctor->speciality }}</p>
+                    <p><strong>Qualification:</strong> {{ $doctor->qualification }}</p>
                 </div>
             </div>
         </div>
@@ -339,188 +335,97 @@
 
     <div class="doctor-detail-page">
         <div class="container">
+
+            <!-- Brief Profile -->
             <div class="content-section">
-                <div class="brief-header">Brief Profile</div>
+                <div class="brief-header">{{ $doctor->brief_profile_heading }}</div>
                 <div class="section-content">
-                    <p>
-                        <b>Dr. Nikita Trehan</b>: Is a <b>world-renowned Gynecologist and Laparoscopic Surgeon</b>.
-                        <b>Dr. Nikita Trehan</b> is dedicated to <b>Gynae Endoscopy and Minimally Invasive Gynecology</b>
-                        at <b>“Sunrise Hospitals, INDIA, & Sunrise IMH, Dubai”</b> for the last <b>18 years</b>.
-                        She is the <b>Managing Director</b> of <b>Sunrise Hospital, Delhi, Mumbai & International Modern Hospital, Dubai</b>.
-                    </p>
-                    <div class="row">
-                        <div class="col-lg-7 col-md-7">
-                            <img src="https://www.sunrisehospitals.in/wp-content/uploads/2023/04/imag12.jpg" width="100%" alt="Patient Image">
-                        </div>
-                        <div class="col-lg-5 col-md-5">
+                    <p>{!! $doctor->brief_profile_description !!}</p>
 
-                        </div>
-                    </div>
-
-                    <div class="highlight-box">
-                        <div class="highlight-title">World Record Holder</div>
-                        <p class="highlight-text">
-                            She holds the World Record for the largest fibroid removed laparoscopically at 6.5kg (Done in Dubai) She also holds the world's record for the oldest person operated in the at 107yrs of age. The patient had a vaginal sacrospinous fixation.
-                        </p>
-                    </div>
-
+                    @if(!empty($doctor->metrics))
                     <div class="experience-highlights">
-                        <div class="experience-card">
-                            <span class="experience-number">18+</span>
-                            <span class="experience-label">Years Experience</span>
-                        </div>
-                        <div class="experience-card">
-                            <span class="experience-number">5000+</span>
-                            <span class="experience-label">Surgeries Performed</span>
-                        </div>
-                        <div class="experience-card">
-                            <span class="experience-number">3</span>
-                            <span class="experience-label">World Records</span>
-                        </div>
+                        @foreach($doctor->metrics as $metric)
+                            <div class="experience-card">
+                                <span class="experience-number">{{ $metric['number'] }}</span>
+                                <span class="experience-label">{{ $metric['label'] }}</span>
+                            </div>
+                        @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
 
+            <!-- Professional Achievements -->
             <div class="content-section">
-                <div class="brief-header">Professional Achievements</div>
+                <div class="brief-header">{{ $doctor->professional_heading }}</div>
                 <div class="section-content">
-                    <div class="achievements-grid">
-                        <div class="achievement-card">
-                            <div class="achievement-title">Academic Excellence</div>
-                            <p class="achievement-desc">She is an academician and is involved in most Gynae conferences & workshops for demonstrating her superb surgical skills "LIVE"</p>
-                        </div>
-                        <div class="achievement-card">
-                            <div class="achievement-title">Research Contributions</div>
-                            <p class="achievement-desc">She has contributed to numerous papers in various international journals and books</p>
-                        </div>
-                        <div class="achievement-card">
-                            <div class="achievement-title">Training Programs</div>
-                            <p class="achievement-desc">She conducts various teaching programs and conferences</p>
-                        </div>
-                    </div>
+                    <p>{{ $doctor->professional_description }}</p>
 
+                    @if(!empty($doctor->training_record))
                     <div class="training-programs">
-                        <h3 style="color:#003366; margin-bottom: 25px; font-size: 1.3rem;">Training Programs Conducted</h3>
-                        <div class="program-item">
-                            <div class="program-number">1</div>
-                            <div class="program-details">
-                                <div class="program-name">Basic LAP training program</div>
-                                <div class="program-duration">(2Days)</div>
+                        <h3>{{ $doctor->professional_subheading }}</h3>
+                        @foreach($doctor->training_record as $program)
+                            <div class="program-item">
+                                <div class="program-number">{{ $program['number'] }}</div>
+                                <div class="program-details">
+                                    <div class="program-name">{{ $program['name'] }}</div>
+                                    <div class="program-duration">{{ $program['duration'] }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="program-item">
-                            <div class="program-number">2</div>
-                            <div class="program-details">
-                                <div class="program-name">TLH Hands-on</div>
-                                <div class="program-duration">(4Days)</div>
-                            </div>
-                        </div>
-                        <div class="program-item">
-                            <div class="program-number">3</div>
-                            <div class="program-details">
-                                <div class="program-name">Fellowship program</div>
-                                <div class="program-duration">(3 months)</div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-
-                    <div class="highlight-box">
-                        <div class="highlight-title">Training Excellence</div>
-                        <p class="highlight-text">
-                            She along with her team are the first in Delhi to offer:<br>
-                            <strong>"EMERGENCY LAP ENDOSCOPE SERVICES"</strong>
-                        </p>
-                    </div>
+                    @endif
                 </div>
             </div>
 
+            <!-- Specialized Procedures & Records -->
             <div class="content-section">
-                <div class="brief-header">Specialized Procedures & World Records</div>
+                <div class="brief-header">{{ $doctor->specialized_heading }}</div>
                 <div class="section-content">
-                    <div class="records-section">
-                        <h3 style="color: #003366; margin-bottom: 25px; font-size: 1.3rem;">Special procedures done by her and her team at Sunrise Delhi & IMH Dubai include:</h3>
+                    <h3>{{ $doctor->specialized_subheading }}</h3>
 
-                        <div class="record-item">
-                            <div class="record-icon">1</div>
-                            <div class="record-content">
-                                <div class="record-title">Total Laparoscopic & Hysterectomy</div>
-                                <p class="record-desc">Any size of uterus (We have a record for 6.5kg TLH done Laparoscopically)</p>
+                    @if(!empty($doctor->notable_records))
+                        @foreach($doctor->notable_records as $index => $record)
+                            <div class="record-item">
+                                <div class="record-icon">{{ $index + 1 }}</div>
+                                <div class="record-content">
+                                    <div class="record-title">{{ $record['title'] }}</div>
+                                    <p class="record-desc">{{ $record['description'] }}</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="record-item">
-                            <div class="record-icon">2</div>
-                            <div class="record-content">
-                                <div class="record-title">Laparoscopic Myomectomy</div>
-                                <p class="record-desc">Any size of fibroid (we have the world record for worlds largest fibroid removed laparoscopically)</p>
-                            </div>
-                        </div>
-
-                        <div class="record-item">
-                            <div class="record-icon">3</div>
-                            <div class="record-content">
-                                <div class="record-title">Advanced Laparoscopic Procedures</div>
-                                <p class="record-desc">Including Encircle for Recurrent Miscarriages, Fertility Enhancing Surgeries, and various hysteroscopic procedures</p>
-                            </div>
-                        </div>
-
-                        <div class="record-item">
-                            <div class="record-icon">4</div>
-                            <div class="record-content">
-                                <div class="record-title">Specialized Vaginal Surgeries</div>
-                                <p class="record-desc">Including Sacrospinous Fixation, Vaginal Rejuvenation Surgeries, and various reconstructive procedures</p>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
+            <!-- Areas of Specialization -->
             <div class="content-section">
                 <div class="brief-header">Areas of Specialization</div>
                 <div class="section-content">
                     <ul class="specialties-list">
-                        <li>Laparoscopic Enceriage for Recurrent Miscarriages</li>
-                        <li>Laparoscopic & Hysteroscopy Fertility Enhancing Surgeries</li>
-                        <li>All hysteroscopic procedures like Hysteroscopic Myomectomy, Polypectomy, Septal Resection etc</li>
-                        <li>Laparoscopic Onosurgeries laparoscopic Wertheim's Hysterectomy for CA cervix and CA endometrium</li>
-                        <li>Laparoscopic surgeries for CA ovary</li>
-                        <li>Laparoscopic Sling Surgery for Malignous Prolapse</li>
-                        <li>All Gynae Urological Surgeries: TVT, TOT</li>
-                        <li>Laparoscopic Treatment of Fibroids/ Laparoscopic Vaginoplasty by Sunrise Method</li>
-                        <li>Laparoscopic Sacrocolpopexy for Uterine Prolapse Surgery</li>
-                        <li>Laparoscopic Mesh Vault Repair Surgery</li>
-                        <li>Laparoscopic Mesh Repair of Multiparous Prolapse Surgery</li>
-                        <li>Laparoscopic Hysteroscopy Surgery</li>
-                        <li>Laparoscopic Reconciliation Surgery</li>
-                        <li>Laparoscopic Ovarian Cystectomy Surgery</li>
-                        <li>Laparoscopic Endometriosis Surgery</li>
+                        @if(!empty($doctor->areas_of_specialization))
+                            @foreach($doctor->areas_of_specialization as $specialty)
+                                <li>{{ $specialty }}</li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
 
+            <!-- Professional Contributions -->
             <div class="content-section">
-                <div class="brief-header">Professional Contributions</div>
+                <div class="brief-header">{{ $doctor->contributions_heading }}</div>
                 <div class="section-content">
-                    <p class="brief-profile">
-                        She has organized and conducted several CME's for the promotion of Minimally invasive Gynaecology under the banner of "Sunrise Keyhole Surgery Foundation" of which she is the Vice president. She has also trained many Indian & International Doctors in Minimally invasive Gynaecology and has been a Training Surgeon for minimally invasive Gynecology.
-                    </p>
-
-                    <p class="brief-profile">
-                        As part of her endeavor to promote minimally invasive techniques in Gynecology and completing the CSR(Corporate Social Responsibility)She has organized many "Free Surgical Camps" for poor patients of Sunrise.
-                    </p>
-
-                    <p class="brief-profile">
-                        She has contributed to many chapters in Gynaecology Endoscopy Surgery books and is actively involved in various academic activities of teaching and new research and has many papers in various international journals to her credit.
-                    </p>
+                    <p>{!! $doctor->contributions_description !!}</p>
 
                     <div class="highlight-box">
                         <div class="highlight-title">Latest Achievement</div>
-                        <p class="highlight-text">
-                            She has the record for the largest fibroid remove laparoscopically in the UAE at 6.5 KGS and has recently entered the Limca Book of Record for the oldest patient operated in the world at Sunrise IMH Dubai the Lady was 107 years old.
-                        </p>
+                        <p class="highlight-text">{!! $doctor->latest_achievement !!}</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
 @endsection

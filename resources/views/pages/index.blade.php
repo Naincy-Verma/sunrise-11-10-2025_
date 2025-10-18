@@ -111,11 +111,6 @@
         </div>
     </section>
 
-<<<<<<< HEAD
-    <!-- Compassionate Care, Advanced Treatment, Trusted Expertise. -->
-=======
-
->>>>>>> 8e44521ddb2e6179850f8f890619417386a32c35
     <section class="intro-content">
         <div class="container">
             <div class="row">
@@ -566,261 +561,47 @@
         <!-- Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+                @foreach($doctors as $doctor)
                 <!-- Doctor Card 1 -->
                 <div class="swiper-slide">
                     <div class="card doctor-card">
-                        <span class="experience-badge">18+ Years</span>
-                        <img src="{{asset('assets/nikita.webp')}}" alt="Doctor" />
+                        <span class="experience-badge">1{{ $doctor->experience }}</span>
+                         <img src="{{ asset('admin-assets/images/admin-image/doctors/' . $doctor->profile_image) }}" alt="{{ $doctor->name }}" />
                         <div class="doctor-info">
-                            <h5>Dr. Nikita Trehan</h5>
-                            <p>MBBS, DNB, MNAMS Diploma in Laparoscopic Surgery </p>
-                            <p class="text-success">Gynae Laparoscopic Surgery</p>
+                            <h5>{{ $doctor->name }}</h5>
+                            <p>{{ $doctor->qualification }}</p>
+                            <p class="text-success">{{ $doctor->speciality }}</p>
                             <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <a href="{{url('doctor-detail')}}" class="btn btn-profile flex-fill"
-                                    data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 2 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">31+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr.Anand-Wadera.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Anand Wadera</h5>
-                            <p>MBBS, MS</p>
-                            <p class="text-success">Orthopaedics, Joint Replacement & Sports Injury</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 3 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">8+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr.-prakhar-final.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Prakhar Singh</h5>
-                            <p>MBBS, MD</p>
-                            <p class="text-success">Critical Care Medicine & Diabetologist</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Appointment Button -->
+    <a href="{{ $doctor->appointment_url ?? '#' }}" 
+       class="btn btn-appointment flex-fill me-2" 
+       data-bs-toggle="tooltip" 
+       title="Book Appointment">
+        <i class="fa-solid fa-calendar-check"></i>
+    </a>
 
-                <!-- Doctor Card 4 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">20+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Saurabh-Sinha.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Saurabh Sinha</h5>
-                            <p>MBBS, MS, M.Ch</p>
-                            <p class="text-success">Urologist</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 5 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">10+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Sanjay-Gudwani.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr Sanjay Gudwani</h5>
-                            <p>MBBS, MS</p>
-                            <p class="text-success">ENT</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 6 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">10+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr.Anmol-Maria.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr Anmol Maria</h5>
-                            <p>MBBS, MS</p>
-                            <p class="text-success">Orthopaedics, Joint Replacement & Sports Injury</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 7 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">36+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Anupama-Sobti.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Anupama Sobti</h5>
-                            <p>MBBS DGO</p>
-                            <p class="text-success">Obstetrics & Gynaecology</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 8 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">25+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Bhavna-Barmi.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Bhawna Barmi</h5>
-                            <p>Ph.d, M.phil (NIMHANS, Bangalore)</p>
-                            <p class="text-success">Senior clinical and child psychologist</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 9 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">18+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Deepak-Kapoor.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Deepak Kapoor</h5>
-                            <p>MBBS, MS</p>
-                            <p class="text-success">General & Bariatric Surgery</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 10 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">10+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Vaibhav-Gautam.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Vaibhav Gautam</h5>
-                            <p>MBBS, MS</p>
-                            <p class="text-success">Orthopaedics, Joint Replacement & Sports Injury</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Doctor Card 11 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">24+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Beena-Tiwari.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Beena Tiwari</h5>
-                            <p>MBBS, MD</p>
-                            <p class="text-success">Radiologist</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Profile Button: Only show if profile_url exists -->
+    @if(!empty($doctor->profile_url))
+        <a href="{{ route('doctor-detail', ['slug' => $doctor->profile_url]) }}" 
+           class="btn btn-profile flex-fill" 
+           data-bs-toggle="tooltip" 
+           title="View Profile">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    @else
+        <a href="#" class="btn btn-profile flex-fill disabled" 
+           data-bs-toggle="tooltip" 
+           title="Profile not available">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    @endif
+</div>
 
-                <!-- Doctor Card 12 -->
-                <div class="swiper-slide">
-                    <div class="card doctor-card">
-                        <span class="experience-badge">24+ Years</span>
-                        <img src="{{asset('assets/images/doctors/Dr-Sumit-More.webp')}}" alt="Doctor" />
-                        <div class="doctor-info">
-                            <h5>Dr. Sumit More</h5>
-                            <p>MBBS, MS, MCh (Uro)</p>
-                            <p class="text-success">Consultant Urologist</p>
-                            <div class="doctor-actions d-flex">
-                                <button class="btn btn-appointment flex-fill me-2" data-bs-toggle="tooltip"
-                                    title="Book Appointment">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </button>
-                                <button class="btn btn-profile flex-fill" data-bs-toggle="tooltip" title="View Profile">
-                                    <i class="fa-solid fa-user"></i>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
+            
             </div>
             <!-- Swiper Controls -->
             <div class="swiper-pagination"></div>
@@ -911,7 +692,7 @@
             </div>
           <div class="swiper PatientTestimonialSwiper">
             <div class="swiper-wrapper">
-                @foreach($videos as $video)
+                @foreach($testimonials as $testimonial)
                     <div class="swiper-slide">
                         <div class="instagram-card">
                             <iframe 

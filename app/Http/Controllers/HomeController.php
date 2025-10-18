@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\Faq;
 use App\Models\VideoTestimonial;
 use App\Models\PatientTestimonial;
+use App\Models\Doctor;
 use App\Models\About;
 use App\Models\Vision_Mission; 
 
@@ -37,7 +38,6 @@ class HomeController extends Controller
         }
     }
 
-
     public function index()
     {
         $type = $this->is_mobile();
@@ -48,15 +48,13 @@ class HomeController extends Controller
         $faqs = Faq::get();
         $videos = VideoTestimonial::all();
         $testimonials = PatientTestimonial::all();
-         $specialties_form = Speciality::select('id', 'title')->get();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials'));
-     // Only fetch id and title for the dropdown
+        $specialties_form = Speciality::select('id', 'title')->get();
+        $doctors = Doctor::all();
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
+      // Only fetch id and title for the dropdown
 
-         
-
+    
     }
-
-
 
     public function BookAppointment()
     {
@@ -68,11 +66,11 @@ class HomeController extends Controller
 
     public function specialtyDetail($slug)
     {
-        // $specialties = Speciality::get();
         $specialty = Speciality::where('slug', $slug)->firstOrFail();
          $specialties_form = Speciality::select('id', 'title')->get();
         return view('pages.specialties.specialty_detail', compact('specialty', 'specialties_form'));
     }
+
     public function rarecase()
     {
         $cases = RareCase::get();
@@ -110,10 +108,26 @@ class HomeController extends Controller
         return view('pages.faq', compact('faqs' ));
     }
 
-    public function video_testimonial()
+    public function patient_testimonial()
+    {
+        $testimonials = PatientTestimonial::all();
+        return view('pages.patient-testimonial', compact('testimonials' ));
+    }
+      public function video_testimonial()
     {
         $videos = VideoTestimonial::all();
         return view('pages.video-testimonial', compact('videos' ));
+    }
+    public function doctors()
+    {
+        $doctors = Doctor::all();
+        return view('pages.doctor', compact('doctors'));
+    }
+    public function doctorDetail($slug)
+    {
+        // Fetch doctor by profile_url
+        $doctor = Doctor::where('profile_url', $slug)->firstOrFail();
+        return view('pages.team-details', compact('doctor'));
     }
 
      public function storeAppointment(Request $request)
@@ -123,7 +137,7 @@ class HomeController extends Controller
             'email' => 'required|email|max:150',
             'phone' => 'required|string|max:12',
             'speciality' => 'required|exists:our_specialties,id',
-             'appointment_date' => 'required|date',
+            'appointment_date' => 'required|date',
             'source' => 'nullable|string|max:50',
         ]);
 

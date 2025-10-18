@@ -230,13 +230,13 @@
                 </div>
 
                 <!-- Specialties -->
-                <div class="col-lg-3 col-md-6">
+               <div class="col-lg-3 col-md-6">
                     <h5>Specialties</h5>
-                    <a href="#">Gynae Laparoscopic Surgery</a>
-                    <a href="#">Cardiac Sciences</a>
-                    <a href="#">Orthopedics</a>
-                    <a href="#">Pediatrics</a>
-                    <a href="#">General Medicine</a>
+                    @foreach($specialties as $specialty)
+                        <a href="{{ url('specialties', $specialty->slug) }}">
+                            {{ $specialty->title }}
+                        </a>
+                    @endforeach
                 </div>
 
                 <!-- Contact -->

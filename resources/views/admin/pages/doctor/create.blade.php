@@ -60,11 +60,22 @@
             <div class="section-title mb-3">🏠 Homepage Information</div>
           </div>
           <div class="col-lg-6">
-            <div class="form-group">
-              <label>Doctor Name <span class="text-danger">*</span>
-              </label>
-              <input type="text" name="name" class="form-control" placeholder="Dr. John Doe" required>
+           <div class="form-group">
+              <label>Doctor Name <span class="text-danger">*</span></label>
+                <input type="text" id="doctor_name" name="name" class="form-control" placeholder="Dr. John Doe" required>
             </div>
+
+            <div class="form-group">
+              <label>Profile URL <span class="text-danger">*</span></label>
+              <input type="text" id="profile_url" name="profile_url" class="form-control" placeholder="profile url">
+            </div>
+
+
+            <div class="form-group">
+                <label>Appointment URL <span class="text-danger">*</span></label>
+                <input type="url" name="appointment_url" class="form-control" placeholder="https://example.com/appointment"  required>
+            </div>
+
             <div class="form-group">
               <label>Designation</label>
               <input type="text" name="designation" class="form-control" placeholder="Senior Consultant">
@@ -181,7 +192,7 @@
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // ✅ Profile Image Preview
+    // ✅ Image Preview
     const profileImage = document.getElementById('profile_image');
     const imagePreview = document.getElementById('imagePreview');
     if (profileImage) {
@@ -192,13 +203,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 reader.onload = function(e) {
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
-                }
+                };
                 reader.readAsDataURL(file);
             }
         });
     }
 
-    // ✅ Add/Remove Metrics
+    // ✅ Add/Remove Metric Fields
     const metricsWrapper = document.getElementById('metricsWrapper');
     metricsWrapper.addEventListener('click', function(e) {
         if (e.target.classList.contains('add-metric')) {
@@ -225,6 +236,24 @@ document.addEventListener('DOMContentLoaded', function() {
             specializationWrapper.appendChild(div);
         } else if (e.target.classList.contains('remove-field')) {
             e.target.parentElement.remove();
+        }
+    });
+
+    // ✅ Auto-generate slug only (for profile_url field)
+    const doctorNameInput = document.getElementById('doctor_name');
+    const profileUrlInput = document.getElementById('profile_url');
+
+    doctorNameInput.addEventListener('input', function() {
+        const name = this.value.trim();
+        if (name) {
+            const slug = name
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // remove invalid chars
+                .replace(/\s+/g, '-')         // replace spaces with hyphen
+                .replace(/-+/g, '-');         // collapse multiple hyphens
+            profileUrlInput.value = slug;
+        } else {
+            profileUrlInput.value = '';
         }
     });
 });

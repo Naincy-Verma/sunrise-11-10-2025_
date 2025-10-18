@@ -43,19 +43,19 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" placeholder="Enter title" required>
+                                <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" required>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Slug </label>
-                                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug') }}" placeholder="url" readonly>
+                                <input type="text" name="slug" id="slug" class="form-control"  placeholder="url" readonly>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Description</label>
-                                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description">{{ old('description') }}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description"></textarea>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">

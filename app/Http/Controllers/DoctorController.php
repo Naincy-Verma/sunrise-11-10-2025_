@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
 
 class DoctorController extends Controller
 {
@@ -33,6 +32,7 @@ class DoctorController extends Controller
             'qualification' => 'nullable|string',
             'speciality' => 'nullable|string',
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'appointment_url' => 'nullable|url',
             'brief_profile_heading' => 'nullable|string',
             'brief_profile_description' => 'nullable|string',
             'metrics' => 'nullable|array',
@@ -53,6 +53,9 @@ class DoctorController extends Controller
             'latest_achievement' => 'nullable|string',
         ]);
 
+        // ✅ Generate unique slug from name
+        $validated['slug'] = Str::slug($request->name);
+
         // ✅ Upload Profile Image
         if ($request->hasFile('profile_image')) {
             $image = $request->file('profile_image');
@@ -66,15 +69,12 @@ class DoctorController extends Controller
         $validated['areas_of_specialization'] = json_encode($request->areas_of_specialization);
 
         // ✅ Save doctor
-        $doctor = Doctor::create($validated);
-        $doctor->profile_url = null;
-        $doctor->appointment_url = null;
-        $doctor->save();
+        Doctor::create($validated);
 
         return redirect()->route('doctors.index')->with('success', 'Doctor added successfully!');
     }
 
-    // Show a single doctor
+    // Show a single doctor (admin)
     public function show(Doctor $doctor)
     {
         return view('admin.pages.doctor.show', compact('doctor'));
@@ -100,6 +100,7 @@ class DoctorController extends Controller
             'qualification' => 'nullable|string',
             'speciality' => 'nullable|string',
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'appointment_url' => 'nullable|url',
             'brief_profile_heading' => 'nullable|string',
             'brief_profile_description' => 'nullable|string',
             'metrics' => 'nullable|array',
@@ -119,6 +120,9 @@ class DoctorController extends Controller
             'contributions_description' => 'nullable|string',
             'latest_achievement' => 'nullable|string',
         ]);
+
+        // ✅ Generate unique slug from name
+        $validated['slug'] = Str::slug($request->name);
 
         // ✅ Upload new image if available
         if ($request->hasFile('profile_image')) {
@@ -149,5 +153,12 @@ class DoctorController extends Controller
 
         $doctor->delete();
         return redirect()->route('doctors.index')->with('success', 'Doctor deleted successfully!');
+    }
+
+    // Frontend doctor detail page
+    public function doctorDetail($slug)
+    {
+        $doctor = Doctor::where('slug', $slug)->firstOrFail();
+        return view('pages.team-details', compact('doctor'));
     }
 }

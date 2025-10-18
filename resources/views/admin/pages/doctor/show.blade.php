@@ -44,6 +44,26 @@
                 </div>
             </div>
 
+            <!-- ✅ Profile & Appointment URLs -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <strong>Profile URL:</strong><br>
+                    @if($doctor->profile_url)
+                        <a href="{{ $doctor->profile_url }}" target="_blank">{{ $doctor->profile_url }}</a>
+                    @else
+                        <span class="text-muted">Not available</span>
+                    @endif
+                </div>
+                <div class="col-md-6">
+                    <strong>Appointment URL:</strong><br>
+                    @if($doctor->appointment_url)
+                        <a href="{{ $doctor->appointment_url }}" target="_blank">{{ $doctor->appointment_url }}</a>
+                    @else
+                        <span class="text-muted">Not available</span>
+                    @endif
+                </div>
+            </div>
+
             <hr class="my-4">
 
             <!-- 📄 Detail Page Section -->

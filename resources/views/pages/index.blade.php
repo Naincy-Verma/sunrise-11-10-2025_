@@ -572,30 +572,31 @@
                             <p>{{ $doctor->qualification }}</p>
                             <p class="text-success">{{ $doctor->speciality }}</p>
                             <div class="doctor-actions d-flex">
-    <!-- Appointment Button -->
-    <a href="{{ $doctor->appointment_url ?? '#' }}" 
-       class="btn btn-appointment flex-fill me-2" 
-       data-bs-toggle="tooltip" 
-       title="Book Appointment">
-        <i class="fa-solid fa-calendar-check"></i>
-    </a>
+                                <!-- Appointment Button -->
+                                <a href="{{ $doctor->appointment_url ?? '#' }}" 
+                                class="btn btn-appointment flex-fill me-2" 
+                                data-bs-toggle="tooltip" 
+                                title="Book Appointment">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                </a>
 
-    <!-- Profile Button: Only show if profile_url exists -->
-    @if(!empty($doctor->profile_url))
-        <a href="{{ route('doctor-detail', ['slug' => $doctor->profile_url]) }}" 
-           class="btn btn-profile flex-fill" 
-           data-bs-toggle="tooltip" 
-           title="View Profile">
-            <i class="fa-solid fa-user"></i>
-        </a>
-    @else
-        <a href="#" class="btn btn-profile flex-fill disabled" 
-           data-bs-toggle="tooltip" 
-           title="Profile not available">
-            <i class="fa-solid fa-user"></i>
-        </a>
-    @endif
-</div>
+                                <!-- Profile Button: Only show if profile_url exists -->
+                                @if(!empty($doctor->profile_url))
+                                    <a href="{{ route('doctor-detail', ['slug' => $doctor->profile_url]) }}" 
+                                    class="btn btn-profile flex-fill" 
+                                    data-bs-toggle="tooltip" 
+                                    title="View Profile">
+                                        <i class="fa-solid fa-user"></i>
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-profile flex-fill disabled" 
+                                    data-bs-toggle="tooltip" 
+                                    title="Profile not available">
+                                        <i class="fa-solid fa-user"></i>
+                                    </a>
+                                @endif
+
+                            </div>
 
                         </div>
                     </div>

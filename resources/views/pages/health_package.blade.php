@@ -84,105 +84,25 @@
                 {{-- Left Content Area for Tests (8 columns on large screens) --}}
                 <div class="col-lg-8">
                     <div class="row g-4">
-                        {{-- 1. COMPLETE HEMOGRAM & FBS --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-blood">
-                                    <i class="bi bi-droplet-fill me-2"></i> HEMATOLOGY & GLUCOSE
+                        @foreach($packages as $package)
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="category-card">
+                                    <div class="card-header-accent header-blood">
+                                        <i class="bi bi-droplet-fill me-2"></i> {{ strtoupper($package->heading) }}
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach($package->tests as $test)
+                                            <li class="list-group-item">
+                                                <i class="bi bi-circle-fill me-2"></i> {{ $test }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> **Hemoglobin** & PCV</li>
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> RBC Count, RDW</li>
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> TLC, DLC, ESR</li>
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> MCV, MCH, MCHC</li>
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> Platelet Count</li>
-                                    <li class="list-group-item"><i class="bi bi-circle-fill icon-blood"></i> **FBS (Fasting Blood Sugar)**</li>
-                                </ul>
                             </div>
-                        </div>
-
-                        {{-- 2. LIPID PROFILE & THYROID --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-lipid">
-                                    <i class="bi bi-heart-pulse-fill me-2"></i> METABOLIC & HORMONAL
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-check-circle-fill icon-lipid"></i> Total Cholesterol</li>
-                                    <li class="list-group-item"><i class="bi bi-check-circle-fill icon-lipid"></i> HDL (Good Cholesterol)</li>
-                                    <li class="list-group-item"><i class="bi bi-check-circle-fill icon-lipid"></i> LDL (Bad Cholesterol)</li>
-                                    <li class="list-group-item"><i class="bi bi-check-circle-fill icon-lipid"></i> VLDL</li>
-                                    <li class="list-group-item"><i class="bi bi-check-circle-fill icon-lipid"></i> **THYROID PROFILE** (TSH, T3, T4)</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {{-- 3. LIVER FUNCTION PROFILE --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-liver">
-                                    <i class="bi bi-person-badge-fill me-2"></i> LIVER FUNCTION PROFILE (LFP)
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-arrow-right-short icon-liver"></i> SGOT, SGPT, GG/GGTP</li>
-                                    <li class="list-group-item"><i class="bi bi-arrow-right-short icon-liver"></i> Alkaline Phosphatase</li>
-                                    <li class="list-group-item"><i class="bi bi-arrow-right-short icon-liver"></i> Billirubin (Total, Direct, Indirect)</li>
-                                    <li class="list-group-item"><i class="bi bi-arrow-right-short icon-liver"></i> Protein Total</li>
-                                    <li class="list-group-item"><i class="bi bi-arrow-right-short icon-liver"></i> Albulin, Globulin, A-G ratio</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {{-- 4. KIDNEY FUNCTION PROFILE --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-kidney">
-                                    <i class="bi bi-water me-2"></i> KIDNEY FUNCTION PROFILE (KFP)
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-journal-medical icon-kidney"></i> Uric Acid, Urea</li>
-                                    <li class="list-group-item"><i class="bi bi-journal-medical icon-kidney"></i> Creatinine</li>
-                                    <li class="list-group-item"><i class="bi bi-journal-medical icon-kidney"></i> Sodium, Potassium</li>
-                                    <li class="list-group-item"><i class="bi bi-journal-medical icon-kidney"></i> Chloride</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {{-- 5. SCREENING & IMAGING --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-other">
-                                    <i class="bi bi-shield-fill me-2"></i> INFECTIOUS & IMAGING
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-virus icon-other"></i> **HIV 1&2** Screening</li>
-                                    <li class="list-group-item"><i class="bi bi-virus icon-other"></i> **HBsAg** (Hepatitis B)</li>
-                                    <li class="list-group-item"><i class="bi bi-x-ray icon-other"></i> **CHEST X-RAY (DIGITAL)**</li>
-                                    <li class="list-group-item"><i class="bi bi-activity icon-other"></i> **ECG** (Electrocardiogram)</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        {{-- 6. CLINICAL EXAMINATIONS --}}
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="category-card">
-                                <div class="card-header-accent header-exam">
-                                    <i class="bi bi-clipboard2-check-fill me-2"></i> CLINICAL EXAMINATIONS
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"><i class="bi bi-person-vcard icon-exam"></i> **PHYSICAL EXAMINATION**</li>
-                                    <li class="list-group-item"><i class="bi bi-gender-female icon-exam"></i> **GYNAECOLOGICAL EXAMINATION**</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                    <li class="list-group-item invisible">**&nbsp;**</li>
-                                </ul>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+
 
                 {{-- Right Sidebar Area for Appointment Form (4 columns on large screens) --}}
                 <div class="col-lg-4">

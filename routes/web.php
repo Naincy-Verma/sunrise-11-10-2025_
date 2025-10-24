@@ -32,7 +32,7 @@ Route::get('/index', function () {
 
 Route::get('/',[HomeController::class,'index']);
 Route::get('/book-appointment', [HomeController::class, 'BookAppointment']);
-Route::view('about','pages.about');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::view('contact','pages.contact-us');
 Route::view('team','pages.our-team');
 Route::get('doctor-detail/{slug}', [HomeController::class, 'doctorDetail'])->name('doctor-detail');
@@ -65,11 +65,11 @@ Route::get('/specialty-detail/{slug}', [HomeController::class, 'specialtyDetail'
 
 Route::view('patient-education','pages.patient_education');
 Route::view('training','pages.training');
-Route::view('health_package', 'pages.health_package');
+Route::get('health_package', [HomeController::class, 'packages'])->name('package');
+
 
 //Frontend Rputes
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 
 // admin Route
@@ -269,13 +269,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
 
          // --- Patient Education Routes ---
-    Route::get('patient-education', [PatientEducationController::class, 'index'])->name('patient-education.index');
-    Route::get('patient-education/create', [PatientEducationController::class, 'create'])->name('patient-education.create');
-    Route::post('patient-education', [PatientEducationController::class, 'store'])->name('patient-education.store');
-    Route::get('patient-education/{id}/edit', [PatientEducationController::class, 'edit'])->name('patient-education.edit');
-    Route::put('patient-education/{id}', [PatientEducationController::class, 'update'])->name('patient-education.update');
-    Route::delete('patient-education/{id}', [PatientEducationController::class, 'destroy'])->name('patient-education.destroy');
-    Route::get('patient-education/{id}', [PatientEducationController::class, 'show'])->name('patient-education.show');
+        Route::get('patient-education', [PatientEducationController::class, 'index'])->name('patient-education.index');
+        Route::get('patient-education/create', [PatientEducationController::class, 'create'])->name('patient-education.create');
+        Route::post('patient-education', [PatientEducationController::class, 'store'])->name('patient-education.store');
+        Route::get('patient-education/{id}/edit', [PatientEducationController::class, 'edit'])->name('patient-education.edit');
+        Route::put('patient-education/{id}', [PatientEducationController::class, 'update'])->name('patient-education.update');
+        Route::delete('patient-education/{id}', [PatientEducationController::class, 'destroy'])->name('patient-education.destroy');
+        Route::get('patient-education/{id}', [PatientEducationController::class, 'show'])->name('patient-education.show');
 
     });
 

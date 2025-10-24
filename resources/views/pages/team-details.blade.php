@@ -319,7 +319,6 @@
                         <img src="{{ asset('admin-assets/images/admin-image/doctors/' . $doctor->profile_image) }}" alt="{{ $doctor->name }}">
                     </div>
                 </div>
-
                 <!-- Right: Info -->
                 <div class="col-lg-7 doctor-details">
                     <h5>{{ $doctor->designation }}</h5>
@@ -341,17 +340,15 @@
                 <div class="brief-header">{{ $doctor->brief_profile_heading }}</div>
                 <div class="section-content">
                     <p>{!! $doctor->brief_profile_description !!}</p>
-
-                    @if(!empty($doctor->metrics))
-                    <div class="experience-highlights">
-                        @foreach($doctor->metrics as $metric)
-                            <div class="experience-card">
-                                <span class="experience-number">{{ $metric['number'] }}</span>
-                                <span class="experience-label">{{ $metric['label'] }}</span>
+                       @if(!empty($doctor->metrics))
+                            <div class="experience-highlights">
+                                @foreach(explode(',', $doctor->metrics) as $metric)
+                                    <div class="experience-card">
+                                        <span class="experience-label">{{ trim($metric) }}</span>
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforeach
-                    </div>
-                    @endif
+                        @endif
                 </div>
             </div>
 
@@ -364,15 +361,12 @@
                     @if(!empty($doctor->training_record))
                     <div class="training-programs">
                         <h3>{{ $doctor->professional_subheading }}</h3>
-                        @foreach($doctor->training_record as $program)
-                            <div class="program-item">
-                                <div class="program-number">{{ $program['number'] }}</div>
-                                <div class="program-details">
-                                    <div class="program-name">{{ $program['name'] }}</div>
-                                    <div class="program-duration">{{ $program['duration'] }}</div>
-                                </div>
-                            </div>
-                        @endforeach
+                        <div class="highlight-box">
+                        <div class="highlight-title">Training Excellence</div>
+                        <p class="highlight-text">
+                           ($doctor->training_record as $program)
+                        </p>
+                        </div>
                     </div>
                     @endif
                 </div>
@@ -383,48 +377,36 @@
                 <div class="brief-header">{{ $doctor->specialized_heading }}</div>
                 <div class="section-content">
                     <h3>{{ $doctor->specialized_subheading }}</h3>
-
-                    @if(!empty($doctor->notable_records))
-                        @foreach($doctor->notable_records as $index => $record)
-                            <div class="record-item">
-                                <div class="record-icon">{{ $index + 1 }}</div>
-                                <div class="record-content">
-                                    <div class="record-title">{{ $record['title'] }}</div>
-                                    <p class="record-desc">{{ $record['description'] }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
+                    <p>{{ $doctor->specialized_records}}
+                    </p>
                 </div>
             </div>
 
             <!-- Areas of Specialization -->
             <div class="content-section">
                 <div class="brief-header">Areas of Specialization</div>
-                <div class="section-content">
-                    <ul class="specialties-list">
-                        @if(!empty($doctor->areas_of_specialization))
-                            @foreach($doctor->areas_of_specialization as $specialty)
-                                <li>{{ $specialty }}</li>
-                            @endforeach
-                        @endif
-                    </ul>
+                    <div class="section-content">
+                        <ul class="specialties-list">
+                            @if(!empty($doctor->areas_of_specialization))
+                                @foreach(explode(',', $doctor->areas_of_specialization) as $specialty)
+                                    <li>{{ trim($specialty) }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
             <!-- Professional Contributions -->
             <div class="content-section">
                 <div class="brief-header">{{ $doctor->contributions_heading }}</div>
                 <div class="section-content">
                     <p>{!! $doctor->contributions_description !!}</p>
-
                     <div class="highlight-box">
                         <div class="highlight-title">Latest Achievement</div>
                         <p class="highlight-text">{!! $doctor->latest_achievement !!}</p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

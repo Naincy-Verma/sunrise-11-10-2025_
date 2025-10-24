@@ -165,7 +165,46 @@
                     <!-- End Dropdown -->
                     <li class="nav-item"><a class="nav-link" href="{{url('health_package')}}">Health Packages</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{url('/doctors')}}">Doctors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Quick Enquiry</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="quickEnquiryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Quick Enquiry
+                        </a>
+                        <div class="dropdown-menu p-4 shadow" aria-labelledby="quickEnquiryDropdown" style="min-width: 440px; background-color: #0b7fa4; border-radius: 10px;">
+                            <form action="" method="POST">
+                                <div class="mb-3">
+                                    <label class="text-white">Name</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Enter Name" required style="border-radius: 5px;">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-white">Mobile Number</label>  
+                                    <input type="tel" name="phone" class="form-control" placeholder="Enter Mobile Number" required style="border-radius: 5px;">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-white">Preferred Time To Call</label>
+                                    <select name="preferred_time" class="form-select" required style="border-radius: 5px;">
+                                        <option value="">Preferred Time To Call</option>
+                                        <option value="8:00-9:00">8:00 AM - 9:00 AM</option>
+                                        <option value="9:00-10:00">9:00 AM - 10:00 AM</option>
+                                        <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+                                        <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+                                        <option value="12:00-13:00">12:00 PM - 01:00 PM</option>
+                                        <option value="13:00-14:00">01:00 PM - 02:00 PM</option>
+                                        <option value="14:00-15:00">02:00 PM - 03:00 PM</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-light w-100 mb-3">Submit</button>
+                                <div class="form-check text-white mt-2">
+                                    <input type="checkbox" class="form-check-input" name="whatsapp_updates" id="whatsappUpdates">
+                                    <label class="form-check-label" for="whatsappUpdates">
+                                        Get Updates on Whatsapp. I agree to the T&C.
+                                    </label>
+                                    <small class="d-block text-white mt-2">Email - helpdesk@hospital.com</small>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+
                 </ul>
 
                 <!-- Right Side -->

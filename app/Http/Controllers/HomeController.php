@@ -10,8 +10,9 @@ use App\Models\Faq;
 use App\Models\VideoTestimonial;
 use App\Models\PatientTestimonial;
 use App\Models\Doctor;
-use App\Models\About;
-use App\Models\Vision_Mission; 
+use App\Models\Excellence; 
+use App\Models\TrainingProgram; 
+use App\Models\SpecializedCourse; 
 
 use Illuminate\Http\Request;
 USE App\Models\Appointment;
@@ -160,7 +161,7 @@ class HomeController extends Controller
 
         return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
     }
-
+    
     public function about()
     {
          $about = About::first(); // or ->get() if multiple entries
@@ -168,5 +169,12 @@ class HomeController extends Controller
         return view('pages.about', compact('about', 'visions'));
     }
 
-    
+    public function training()
+    {
+        $excellence = Excellence::first();
+        $programs = TrainingProgram::orderBy('s_no', 'asc')->get();
+          $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
+        return view('pages.training', compact('excellence', 'programs', 'courses'));
+    }
+
 }

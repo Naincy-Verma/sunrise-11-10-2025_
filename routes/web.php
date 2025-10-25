@@ -22,7 +22,9 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\TimeSlotController;
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\PatientEducationController;
+use App\Http\Controllers\ExcellenceController;
+use App\Http\Controllers\TrainingProgramController;
+use App\Http\Controllers\SpecializedCourseController;
 
 
 Route::get('/index', function () {
@@ -56,21 +58,21 @@ Route::view('reconstructive-uro-surgery','pages.specialties.uro_surgery');
 Route::view('critical-cases-icu','pages.specialties.cardiac_science');
 Route::view('bariatric-surgery','pages.specialties.bariatric_surgery');
 Route::view('internal-medicine','pages.specialties.internal_medicine');
+Route::view('patient_education','pages.patient_education');
 Route::get('video-testimonial', [HomeController::class, 'video_testimonial'])->name('video-testimonial');
 Route::get('patient-testimonial', [HomeController::class, 'patient_testimonial'])->name('patient-testimonial');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
 Route::get('/specialty-detail/{slug}', [HomeController::class, 'specialtyDetail'])->name('specialty.detail');
 
-
 Route::view('patient-education','pages.patient_education');
-Route::view('training','pages.training');
-Route::view('health_package', 'pages.health_package');
+Route::get('/training', [HomeController::class, 'training'])->name('training');
+
+Route::get('health_package', [HomeController::class, 'packages'])->name('package');
+
 
 //Frontend Rputes
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-
 
 // admin Route
 Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
@@ -269,14 +271,38 @@ Route::middleware('auth')->group(function () {
         Route::get('/appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
 
          // --- Patient Education Routes ---
-    Route::get('patient-education', [PatientEducationController::class, 'index'])->name('patient-education.index');
-    Route::get('patient-education/create', [PatientEducationController::class, 'create'])->name('patient-education.create');
-    Route::post('patient-education', [PatientEducationController::class, 'store'])->name('patient-education.store');
-    Route::get('patient-education/{id}/edit', [PatientEducationController::class, 'edit'])->name('patient-education.edit');
-    Route::put('patient-education/{id}', [PatientEducationController::class, 'update'])->name('patient-education.update');
-    Route::delete('patient-education/{id}', [PatientEducationController::class, 'destroy'])->name('patient-education.destroy');
-    Route::get('patient-education/{id}', [PatientEducationController::class, 'show'])->name('patient-education.show');
+        Route::get('patient-education', [PatientEducationController::class, 'index'])->name('patient-education.index');
+        Route::get('patient-education/create', [PatientEducationController::class, 'create'])->name('patient-education.create');
+        Route::post('patient-education', [PatientEducationController::class, 'store'])->name('patient-education.store');
+        Route::get('patient-education/{id}/edit', [PatientEducationController::class, 'edit'])->name('patient-education.edit');
+        Route::put('patient-education/{id}', [PatientEducationController::class, 'update'])->name('patient-education.update');
+        Route::delete('patient-education/{id}', [PatientEducationController::class, 'destroy'])->name('patient-education.destroy');
+        Route::get('patient-education/{id}', [PatientEducationController::class, 'show'])->name('patient-education.show');
 
+            // --- Excellences CRUD Routes ---
+        Route::get('excellences', [ExcellenceController::class, 'index'])->name('excellences.index');
+        Route::get('excellences/create', [ExcellenceController::class, 'create'])->name('excellences.create');
+        Route::post('excellences', [ExcellenceController::class, 'store'])->name('excellences.store');
+        Route::get('excellences/{id}/edit', [ExcellenceController::class, 'edit'])->name('excellences.edit');
+        Route::put('excellences/{id}', [ExcellenceController::class, 'update'])->name('excellences.update');
+        Route::delete('excellences/{id}', [ExcellenceController::class, 'destroy'])->name('excellences.destroy');
+
+            // --- Training Program CRUD routes ---
+        Route::get('training_program', [TrainingProgramController::class, 'index'])->name('training_program.index');
+        Route::get('training_program/create', [TrainingProgramController::class, 'create'])->name('training_program.create');
+        Route::post('training_program', [TrainingProgramController::class, 'store'])->name('training_program.store');
+        Route::get('training_program/{id}/edit', [TrainingProgramController::class, 'edit'])->name('training_program.edit');
+        Route::put('training_program/{id}', [TrainingProgramController::class, 'update'])->name('training_program.update');
+        Route::delete('training_program/{id}', [TrainingProgramController::class, 'destroy'])->name('training_program.destroy');
+
+        // --- Specialized Course CRUD routes ---
+        Route::get('specialized_course', [SpecializedCourseController::class, 'index'])->name('specialized_course.index');
+        Route::get('specialized_course/create', [SpecializedCourseController::class, 'create'])->name('specialized_course.create');
+        Route::post('specialized_course', [SpecializedCourseController::class, 'store'])->name('specialized_course.store');
+        Route::get('specialized_course/{id}/edit', [SpecializedCourseController::class, 'edit'])->name('specialized_course.edit');
+        Route::put('specialized_course/{id}', [SpecializedCourseController::class, 'update'])->name('specialized_course.update');
+        Route::delete('specialized_course/{id}', [SpecializedCourseController::class, 'destroy'])->name('specialized_course.destroy');
+    
     });
 
 });

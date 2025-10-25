@@ -481,7 +481,7 @@
                         </ul> -->
                     </li>
 
-                        <!-- Payment Education -->
+                        <!-- Patient Education -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -491,6 +491,51 @@
                             <li>
                                 <a href="{{route('admin.patient-education.index')}}">All Patient Education</a>
                                 <a href="{{route('admin.patient-education.create')}}">Add Patient Education</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                      <!-- Excellence -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Excellence</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.excellences.index')}}">All Excellence</a>
+                                <a href="{{route('admin.excellences.create')}}">Add Excellence</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                      <!--Training Program -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Training Program</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.training_program.index')}}">All Training Program</a>
+                                <a href="{{route('admin.training_program.create')}}">Add Training Program</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+
+                      <!-- Specialized Course -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Specialized Course </span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.specialized_course.index')}}">All Specialized Course</a>
+                                <a href="{{route('admin.specialized_course.create')}}">Add Specialized Course</a>
                             </li>
                            
                         </ul>

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vision_missions', function (Blueprint $table) {
+        Schema::create('excellences', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
             $table->string('heading');
             $table->text('description');
-            $table->string('stats');
-            $table->string('slug')->unique();
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vision_missions');
+        Schema::dropIfExists('excellences');
     }
 };

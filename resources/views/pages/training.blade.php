@@ -207,7 +207,7 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-7">
-                    <h2>Commitment to Clinical Excellence</h2>
+                    <!-- <h2>Commitment to Clinical Excellence</h2>
                     <p>
                         At “SUNRISE” we truly believe that Laparoscopy cannot be learned by only watching others operate. Hence “True hands-on training” is conducted by our mentors Dr. Hafeez Rahman & Dr Nikita Trehan along with comprehensive theory knowledge imparted by them in a Systematic Fashion.
                     </p>
@@ -216,12 +216,17 @@
                     </p>
                     <p>
                         Our in-house library with the latest journals (videos &amp; books available) and pelvi trainers give the doctors enough opportunity to upgrade their knowledge in their free time.
-                    </p>
+                    </p> -->
+                     <h2>{{ $excellence->heading }}</h2>
+                     <p>{!! nl2br(e($excellence->description)) !!}</p>
                 </div>
                 <div class="col-lg-5 text-center">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                    <!-- <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                          alt="Medical Professionals in Training"
-                         class="img-fluid  commit-image">
+                         class="img-fluid  commit-image"> -->
+                        <img src="{{ asset('admin-assets/images/admin-image/excellences/' . $excellence->image) }}" 
+                            alt="{{ $excellence->heading }}" 
+                            class="img-fluid commit-image">
                 </div>
             </div>
         </div>
@@ -242,24 +247,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>TLH Hands-on Training course</td>
-                            <td>4 Days</td>
-                            <td>11th Nov 2024 to 14th Nov 2024</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Fellowship in Advanced Gynae Laparoscopy</td>
-                            <td>6 months</td>
-                            <td>Slot Available</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Critical Care Nursing Certification</td>
-                            <td>2 Weeks</td>
-                            <td>5th - 16th June 2026</td>
-                        </tr>
+                             @foreach($programs as $program)
+                                <tr>
+                                    <td>{{ $program->s_no }}</td>
+                                    <td>{{ $program->training_course }}</td>
+                                    <td>{{ $program->duration }}</td>
+                                    <td>{{ $program->schedule }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -267,7 +262,7 @@
         </div>
     </section>
 
-    <section class="section-package">
+    <!-- <section class="section-package">
         <div class="container">
             <h2 class="text-center mb-3">Specialized Courses & Fellowships</h2>
             <div class="row g-4 justify-content-center">
@@ -281,7 +276,9 @@
                         <ul class="program-list">
                             <li><i class="fas fa-check-circle"></i> 4 Days Hands On Training</li>
                         </ul>
-                        <p class="price-details">+ 18% GST Extra</p>
+                        <ul class="program-list">
+                            <li><i class="fas fa-check-circle"></i>+ 18% GST Extra</li>
+                        </ul>
                         <a href="#registration-form" class="btn btn-primary w-100 mt-3">Pay Now</a>
                     </div>
                 </div>
@@ -301,7 +298,52 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+    <section class="section-package">
+    <div class="container">
+        <h2 class="text-center mb-3">Specialized Courses & Fellowships</h2>
+        <div class="row g-4 justify-content-center">
+            @foreach($courses as $course)
+            <div class="col-md-6 col-lg-4">
+                <div class="program-card">
+                    <div class="course-header">
+                        <h4>{{ $course->title }}</h4>
+                        <div class="ribbon">
+                            <div class="ribbon-content">{{ $course->badge_label }}</div>
+                        </div>
+                    </div>
+
+                    {{-- Render subtitle only if exists --}}
+                    @if(!empty($course->sub_title))
+                        <p class="program-subtitle">{{ $course->sub_title }}</p>
+                    @endif
+
+                    {{-- Render price only if exists --}}
+                    @if(!empty($course->price))
+                        <p class="program-price">
+                            {{ is_numeric($course->price) ? '₹'.number_format($course->price) : $course->price }}
+                        </p>
+                    @endif
+
+                    {{-- Features list --}}
+                    <ul class="program-list">
+                        @foreach($course->features as $feature)
+                            <li><i class="fas fa-check-circle"></i> {{ $feature }}</li>
+                        @endforeach
+                    </ul>
+
+                    {{-- Button --}}
+                    <a href="#registration-form" class="btn btn-primary w-100 mt-3">
+                        {{ $course->button_text }}
+                    </a>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+    
     <section class="section-form bg-white" id="registration-form">
         <div class="container">
             <h2 class="text-center mb-4">Register for a Program or Workshop</h2>

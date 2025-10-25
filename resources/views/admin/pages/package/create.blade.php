@@ -77,12 +77,12 @@
                 </div>
             </div>
 
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
                 <div class="form-group">
                     <label>Color <span class="text-danger">*</span></label>
                     <input type="color" name="color" class="form-control" placeholder="Enter color" required>
                 </div>
-            </div>
+            </div> -->
 
             <div class="col-lg-6">
                 <div class="form-group">

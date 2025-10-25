@@ -156,7 +156,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <i class="bi bi-person"></i>
-                        <input type="text" class="form-control" placeholder="Name" name="name" required>
+                        <input type="text" class="form-control" placeholder="Name" name="name" required  oninput="this.value = this.value.replace(/[^A-Za-z\s]/g,'');">
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <i class="bi bi-telephone"></i>
-                        <input type="tel" class="form-control" placeholder="Phone Number" name="phone" required>
+                        <input type="tel" class="form-control" placeholder="Phone Number" name="phone" required required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                     </div>
                 </div>
 

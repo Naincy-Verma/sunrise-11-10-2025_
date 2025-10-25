@@ -49,13 +49,14 @@
                             <div class="row g-3">
                                 <!-- Full Name -->
                                 <div class="col-12">
-                                    <input type="text" class="form-control" placeholder="Enter your full name" name="name" required>
+                                    <input type="text" class="form-control" placeholder="Enter your full name" name="name" required  oninput="this.value = this.value.replace(/[^A-Za-z\s]/g,'');">
                                 </div>
 
                                 <!-- Phone Number -->
                                 <div class="col-12">
-                                    <input type="tel" class="form-control" placeholder="Enter your phone number" name="phone" required>
+                                    <input type="tel" class="form-control" placeholder="Enter your phone number" name="phone" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                                 </div>
+
 
                                 <!-- Appointment Date -->
                                 <div class="col-12">

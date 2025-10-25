@@ -175,7 +175,8 @@ class HomeController extends Controller
     
     public function packages(){
         $packages = Package::all();
-        return view ('pages.health_package', compact('packages'));
+        $specialties_form = Speciality::select('id', 'title')->get();
+        return view ('pages.health_package', compact('packages', 'specialties_form'));
     }
 
 }

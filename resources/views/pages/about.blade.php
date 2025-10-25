@@ -140,106 +140,98 @@
         </div>
     </section> -->
 
- <section class="vision-mission-section">
-    <div class="floating-elements">
-        <i class="fas fa-female floating-element" style="font-size: 3.5rem;"></i>
-        <i class="fas fa-baby floating-element" style="font-size: 3rem;"></i>
-        <i class="fas fa-heart floating-element" style="font-size: 2.8rem;"></i>
-        <i class="fas fa-stethoscope floating-element" style="font-size: 3.2rem;"></i>
-    </div>
-
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Our Vision & Mission</h2>
-            <p class="section-subtitle">
-                Empowering women through exceptional gynecological and obstetric care. We are committed to supporting
-                women at every stage of their healthcare journey with compassion, expertise, and cutting-edge medical
-                technology.
-            </p>
+    <section class="vision-mission-section">
+        <div class="floating-elements">
+            <i class="fas fa-female floating-element" style="font-size: 3.5rem;"></i>
+            <i class="fas fa-baby floating-element" style="font-size: 3rem;"></i>
+            <i class="fas fa-heart floating-element" style="font-size: 2.8rem;"></i>
+            <i class="fas fa-stethoscope floating-element" style="font-size: 3.2rem;"></i>
         </div>
 
-        <div class="row">
-            @foreach($visions as $vision)
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="mission-vision-card">
-                        <div class="card-icon vision-icon">
-                            <i class="{{ $vision->icon }}"></i>
-                        </div>
-                        <h3 class="card-title">{{ $vision->heading }}</h3>
-                        <p class="card-content">
-                            {{ $vision->description }}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="section-title">Our Vision & Mission</h2>
+                <p class="section-subtitle">
+                    Empowering women through exceptional gynecological and obstetric care. We are committed to supporting
+                    women at every stage of their healthcare journey with compassion, expertise, and cutting-edge medical
+                    technology.
+                </p>
+            </div>
 
-        {{-- Stats Section --}}
-        <div class="stats-section mt-5">
-                <!-- <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="stat-item mb-3">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Years of Excellence</span>
+            <div class="row">
+                @foreach($visions as $vision)
+                    <!-- Vision Card -->
+                    <div class="col-lg-6 col-md-12 mb-4">
+                        <div class="mission-vision-card">
+                            <div class="card-icon vision-icon">
+                                <i class="{{ $vision->icon_vission }}"></i>
+                            </div>
+                            <h3 class="card-title">{{ $vision->heading_vission }}</h3>
+                            <p class="card-content">
+                                {!! $vision->vission_description !!}
+                            </p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="stat-item mb-3">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">Expert Gynecologists</span>
+
+                    <!-- Mission Card -->
+                    <div class="col-lg-6 col-md-12 mb-4">
+                        <div class="mission-vision-card">
+                            <div class="card-icon vission-icon">
+                                <i class="{{ $vision->icon_mission }}"></i>
+                            </div>
+                            <h3 class="card-title">{{ $vision->heading_mission }}</h3>
+                            <p class="card-content">
+                                {!! $vision->mission_description !!}
+                            </p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="stat-item mb-3">
-                            <span class="stat-number">5000+</span>
-                            <span class="stat-label">Successful Deliveries</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="stat-item">
-                            <span class="stat-number">24/7</span>
-                            <span class="stat-label">Maternity Care</span>
-                        </div>
-                    </div>
-                </div> -->
+                @endforeach
+            </div>
+
+            {{-- Stats Section --}}
+            <div class="stats-section mt-5">
                 <div class="row justify-content-center">
                     @foreach($visions as $vision)
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-                            <div class="stat-item ">
-                                <span class="stat-number d-block mb-2">{{ $vision['stats'] }}</span>
-                                <span class="stat-label">{{ $vision['label'] }}</span>
+                        @php
+                            $stats = json_decode($vision->stats, true) ?? [];
+                        @endphp
+                        @foreach($stats as $stat)
+                            <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                                <div class="stat-item text-center">
+                                    <span class="stat-number d-block mb-2">{{ $stat['value'] ?? '' }}</span>
+                                    <span class="stat-label">{{ $stat['label'] ?? '' }}</span>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     @endforeach
                 </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Milestones and Achievements -->
-<section class="milestones-achievements">
-    <div class="container">
-        <div class="text-center" data-aos="fade-up">
-            <h2 class="mb-4">Our Milestones</h2>
-        </div>
+    <section class="milestones-achievements">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="mb-4">Our Milestones</h2>
+            </div>
 
-        <div class="timeline">
-            @foreach($milestones as $key => $item)
-                <div class="timeline-item" data-aos="{{ $key % 2 == 0 ? 'fade-right' : 'fade-left' }}">
-                    <div class="timeline-content">
-                        <div class="timeline-icon">
-                            <i class="{{ $item->icon }}"></i>
+            <div class="timeline">
+                @foreach($milestones as $key => $item)
+                    <div class="timeline-item" data-aos="{{ $key % 2 == 0 ? 'fade-right' : 'fade-left' }}">
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="{{ $item->icon }}"></i>
+                            </div>
+                            <h3>{{ $item->heading }}</h3>
+                            <span class="date">{{ $item->year }}</span>
+                            <p>{{ $item->description }}</p>
                         </div>
-                        <h3>{{ $item->heading }}</h3>
-                        <span class="date">{{ $item->year }}</span>
-                        <p>{{ $item->description }}</p>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
     <!-- Milestones and Achievements End -->
 
     <!-- Hospital Facilities Start-->
@@ -278,4 +270,5 @@
 
         </div>
     </section>
+
 @endsection

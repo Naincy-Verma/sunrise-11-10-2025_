@@ -110,47 +110,57 @@
                         <h4 class="mb-4 text-primary">
                             <i class="fas fa-calendar-alt me-2"></i>Book Appointment
                         </h4>
-                        <form>
+                         <form action="{{ route('appointments.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="source" value="specialties-page">
                             <div class="row g-3">
+                                <!-- Full Name -->
                                 <div class="col-12">
-                                    <input type="text" class="form-control" placeholder="Enter your full name">
+                                    <input type="text" class="form-control" placeholder="Enter your full name" name="name" required  oninput="this.value = this.value.replace(/[^A-Za-z\s]/g,'');">
                                 </div>
+
+                                <!-- Phone Number -->
                                 <div class="col-12">
-                                    <input type="tel" class="form-control" placeholder="Enter your phone number">
+                                    <input type="tel" class="form-control" placeholder="Enter your phone number" name="phone" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                                 </div>
+
+
+                                <!-- Appointment Date -->
                                 <div class="col-12">
-                                    <input type="date" class="form-control" placeholder="Appointment Date">
+                                    <input type="date" class="form-control" placeholder="Appointment Date" name="appointment_date" required>
                                 </div>
+
+                                <!-- Specialist -->
                                 <div class="col-12">
-                                    <select class="form-select">
-                                        <option selected disabled>Select Speciality</option>
-                                        <option value="Gynae Laparoscopic Surgeries"> Gynae Laparoscopic Surgeries</option>
-                                        <option value="Obstetrics and Gynaecology">Obstetrics and Gynaecology</option>
-                                        <option value="Pediatricians">Pediatricians</option>
-                                        <option value="ENT">ENT</option>
-                                        <option value="General Surgery">General Surgery</option>
-                                        <option value="Orthopedics">Orthopedics</option>
-                                        <option value="Reconstructive URO Surgery">Reconstructive URO Surgery</option>
-                                        <option value="Critical Cases & ICU">Critical Cases & ICU</option>
-                                        <option value="Bariatric Surgery">Bariatric Surgery</option>
-                                        <option value="Internal Medicine">Internal Medicine</option>
+                                    <select class="form-select" name="speciality" required>
+                                        <option>Select Speciality</option>
+                                        @foreach($specialties_form as $speciality)
+                                            <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+
+                                <!-- Email -->
                                 <div class="col-12">
-                                    <input type="email" class="form-control" placeholder="Enter your email address">
+                                    <input type="email" class="form-control" placeholder="Enter your email address" name="email" required>
                                 </div>
+
+                                <!-- Recaptcha -->
                                 <div class="col-12">
                                     <div class="captcha-box">
                                         <div class="captcha-text" id="captcha">AB12C</div>
-                                        <input type="text" class="captcha-input" placeholder="Enter Captcha" id="captcha-input" required>
+                                        <input type="text" class="captcha-input" placeholder="Enter Captcha"
+                                            id="captcha-input" required>
                                         <button type="button" class="captcha-refresh" onclick="generateCaptcha()">
                                             <i class="bi bi-arrow-clockwise"></i>
                                         </button>
                                     </div>
                                 </div>
+
+                                <!-- Submit Button -->
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary w-100 py-2">
-                                        <i class="fas fa-paper-plane me-2"></i>Submit Appointment
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>Submit
                                     </button>
                                 </div>
                             </div>

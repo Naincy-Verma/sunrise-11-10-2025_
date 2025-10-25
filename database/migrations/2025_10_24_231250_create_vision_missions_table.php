@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('excellences', function (Blueprint $table) {
             $table->id();
-            $table->string('heading');
-            $table->text('description');
-            $table->string('image');
-
+            $table->string('icon_vission')->nullable();
+            $table->string('heading_vission')->nullable();
+            $table->text('vission_description')->nullable();
+            $table->string('icon_mission')->nullable();
+            $table->string('heading_mission')->nullable();
+            $table->text('mission_description')->nullable();
+            $table->json('stats')->nullable();
             $table->timestamps();
         });
     }

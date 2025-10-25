@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Vision_Mission extends Model
 {
     protected $fillable = [
-        'icon',
-        'heading',
-        'description',
+       'icon_vission',
+        'heading_vission',
+        'vission_description',
+        'icon_mission',
+        'heading_mission',
+        'mission_description',
         'stats',
-        'slug',
     ];
 
     public $timestamps = true;

@@ -10,6 +10,11 @@ use App\Models\Faq;
 use App\Models\VideoTestimonial;
 use App\Models\PatientTestimonial;
 use App\Models\Doctor;
+use App\Models\About;
+use App\Models\Vision_Mission; 
+use App\Models\Milestone;
+use App\Models\Facility;
+use App\Models\Package;
 use App\Models\Excellence; 
 use App\Models\TrainingProgram; 
 use App\Models\SpecializedCourse; 
@@ -51,7 +56,7 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', ));
       // Only fetch id and title for the dropdown
 
     
@@ -128,6 +133,7 @@ class HomeController extends Controller
     {
         // Fetch doctor by profile_url
         $doctor = Doctor::where('profile_url', $slug)->firstOrFail();
+        // return $doctor;
         return view('pages.team-details', compact('doctor'));
     }
 
@@ -164,10 +170,19 @@ class HomeController extends Controller
     
     public function about()
     {
-         $about = About::first(); // or ->get() if multiple entries
-          $visions = Vision_Mission::all();
-        return view('pages.about', compact('about', 'visions'));
+        $about = About::first(); 
+        $visions = Vision_Mission::all();
+        $milestones = Milestone::all();
+        $facilities = Facility::all();
+        return view('pages.about', compact('about', 'visions', 'milestones', 'facilities'));
     }
+    
+    public function packages(){
+        $packages = Package::all();
+        $specialties_form = Speciality::select('id', 'title')->get();
+        return view ('pages.health_package', compact('packages', 'specialties_form'));
+    }
+
 
     public function training()
     {

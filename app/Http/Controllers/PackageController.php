@@ -11,20 +11,20 @@ class PackageController extends Controller
     public function index()
     {
         $packages = Package::all();
-        return view('admin.pages.aboutpage.package.index', compact('packages'));
+        return view('admin.pages.package.index', compact('packages'));
     }
 
     // Show single blog details (Admin)
     public function show($id)
     {
         $package = Package::findOrFail($id);
-        return view('admin.pages.aboutpage.package.show', compact('package'));
+        return view('admin.pages.package.show', compact('package'));
     }
 
     // Show create form
-    public function create()
+    public function create() 
     {
-        return view('admin.pages.aboutpage.package.create');
+        return view('admin.pages.package.create');
     }
 
     // Store new blog
@@ -47,7 +47,7 @@ class PackageController extends Controller
     public function edit($id)
     {
         $package = Package::findOrFail($id);
-        return view('admin.pages.aboutpage.package.edit', compact('package'));
+        return view('admin.pages.package.edit', compact('package'));
     }
 
     // Update existing blog

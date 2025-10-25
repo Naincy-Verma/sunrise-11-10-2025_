@@ -101,7 +101,10 @@
             <div class="row">
                 <!-- Appointment Form -->
                 <div class="appointment-page-form">
-                    <form>
+                    <form action="{{ route('appointments.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="source" value="specialties-page">
+                          
                         <!-- Personal Information -->
                         <div class="section-title">👤 Personnel Information</div>
                         <div class="row g-3">
@@ -146,7 +149,7 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Mobile No. *</label>
-                                <input type="tel" class="form-control" placeholder="Mobile">
+                                <input type="tel" class="form-control" placeholder="Mobile" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Country</label>
@@ -184,20 +187,14 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label">Speciality *</label>
-                                <select class="form-select">
-                                    <option>All Speciality</option>
-                                    <option value="Gynae Laparoscopic Surgeries"> Gynae Laparoscopic Surgeries</option>
-                                    <option value="Obstetrics and Gynaecology">Obstetrics and Gynaecology</option>
-                                    <option value="Pediatricians">Pediatricians</option>
-                                    <option value="ENT">ENT</option>
-                                    <option value="General Surgery">General Surgery</option>
-                                    <option value="Orthopedics">Orthopedics</option>
-                                    <option value="Reconstructive URO Surgery">Reconstructive URO Surgery</option>
-                                    <option value="Critical Cases & ICU">Critical Cases & ICU</option>
-                                    <option value="Bariatric Surgery">Bariatric Surgery</option>
-                                    <option value="Internal Medicine">Internal Medicine</option>
-                                </select>
+                                <label class="form-label">Select Speciality *</label>
+                                <select class="form-select" name="speciality" required>
+                                    <option>Select Speciality</option>
+                                    @foreach($specialties_form as $speciality)
+                                        <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
 

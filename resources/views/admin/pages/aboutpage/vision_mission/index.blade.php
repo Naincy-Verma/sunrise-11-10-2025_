@@ -21,10 +21,11 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Icon</th>
-                                    <th>Heading</th>
-                                    <th>Stats</th>
-                                    <th>Description</th>
+                                    <th>Vission Icon</th>
+                                    <th>VissionHeading</th>
+                                    <th>Vission Description</th>
+                                    <th>Mission Icon </th>
+                                    <th>Mission Heading</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -32,10 +33,11 @@
                                 @forelse($visions as $index => $vision)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $vision->icon }}</td>
-                                        <td>{{ $vision->heading }}</td>
-                                        <td>{{ $vision->stats }}</td>
-                                        <td>{{ \Illuminate\Support\Str::limit($vision->description, 50) }}</td>
+                                        <td>{{ $vision->icon_vission }}</td>
+                                        <td>{{ $vision->heading_vission }}</td>
+                                        <td>{{ $vision->vission_description }}</td>
+                                        <td>{{ $vision->icon_mission }}</td>
+                                        <td>{{ $vision->heading_mission }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a href="{{ route('admin.vision-mission.show', $vision->id) }}" class="btn btn-info btn-sm me-2" title="View"><i class="fas fa-eye"></i></a>

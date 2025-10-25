@@ -46,93 +46,136 @@
             <h4 class="card-title">Update Vision & Mission Details</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.vision-mission.update', $vision->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.vision-mission.update', $vision->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title mb-3">📌 Vision & Mission Information</div>
-                    </div>
+                    <!-- VISION SECTION -->
+                    <div class="col-md-6">
+                        <div class="section-title mb-3">🌟 Vision Section</div>
 
-                    <!-- Icon -->
-                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Icon <span class="text-danger">*</span></label>
-                            <input type="text" name="icon" id="icon" class="form-control" 
-                                value="{{ old('icon', $vision->icon) }}" placeholder="Enter icon class or URL" required>
-                        </div>
-                        @if($vision->icon)
-                            <img id="iconPreview" src="{{ old('icon', $vision->icon) }}" class="preview-icon" alt="Current Icon">
-                        @else
-                            <img id="iconPreview" class="preview-icon" style="display:none;" alt="Icon Preview">
-                        @endif
-                    </div>
-
-                    <!-- Heading -->
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Heading <span class="text-danger">*</span></label>
-                            <input type="text" name="heading" id="heading" class="form-control" 
-                                value="{{ old('heading', $vision->heading) }}" required>
+                            <label>Vision Icon <span class="text-danger">*</span></label>
+                            <input type="text" name="icon_vission" class="form-control"
+                                value="{{ old('icon_vission', $vision->icon_vission) }}" required>
                         </div>
 
                         <div class="form-group">
-                            <label>Slug <span class="text-danger">*</span></label>
-                            <input type="text" name="slug" id="slug" class="form-control" 
-                                value="{{ old('slug', $vision->slug) }}" required>
+                            <label>Vision Heading <span class="text-danger">*</span></label>
+                            <input type="text" name="heading_vission" class="form-control"
+                                value="{{ old('heading_vission', $vision->heading_vission) }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vision Description <span class="text-danger">*</span></label>
+                            <textarea name="vission_description" class="form-control" rows="5" required>{{ old('vission_description', $vision->vission_description) }}</textarea>
                         </div>
                     </div>
 
-                    <!-- Description & Stats -->
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>Description <span class="text-danger">*</span></label>
-                            <textarea name="description" id="description" class="form-control" rows="6" required>{{ old('description', $vision->description) }}</textarea>
-                        </div>
-                    </div>
+                    <!-- MISSION SECTION -->
+                    <div class="col-md-6">
+                        <div class="section-title mb-3">🎯 Mission Section</div>
 
-                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Stats <span class="text-danger">*</span></label>
-                            <input type="text" name="stats" id="stats" class="form-control" 
-                                value="{{ old('stats', $vision->stats) }}" placeholder="e.g., 500+ Clients" required>
+                            <label>Mission Icon <span class="text-danger">*</span></label>
+                            <input type="text" name="icon_mission" class="form-control"
+                                value="{{ old('icon_mission', $vision->icon_mission) }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mission Heading <span class="text-danger">*</span></label>
+                            <input type="text" name="heading_mission" class="form-control"
+                                value="{{ old('heading_mission', $vision->heading_mission) }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Mission Description <span class="text-danger">*</span></label>
+                            <textarea name="mission_description" class="form-control" rows="5" required>{{ old('mission_description', $vision->mission_description) }}</textarea>
                         </div>
                     </div>
                 </div>
 
-                <!-- Submit -->
+                <hr>
+
+                <!-- STATS SECTION -->
+                <div class="section-title mb-3">📊 Stats Section</div>
+                <div id="statsContainer">
+                    @php
+                        $stats = json_decode(old('stats', $vision->stats), true) ?? [];
+                    @endphp
+
+                    @if(count($stats) > 0)
+                        @foreach($stats as $index => $stat)
+                            <div class="row mb-3 stat-item">
+                                <div class="col-md-5">
+                                    <input type="text" name="stats[{{ $index }}][label]" class="form-control"
+                                        value="{{ $stat['label'] ?? '' }}" placeholder="Label (e.g., Years of Excellence)" required>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" name="stats[{{ $index }}][value]" class="form-control"
+                                        value="{{ $stat['value'] ?? '' }}" placeholder="Value (e.g., 15+)" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-danger removeStat">Remove</button>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="row mb-3 stat-item">
+                            <div class="col-md-5">
+                                <input type="text" name="stats[0][label]" class="form-control"
+                                    placeholder="Label (e.g., Years of Excellence)" required>
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" name="stats[0][value]" class="form-control"
+                                    placeholder="Value (e.g., 15+)" required>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger removeStat">Remove</button>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <button type="button" id="addStat" class="btn btn-sm btn-success mb-3">+ Add Stat</button>
+
+                <!-- Submit Buttons -->
                 <div class="col-12 text-end mt-3">
                     <button type="submit" class="btn btn-primary">Update Vision & Mission</button>
                     <a href="{{ route('admin.vision-mission.index') }}" class="btn btn-light">Cancel</a>
                 </div>
+
             </form>
         </div>
     </div>
 </div>
 @endsection
-
 @section('scripts')
 <script>
-    // Auto-generate slug
-    document.getElementById('heading').addEventListener('input', function() {
-        const slugInput = document.getElementById('slug');
-        slugInput.value = this.value
-            .toLowerCase()
-            .trim()
-            .replace(/[^a-z0-9]+/g, '-')  // replace spaces/special chars with -
-            .replace(/^-+|-+$/g, '');     // remove starting/ending -
-    });
+let statIndex = {{ count($stats) }};
+document.getElementById('addStat').addEventListener('click', function() {
+    const container = document.getElementById('statsContainer');
+    const newStat = document.createElement('div');
+    newStat.classList.add('row', 'mb-3', 'stat-item');
+    newStat.innerHTML = `
+        <div class="col-md-5">
+            <input type="text" name="stats[${statIndex}][label]" class="form-control" placeholder="Label (e.g. Expert Gynecologists)" required>
+        </div>
+        <div class="col-md-5">
+            <input type="text" name="stats[${statIndex}][value]" class="form-control" placeholder="Value (e.g. 20+)" required>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-danger removeStat">Remove</button>
+        </div>
+    `;
+    container.appendChild(newStat);
+    statIndex++;
+});
 
-    // Icon preview (if icon is an image URL)
-    document.getElementById('icon').addEventListener('input', function() {
-        const preview = document.getElementById('iconPreview');
-        if(this.value) {
-            preview.src = this.value;
-            preview.style.display = 'block';
-        } else {
-            preview.style.display = 'none';
-        }
-    });
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('removeStat')) {
+        e.target.closest('.stat-item').remove();
+    }
+});
 </script>
 @endsection

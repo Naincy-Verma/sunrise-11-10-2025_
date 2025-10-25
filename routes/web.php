@@ -25,7 +25,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\SpecializedCourseController;
-
+use App\Http\Controllers\PatientEducationController;
 
 Route::get('/index', function () {
     return view('welcome');

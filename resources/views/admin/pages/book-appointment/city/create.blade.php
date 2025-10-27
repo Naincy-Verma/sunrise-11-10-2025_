@@ -13,22 +13,22 @@
 
         <!-- Country -->
         <div class="form-group mb-3">
-          <label>Select Country <span class="text-danger">*</span></label>
-          <select name="country_id" id="country" class="form-control" required>
-            <option value="">-- Select Country --</option>
-            @foreach($countries as $country)
-              <option value="{{ $country->id }}">{{ $country->name }}</option>
-            @endforeach
-          </select>
+            <label>Select Country <span class="text-danger">*</span></label>
+            <select name="country_id" id="country" class="form-control" required 
+                    data-states-url="{{ url('admin/get-states') }}">
+                <option value="">-- Select Country --</option>
+                @foreach($countries as $country)
+                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <!-- State -->
-        <div class="form-group mb-3">
-          <label>Select State <span class="text-danger">*</span></label>
-          <select name="state_id" id="state" class="form-control" required>
-            <option value="">-- Select State --</option>
-            
-          </select>
+        <div class=" mb-3">
+            <label>Select State <span class="text-danger">*</span></label>
+            <select name="state_id" id="state" class="form-control" required>
+                <option value="">-- Select State --</option>
+            </select>
         </div>
 
         <!-- City Name -->
@@ -37,7 +37,6 @@
           <input type="text" name="name" class="form-control" placeholder="Enter city name" required>
         </div>
 
-        <!-- Buttons -->
         <div class="text-end mt-3">
           <button type="submit" class="btn btn-primary">Save</button>
           <a href="{{ route('admin.cities.index') }}" class="btn btn-light">Cancel</a>
@@ -50,23 +49,60 @@
 
 @section('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const countrySelect = document.getElementById('country');
-    // console.log(countrySelect);
     const stateSelect = document.getElementById('state');
 
-    countrySelect.addEventListener('change', function() {
-        let countryId = this.value;
+    countrySelect.addEventListener('change', async function () {
+        const countryId = this.value;
+        const baseUrl = this.dataset.statesUrl; // e.g. /admin/get-states
+        const statesUrl = `${baseUrl}/${countryId}`;
 
-        fetch(`{{ url('admin/get-states') }}/${countryId}`)
-            .then(response => response.json())
-            .then(data => {
-                stateSelect.innerHTML = '<option value="">-- Select State --</option>';
-                data.forEach(state => {
-                    stateSelect.innerHTML += `<option value="${state.id}">${state.name}</option>`;
-                });
-            })
-            .catch(error => console.error('Error fetching states:', error));
+        console.log('Fetching states from URL:', statesUrl);
+
+        // Reset dropdown before loading
+        stateSelect.innerHTML = '<option value="">-- Select State --</option>';
+
+        if (!countryId) return;
+
+        try {
+            const response = await fetch(statesUrl);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            const states = await response.json();
+            console.log('Received states data:', states);
+
+            // If no states found
+            if (!Array.isArray(states) || states.length === 0) {
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No states available';
+                stateSelect.appendChild(option);
+                return;
+            }
+
+            // Append options dynamically
+            states.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state.id;
+                option.textContent = state.name;
+                stateSelect.appendChild(option);
+            });
+
+            console.log('All states appended:', stateSelect.innerHTML);
+
+            // ✅ Refresh UI if you're using a plugin (like Select2 or Bootstrap Select)
+            if (window.jQuery) {
+                if ($('#state').hasClass('select2-hidden-accessible')) {
+                    $('#state').trigger('change.select2');
+                } else if ($('#state').data('selectpicker')) {
+                    $('#state').selectpicker('refresh');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error fetching states:', error);
+        }
     });
 });
 </script>

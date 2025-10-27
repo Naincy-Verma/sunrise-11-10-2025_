@@ -33,7 +33,8 @@ class PackageController extends Controller
         $request->validate([
             
             'heading' => 'required|string|max:255',
-            'tests' => 'required|array'
+            'tests' => 'required|array',
+            'color' => 'required|string|size:7' 
         ]);
 
         $data = $request->all();
@@ -59,6 +60,7 @@ class PackageController extends Controller
 
             'heading' => 'required|string|max:255',
              'tests' => 'required|array',
+              'color' => 'required|string|size:7' 
         ]);
 
         $data = $request->all();

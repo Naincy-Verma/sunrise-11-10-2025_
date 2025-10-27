@@ -103,14 +103,14 @@
                 <div class="appointment-page-form">
                     <form action="{{ route('appointments.store') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="source" value="specialties-page">
+                        <input type="hidden" name="source" value="book-appointment-page">
                           
                         <!-- Personal Information -->
                         <div class="section-title">👤 Personnel Information</div>
                         <div class="row g-3">
                             <div class="col-12 col-md-6 col-lg-2">
                                 <label class="form-label">Patient Title *</label>
-                                <select class="form-select">
+                                <select name="title" class="form-select">
                                     <option>Select Title</option>
                                     <option>Mr.</option>
                                     <option>Mrs.</option>
@@ -120,19 +120,19 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">First Name *</label>
-                                <input type="text" class="form-control" placeholder="First Name">
+                                <input type="text" name="first_name" class="form-control" placeholder="First Name">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Middle Name</label>
-                                <input type="text" class="form-control" placeholder="Middle Name">
+                                <input type="text" name="middle_name" class="form-control" placeholder="Middle Name">
                             </div>
                             <div class="col-12 col-md-6 col-lg-4">
                                 <label class="form-label">Last Name *</label>
-                                <input type="text" class="form-control" placeholder="Last Name">
+                                <input type="text" name="last_name" class="form-control" placeholder="Last Name">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Gender *</label>
-                                <select class="form-select">
+                                <select name="gender" class="form-select">
                                     <option>Select Gender</option>
                                     <option>Male</option>
                                     <option>Female</option>
@@ -141,38 +141,48 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Date of Birth *</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="dob" class="form-control">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Email ID *</label>
-                                <input type="email" class="form-control" placeholder="Enter Email">
+                                <input type="email" name="email" class="form-control" placeholder="Enter Email">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Mobile No. *</label>
-                                <input type="tel" class="form-control" placeholder="Mobile" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
+                                <input type="tel" name="mobile_no" class="form-control" placeholder="Mobile" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                             </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <label class="form-label">Country</label>
-                                <select class="form-select">
-                                    <option>INDIA</option>
-                                </select>
+                            <div class="row g-3">
+                               <div class="col-12 col-md-6 col-lg-3">
+                                    <label class="form-label">Country</label>
+                                        <select name="country_id" id="country" class="form-control" required 
+                                                data-states-url="{{ url('get-states') }}">
+                                                <option value="">-- Select Country --</option>
+                                                @foreach($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
+                                        </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-3">
+                                     <label class="form-label">Select State <span class="text-danger">*</span></label>
+                                        <select name="state_id" id="state" class="form-control" required>
+                                            <option value="">-- Select State --</option>
+                                        </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <label class="form-label">City</label>
+                                   <select name="city_id" id="city" class="form-control" required>
+                                        <option value="">Select City</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-3">
+                                    <label class="form-label">Pin Code</label>
+                                    <input type="text" name="pin_code" class="form-control" placeholder="Enter Pincode">
+                                </div>
                             </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <label class="form-label">State</label>
-                                <select class="form-select">
-                                    <option>MAHARASHTRA</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <label class="form-label">City</label>
-                                <select class="form-select">
-                                    <option>MUMBAI</option>
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <label class="form-label">Pin Code</label>
-                                <input type="text" class="form-control" placeholder="Enter Pincode">
-                            </div>
+
+                           
                         </div>
 
                         <hr class="my-4">
@@ -182,13 +192,17 @@
                         <div class="row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Select Doctor *</label>
-                                <select class="form-select">
-                                    <option>Select Doctors</option>
+                                <select class="form-select" name="doctor_id" required>
+                                    <option value="">-- Select Doctor --</option>
+                                    @foreach($doctors as $doctor)
+                                        <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Select Speciality *</label>
-                                <select class="form-select" name="speciality" required>
+                                <select class="form-select" name="speciality_id" required>
                                     <option>Select Speciality</option>
                                     @foreach($specialties_form as $speciality)
                                         <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
@@ -205,13 +219,18 @@
                         <div class="row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Date of Appointment *</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="appointment_date" class="form-control">
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label">Time Slot *</label>
-                                <select class="form-select">
-                                    <option>No Available Slots</option>
-                                </select>
+                                    <label class="form-label">Time Slot *</label>
+                                    <select class="form-select" name="time_slot_id" required>
+                                        <option>No Available Slots</option>
+                                            @foreach($timeslots as $timeslot)
+                                                <option value="{{ $timeslot->id }}">
+                                                    {{ $timeslot->start_time }} - {{ $timeslot->end_time }}
+                                                </option>
+                                            @endforeach
+                                    </select>
                             </div>
                         </div>
 
@@ -226,4 +245,71 @@
         </div>
     </section>
     <!-- Appointment Form -->
+@endsection
+@section('script')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const countrySelect = document.getElementById('country');
+    const stateSelect = document.getElementById('state');
+    const citySelect = document.getElementById('city');
+
+    // ---- Existing Country → State ----
+    countrySelect.addEventListener('change', async function () {
+        const countryId = this.value;
+        const baseUrl = this.dataset.statesUrl; 
+        const statesUrl = `${baseUrl}/${countryId}`;
+
+        console.log('Fetching states from URL:', statesUrl);
+
+        stateSelect.innerHTML = '<option value="">-- Select State --</option>';
+        citySelect.innerHTML = '<option value="">Select City</option>'; // reset city
+
+        if (!countryId) return;
+
+        try {
+            const response = await fetch(statesUrl);
+            const states = await response.json();
+            console.log('Received states data:', states);
+
+            states.forEach(state => {
+                const option = document.createElement('option');
+                option.value = state.id;
+                option.textContent = state.name;
+                stateSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching states:', error);
+        }
+    });
+
+    // ---- NEW: State → City ----
+    stateSelect.addEventListener('change', async function () {
+        const stateId = this.value;
+        const citiesUrl = `/get-cities/${stateId}`; // direct route
+
+        console.log('Fetching cities from URL:', citiesUrl);
+
+        citySelect.innerHTML = '<option value="">Select City</option>';
+
+        if (!stateId) return;
+
+        try {
+            const response = await fetch(citiesUrl);
+            const cities = await response.json();
+            console.log('Received cities data:', cities);
+
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city.id;
+                option.textContent = city.name;
+                citySelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error fetching cities:', error);
+        }
+    });
+});
+</script>
+
+
 @endsection

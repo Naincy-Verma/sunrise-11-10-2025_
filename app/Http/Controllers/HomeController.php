@@ -64,8 +64,8 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        $timeSlots = TimeSlot::where('status', 'active')->get();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeSlots'));
+        $timeslots = TimeSlot::where('status', 'active')->get();
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeslots'));
       // Only fetch id and title for the dropdown
 
     

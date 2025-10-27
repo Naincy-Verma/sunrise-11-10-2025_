@@ -10,7 +10,7 @@
           All ({{ $pendingCount + $confirmedCount + $cancelledCount }})
         </a>
         <a href="{{ route('admin.appointments.index', ['status' => 'pending']) }}" 
-           class="btn btn-warning btn-sm {{ $status === 'pending' ? 'active' : '' }}">
+           class="btn btn-warning btn-sm text-white{{ $status === 'pending' ? 'active' : '' }}">
           Pending ({{ $pendingCount }})
         </a>
         <a href="{{ route('admin.appointments.index', ['status' => 'confirmed']) }}" 
@@ -18,7 +18,7 @@
           Confirmed ({{ $confirmedCount }})
         </a>
         <a href="{{ route('admin.appointments.index', ['status' => 'cancelled']) }}" 
-           class="btn btn-danger btn-sm {{ $status === 'cancelled' ? 'active' : '' }}">
+           class="btn btn-danger btn-sm text-white{{ $status === 'cancelled' ? 'active' : '' }}">
           Cancelled ({{ $cancelledCount }})
         </a>
       </div>
@@ -50,11 +50,11 @@
               <td>{{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}</td>
               <td>
                 @if($appointment->status === 'pending')
-                  <span class="badge bg-warning ">Pending</span>
+                  <span class="badge bg-warning text-white">Pending</span>
                 @elseif($appointment->status === 'confirmed')
-                  <span class="badge bg-success">Confirmed</span>
+                  <span class="badge bg-success text-white">Confirmed</span>
                 @else
-                  <span class="badge bg-danger">Cancelled</span>
+                  <span class="badge bg-danger text-white">Cancelled</span>
                 @endif
               </td>
               <td>{{ $appointment->source }}</td>

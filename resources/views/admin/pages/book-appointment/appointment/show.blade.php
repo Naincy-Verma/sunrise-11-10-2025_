@@ -70,7 +70,16 @@
         </tr>
         <tr>
           <th>Time Slot</th>
-          <td>{{ $appointment->timeSlot->slot ?? 'N/A' }}</td>
+          <!-- <td>{{ $appointment->timeSlot->slot ?? 'N/A' }}</td> -->
+           <td>
+            @if($appointment->timeSlot)
+                {{ \Carbon\Carbon::parse($appointment->timeSlot->start_time)->format('h:i A') }}
+                -
+                {{ \Carbon\Carbon::parse($appointment->timeSlot->end_time)->format('h:i A') }}
+            @else
+                N/A
+            @endif
+        </td>
         </tr>
         <tr>
           <th>Status</th>

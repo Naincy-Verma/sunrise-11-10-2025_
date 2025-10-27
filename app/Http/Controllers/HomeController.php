@@ -162,42 +162,59 @@ class HomeController extends Controller
             'source' => 'nullable|string|max:50',
         ];
 
-        // Only require date if coming from the book appointment page
-        if ($request->source === 'book-appointment-page') {
-            $rules['appointment_date'] = 'required|date';
-        }
+         // Extra validations only if from book-appointment-page
+    if ($request->source === 'book-appointment-page') {
+        $rules = array_merge($rules, [
+            'title' => 'required|string|max:20',
+            'middle_name' => 'nullable|string|max:100',
+            'last_name' => 'nullable|string|max:100',
+            'gender' => 'required|string|max:10',
+            'dob' => 'nullable|date',
+            'pin_code' => 'nullable|string|max:10',
+            'country_id' => 'required|exists:countries,id',
+            'state_id' => 'required|exists:states,id',
+            'city_id' => 'required|exists:cities,id',
+            'doctor_id' => 'nullable|exists:doctors,id',
+            'time_slot_id' => 'nullable|exists:time_slots,id',
+            'appointment_date' => 'required|date',
+        ]);
+    }
 
         $request->validate($rules);
 
-        // Save data
-        Appointment::create([
-            'title' => 'N/A',
-            'first_name' => $request->name,
-            'middle_name' => '',
-            'last_name' => '',
-            'gender' => 'N/A',
-            'dob' => now(),
-            'email' => $request->email,
-            'mobile_no' => $request->phone,
-            'pin_code' => '',
-            'appointment_date' => $request->appointment_date ?? now(),
-            'status' => 'pending',
-            'source' => $request->source ?? 'N/A',
-            'speciality_id' => $request->speciality,
-        ]);
-        
-        // $request->validate([
-        //     'name' => 'required|string|max:200',
-        //     'email' => 'required|email|max:150',
-        //     'phone' => 'required|string|max:12',
-        //     'speciality' => 'required|exists:our_specialties,id',
-        //     'appointment_date' => 'required|date',
-        //     'source' => 'nullable|string|max:50',
-        // ]);
+        // Create new appointment record
+        $appointment = new Appointment();
+        $appointment->title = $request->title ?? 'N/A';
+        $appointment->first_name = $request->name;
+        $appointment->middle_name = $request->middle_name ?? '';
+        $appointment->last_name = $request->last_name ?? '';
+        $appointment->gender = $request->gender ?? 'N/A';
+        $appointment->dob = $request->dob ?? now();
+        $appointment->email = $request->email;
+        $appointment->mobile_no = $request->phone;
+        $appointment->pin_code = $request->pin_code ?? '';
+        $appointment->appointment_date = $request->appointment_date ?? now();
+        $appointment->status = 'pending';
+        $appointment->source = $request->source ?? 'N/A';
+        $appointment->speciality_id = $request->speciality;
+        $appointment->country_id = $request->country_id ?? null;
+        $appointment->state_id = $request->state_id ?? null;
+        $appointment->city_id = $request->city_id ?? null;
+        $appointment->doctor_id = $request->doctor_id ?? null;
+        $appointment->time_slot_id = $request->time_slot_id ?? null;
 
-        // Save to appointments table
+        $appointment->save();
+
+        // // Only require date if coming from the book appointment page
+        // if ($request->source === 'book-appointment-page') {
+        //     $rules['appointment_date'] = 'required|date';
+        // }
+
+        // $request->validate($rules);
+
+        // // Save data
         // Appointment::create([
-        //     'title' => 'N/A', // default placeholder
+        //     'title' => 'N/A',
         //     'first_name' => $request->name,
         //     'middle_name' => '',
         //     'last_name' => '',
@@ -206,11 +223,12 @@ class HomeController extends Controller
         //     'email' => $request->email,
         //     'mobile_no' => $request->phone,
         //     'pin_code' => '',
-        //     'appointment_date' => now(),
+        //     'appointment_date' => $request->appointment_date ?? now(),
         //     'status' => 'pending',
         //     'source' => $request->source ?? 'N/A',
         //     'speciality_id' => $request->speciality,
         // ]);
+        
 
         return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
     }

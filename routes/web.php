@@ -84,7 +84,7 @@ Route::post('program-registration', [HomeController::class, 'submitProgramRegist
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
 Route::get('/get-states/{countryId}', [HomeController::class, 'getStates'])->name('cities.get-states');
 Route::get('/get-cities/{stateId}', [HomeController::class, 'getCities'])->name('cities.get-cities');
-
+Route::view('thank-you','pages.thank-you');
 
 // admin Route
 Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');

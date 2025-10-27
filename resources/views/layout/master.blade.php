@@ -180,18 +180,20 @@
                                     <label class="text-white">Mobile Number</label>  
                                     <input type="tel" name="mobile_number" class="form-control" placeholder="Enter Mobile Number" required style="border-radius: 5px;">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="text-white">Preferred Time To Call</label>
-                                    <select name="time_slot_id" class="form-select" required style="border-radius: 5px;">
-                                        <option value="">Preferred Time To Call</option>
-                                         @foreach($timeSlots as $slot)
-                                            <option value="{{ $slot->id }}">
-                                                {{ date('h:i A', strtotime($slot->start_time)) }} - {{ date('h:i A', strtotime($slot->end_time)) }}
-                                            </option>
-                                        @endforeach
-                        
-                                    </select>
-                                </div>
+                              @if(isset($timeslots) && $timeslots->count())
+                                    <div class="mb-3">
+                                        <label class="text-white">Preferred Time To Call</label>
+                                        <select name="time_slot_id" class="form-select" required style="border-radius: 5px;">
+                                            <option value="">Preferred Time To Call</option>
+                                            @foreach($timeslots as $timeslot)
+                                                <option value="{{ $timeslot->id }}">
+                                                    {{ $timeslot->start_time }} - {{ $timeslot->end_time }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
+
                                 <button type="submit" class="btn btn-light w-100 mb-3">Submit</button>
                                 <!-- <div class="form-check text-white mt-2">
                                     <input type="checkbox" class="form-check-input" name="whatsapp_updates" id="whatsappUpdates">

@@ -18,6 +18,9 @@ use App\Models\Package;
 use App\Models\Excellence; 
 use App\Models\TrainingProgram; 
 use App\Models\SpecializedCourse; 
+use App\Models\ProgramRegistration; 
+use App\Models\QuickEnquiry;
+
 
 use Illuminate\Http\Request;
 USE App\Models\Appointment;
@@ -56,7 +59,8 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', ));
+        $timeSlots = TimeSlot::where('status', 'active')->get();
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeSlots'));
       // Only fetch id and title for the dropdown
 
     
@@ -139,6 +143,7 @@ class HomeController extends Controller
 
      public function storeAppointment(Request $request)
     {
+        
         $request->validate([
             'name' => 'required|string|max:200',
             'email' => 'required|email|max:150',
@@ -188,8 +193,77 @@ class HomeController extends Controller
     {
         $excellence = Excellence::first();
         $programs = TrainingProgram::orderBy('s_no', 'asc')->get();
-          $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
+        $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
+         
         return view('pages.training', compact('excellence', 'programs', 'courses'));
     }
+
+    /**
+     * Handle the frontend program registration form submission
+     */
+    public function submitProgramRegistration(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'mobile' => 'required|string|max:20',
+            'source' => 'required|string|max:100',
+            'training_program_id' => 'nullable|exists:training_programs,id',
+            'document' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'location' => 'required|string|max:255',
+            'message' => 'nullable|string',
+        ]);
+
+        // Handle document upload
+        $document = $request->file('document');
+        $filename = time() . '_' . $document->getClientOriginalName();
+        $relativePath = 'admin-assets/images/admin-images/program-registerations/' . $filename;
+        $document->move(public_path('admin-assets/images/admin-images/program-registerations'), $filename);
+
+        // Create Program Registration record
+        ProgramRegistration::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'source' => $request->source,
+            'training_program_id' => $request->training_program_id,
+            'document' => $relativePath,
+            'location' => $request->location,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Registration submitted successfully.');
+    }
+
+    public function contact()
+    {
+        // Fetch all specialties for the dropdown
+        $specialties_form = Speciality::select('id', 'title')->get();
+
+        // Return contact page with the variable
+        return view('pages.contact-us', compact('specialties_form'));
+    }
+
+    public function quickEnquiry(Request $request)
+    {
+        // Validate input
+        $request->validate([
+            'name' => 'required|string|max:200',
+            'mobile_number' => 'required|digits_between:10,13',
+            'time_slot_id' => 'required|exists:time_slots,id',
+        ]);
+
+        // Save data to quick_enquiries table
+        \App\Models\QuickEnquiry::create([
+            'name' => $request->name,
+            'mobile_number' => $request->mobile_number,
+            'time_slot_id' => $request->time_slot_id,
+        ]);
+
+        // Redirect with success message
+        return redirect()->back()->with('success', 'Your enquiry has been submitted successfully!');
+    }
+
+
 
 }

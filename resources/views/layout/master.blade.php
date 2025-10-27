@@ -170,34 +170,40 @@
                             Quick Enquiry
                         </a>
                         <div class="dropdown-menu p-4 shadow" aria-labelledby="quickEnquiryDropdown" style="min-width: 440px; background-color: #0b7fa4; border-radius: 10px;">
-                            <form action="" method="POST">
+                            <form action="{{ route('quick.enquiry.submit') }}" method="POST">
+                                @csrf
                                 <div class="mb-3">
                                     <label class="text-white">Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="Enter Name" required style="border-radius: 5px;">
                                 </div>
                                 <div class="mb-3">
                                     <label class="text-white">Mobile Number</label>  
-                                    <input type="tel" name="phone" class="form-control" placeholder="Enter Mobile Number" required style="border-radius: 5px;">
+                                    <input type="tel" name="mobile_number" class="form-control" placeholder="Enter Mobile Number" required style="border-radius: 5px;">
                                 </div>
                                 <div class="mb-3">
                                     <label class="text-white">Preferred Time To Call</label>
-                                    <select name="preferred_time" class="form-select" required style="border-radius: 5px;">
+                                    <select name="time_slot_id" class="form-select" required style="border-radius: 5px;">
                                         <option value="">Preferred Time To Call</option>
-                                        <option value="8:00-9:00">8:00 AM - 9:00 AM</option>
+                                         @foreach($timeSlots as $slot)
+                                            <option value="{{ $slot->id }}">
+                                                {{ date('h:i A', strtotime($slot->start_time)) }} - {{ date('h:i A', strtotime($slot->end_time)) }}
+                                            </option>
+                                        @endforeach
+                                        <!-- <option value="8:00-9:00">8:00 AM - 9:00 AM</option>
                                         <option value="9:00-10:00">9:00 AM - 10:00 AM</option>
                                         <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
                                         <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
                                         <option value="12:00-13:00">12:00 PM - 01:00 PM</option>
                                         <option value="13:00-14:00">01:00 PM - 02:00 PM</option>
-                                        <option value="14:00-15:00">02:00 PM - 03:00 PM</option>
+                                        <option value="14:00-15:00">02:00 PM - 03:00 PM</option> -->
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-light w-100 mb-3">Submit</button>
-                                <div class="form-check text-white mt-2">
+                                <!-- <div class="form-check text-white mt-2">
                                     <input type="checkbox" class="form-check-input" name="whatsapp_updates" id="whatsappUpdates">
                                     <label class="form-check-label" for="whatsappUpdates">
                                         Get Updates on Whatsapp. I agree to the T&C.
-                                    </label>
+                                    </label> -->
                                     <small class="d-block text-white mt-2">Email - helpdesk@hospital.com</small>
                                 </div>
                             </form>
@@ -216,6 +222,24 @@
     </nav>
 
     <main>
+        {{-- Success Message --}}
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        {{-- Error Messages --}}
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         @yield('content')
     </main>
 

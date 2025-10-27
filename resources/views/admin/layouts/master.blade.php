@@ -541,6 +541,22 @@
                         </ul>
                     </li>
 
+                      <!-- Program Regusteration -->
+                    <li>
+                        <a class="has-arrow" href="{{route('admin.program_registration.index')}}" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Program Registeration </span>
+                        </a>
+                    </li>
+
+                      <!-- Quick Enquiries -->
+                    <li>
+                        <a class="has-arrow" href="{{route('admin.quick-enquiries.index')}}" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Quick Enquiry </span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="page-lock-screen.html">Lock Screen</a>
                     </li>

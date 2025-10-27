@@ -152,6 +152,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}/delete', [CommunityEventController::class, 'destroy'])->name('community-events.destroy');
     });
 
+    // Community Gallery Page Routes
     Route::prefix('community-gallery')->group(function () {
         Route::get('/{event_id}/create', [CommunityEventGalleryController::class, 'create'])->name('community-gallery.create');
         Route::post('/store', [CommunityEventGalleryController::class, 'store'])->name('community-gallery.store');
@@ -160,6 +161,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}/delete', [CommunityEventGalleryController::class, 'destroy'])->name('community-gallery.destroy');
     });
 
+       // --- Patient Testimonial Page Routes ---
     Route::prefix('/patient-testimonials')->group(function () {
         Route::get('/', [PatientTestimonialController::class, 'index'])->name('patient_testimonials.index');
         Route::get('/create', [PatientTestimonialController::class, 'create'])->name('patient_testimonials.create');

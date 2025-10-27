@@ -64,8 +64,6 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-       
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
         $timeSlots = TimeSlot::where('status', 'active')->get();
         return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeSlots'));
       // Only fetch id and title for the dropdown
@@ -287,7 +285,7 @@ class HomeController extends Controller
         ]);
 
         // Save data to quick_enquiries table
-        \App\Models\QuickEnquiry::create([
+        QuickEnquiry::create([
             'name' => $request->name,
             'mobile_number' => $request->mobile_number,
             'time_slot_id' => $request->time_slot_id,

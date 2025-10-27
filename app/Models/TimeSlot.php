@@ -16,4 +16,9 @@ class TimeSlot extends Model
      protected $table = 'time_slots';
     public $timestamps = true;
 
+    public function enquiries()
+    {
+        return $this->hasMany(Enquiry::class, 'time_slot_id');
+    }
+
 }

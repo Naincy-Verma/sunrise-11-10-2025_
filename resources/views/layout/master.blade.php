@@ -189,13 +189,7 @@
                                                 {{ date('h:i A', strtotime($slot->start_time)) }} - {{ date('h:i A', strtotime($slot->end_time)) }}
                                             </option>
                                         @endforeach
-                                        <!-- <option value="8:00-9:00">8:00 AM - 9:00 AM</option>
-                                        <option value="9:00-10:00">9:00 AM - 10:00 AM</option>
-                                        <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
-                                        <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
-                                        <option value="12:00-13:00">12:00 PM - 01:00 PM</option>
-                                        <option value="13:00-14:00">01:00 PM - 02:00 PM</option>
-                                        <option value="14:00-15:00">02:00 PM - 03:00 PM</option> -->
+                        
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-light w-100 mb-3">Submit</button>

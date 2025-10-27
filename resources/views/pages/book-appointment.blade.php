@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">First Name *</label>
-                                <input type="text" name="first_name" class="form-control" placeholder="First Name">
+                                <input type="text" name="name" class="form-control" placeholder="First Name">
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Middle Name</label>
@@ -149,7 +149,7 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3">
                                 <label class="form-label">Mobile No. *</label>
-                                <input type="tel" name="mobile_no" class="form-control" placeholder="Mobile" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
+                                <input type="tel" name="phone" class="form-control" placeholder="Mobile" required maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');">
                             </div>
                             <div class="row g-3">
                                <div class="col-12 col-md-6 col-lg-3">
@@ -202,7 +202,7 @@
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label">Select Speciality *</label>
-                                <select class="form-select" name="speciality_id" required>
+                                <select class="form-select" name="speciality" required>
                                     <option>Select Speciality</option>
                                     @foreach($specialties_form as $speciality)
                                         <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>

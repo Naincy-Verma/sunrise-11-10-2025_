@@ -212,63 +212,63 @@
                 <form class="appointment-form" action="{{ route('appointments.store') }}" method="POST">
                      @csrf
                         <input type="hidden" name="source" value="contact-us-page">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <input type="text" class="form-control" name="name" placeholder="Full Name*" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <input type="text" class="form-control" name="name" placeholder="Full Name*" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <input type="tel" class="form-control" name="phone"  placeholder="Phone Number*" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <input type="email" class="form-control" name="email"  placeholder="Email Address*" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <select class="form-control minimal-select" required>
+                                        <option selected disabled>Select Hospital Branch</option>
+                                        <option>Sunrise Hospital Kalindi Colony</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <input type="date" class="form-control" title="Preferred Date" name="appointment_date" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group-floating">
+                                    <select class="form-select" name="speciality" required>
+                                        <option value="">Select Service (e.g., Gynaecology)</option>
+                                        @foreach($specialties_form as $speciality)
+                                            <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group-floating">
+                                    <textarea class="form-control" name="message" placeholder="Describe your request or concern (optional)"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <button type="submit" class="btn-submit-floating btn-sm">
+                                    Submit
+                                </button>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <input type="tel" class="form-control" name="phone"  placeholder="Phone Number*" maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g,'');" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <input type="email" class="form-control" name="email"  placeholder="Email Address*" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <select class="form-control minimal-select" required>
-                                    <option selected disabled>Select Hospital Branch</option>
-                                    <option>Sunrise Hospital Kalindi Colony</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <input type="date" class="form-control" title="Preferred Date" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group-floating">
-                                <select class="form-select" name="speciality" required>
-                                    <option value="">Select Service (e.g., Gynaecology)</option>
-                                    @foreach($specialties_form as $speciality)
-                                        <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-group-floating">
-                                <textarea class="form-control" name="message" placeholder="Describe your request or concern (optional)"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="col-2">
-                            <button type="submit" class="btn-submit-floating btn-sm">
-                                Submit
-                            </button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>

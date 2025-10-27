@@ -64,8 +64,7 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        $timeslots = TimeSlot::where('status', 'active')->get();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeslots'));
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
       // Only fetch id and title for the dropdown
 
     
@@ -154,19 +153,25 @@ class HomeController extends Controller
 
      public function storeAppointment(Request $request)
     {
-        
-        $request->validate([
+        // Common rules
+        $rules = [
             'name' => 'required|string|max:200',
             'email' => 'required|email|max:150',
             'phone' => 'required|string|max:12',
             'speciality' => 'required|exists:our_specialties,id',
-            'appointment_date' => 'required|date',
             'source' => 'nullable|string|max:50',
-        ]);
+        ];
 
-        // Save to appointments table
+        // Only require date if coming from the book appointment page
+        if ($request->source === 'book-appointment-page') {
+            $rules['appointment_date'] = 'required|date';
+        }
+
+        $request->validate($rules);
+
+        // Save data
         Appointment::create([
-            'title' => 'N/A', // default placeholder
+            'title' => 'N/A',
             'first_name' => $request->name,
             'middle_name' => '',
             'last_name' => '',
@@ -175,11 +180,37 @@ class HomeController extends Controller
             'email' => $request->email,
             'mobile_no' => $request->phone,
             'pin_code' => '',
-            'appointment_date' => now(),
+            'appointment_date' => $request->appointment_date ?? now(),
             'status' => 'pending',
             'source' => $request->source ?? 'N/A',
             'speciality_id' => $request->speciality,
         ]);
+        
+        // $request->validate([
+        //     'name' => 'required|string|max:200',
+        //     'email' => 'required|email|max:150',
+        //     'phone' => 'required|string|max:12',
+        //     'speciality' => 'required|exists:our_specialties,id',
+        //     'appointment_date' => 'required|date',
+        //     'source' => 'nullable|string|max:50',
+        // ]);
+
+        // Save to appointments table
+        // Appointment::create([
+        //     'title' => 'N/A', // default placeholder
+        //     'first_name' => $request->name,
+        //     'middle_name' => '',
+        //     'last_name' => '',
+        //     'gender' => 'N/A',
+        //     'dob' => now(),
+        //     'email' => $request->email,
+        //     'mobile_no' => $request->phone,
+        //     'pin_code' => '',
+        //     'appointment_date' => now(),
+        //     'status' => 'pending',
+        //     'source' => $request->source ?? 'N/A',
+        //     'speciality_id' => $request->speciality,
+        // ]);
 
         return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
     }
@@ -270,7 +301,6 @@ class HomeController extends Controller
     {
         // Fetch all specialties for the dropdown
         $specialties_form = Speciality::select('id', 'title')->get();
-
         // Return contact page with the variable
         return view('pages.contact-us', compact('specialties_form'));
     }

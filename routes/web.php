@@ -26,6 +26,10 @@ use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\TrainingProgramController;
 use App\Http\Controllers\SpecializedCourseController;
 use App\Http\Controllers\PatientEducationController;
+use App\Http\Controllers\ProgramRegistrationController;
+use App\Http\Controllers\QuickEnquiryController;
+
+
 
 Route::get('/index', function () {
     return view('welcome');
@@ -35,11 +39,11 @@ Route::get('/index', function () {
 Route::get('/',[HomeController::class,'index']);
 Route::get('/book-appointment', [HomeController::class, 'BookAppointment']);
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::view('contact','pages.contact-us');
+Route::get('/contact',[HomeController::class, 'contact']);
 Route::view('team','pages.our-team');
 Route::get('doctor-detail/{slug}', [HomeController::class, 'doctorDetail'])->name('doctor-detail');
 Route::view('team-detail2','pages.team-details2');
-Route::view('c2','pages.contact');
+
 Route::view('team1','pages.team');
 Route::get('event',  [HomeController::class, 'event'])->name('event');
 Route::get('/event/{event_url}', [HomeController::class, 'Event_detail']);
@@ -65,7 +69,18 @@ Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
 Route::get('/specialty-detail/{slug}', [HomeController::class, 'specialtyDetail'])->name('specialty.detail');
 Route::get('health_package', [HomeController::class, 'packages'])->name('package');
+Route::post('/quick-enquiry', [HomeController::class, 'quickEnquiry'])->name('quick.enquiry.submit');
+
+
+Route::view('training','pages.training');
 Route::get('/training', [HomeController::class, 'training'])->name('training');
+// Frontend program registration submission
+Route::post('program-registration', [HomeController::class, 'submitProgramRegistration'])->name('program_registration.store.frontend');
+
+// Route::get('health_package', [HomeController::class, 'packages'])->name('package');
+
+
+//Frontend Rputes
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
 Route::get('/get-states/{countryId}', [HomeController::class, 'getStates'])->name('cities.get-states');
 Route::get('/get-cities/{stateId}', [HomeController::class, 'getCities'])->name('cities.get-cities');
@@ -307,6 +322,16 @@ Route::middleware('auth')->group(function () {
         Route::get('specialized_course/{id}/edit', [SpecializedCourseController::class, 'edit'])->name('specialized_course.edit');
         Route::put('specialized_course/{id}', [SpecializedCourseController::class, 'update'])->name('specialized_course.update');
         Route::delete('specialized_course/{id}', [SpecializedCourseController::class, 'destroy'])->name('specialized_course.destroy');
+
+        // --- Program Registeration Routes ---
+        Route::get('program_registration', [ProgramRegistrationController::class, 'index'])->name('program_registration.index');
+        Route::get('program_registration/{id}', [ProgramRegistrationController::class, 'show'])->name('program_registration.show');
+        Route::delete('program_registration/{id}', [ProgramRegistrationController::class, 'destroy'])->name('program_registration.destroy');
+
+        // --- Qyuick Enquiry Routes ---
+        Route::get('/quick-enquiries', [QuickEnquiryController::class, 'index'])->name('quick-enquiries.index');
+        Route::get('/quick-enquiries/{id}', [QuickEnquiryController::class, 'show'])->name('quick-enquiries.show');
+        Route::delete('/quick-enquiries/{id}', [QuickEnquiryController::class, 'destroy'])->name('quick-enquiries.destroy');
     
     });
 

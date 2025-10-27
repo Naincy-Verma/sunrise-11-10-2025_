@@ -300,48 +300,48 @@
         </div>
     </section> -->
     <section class="section-package">
-    <div class="container">
-        <h2 class="text-center mb-3">Specialized Courses & Fellowships</h2>
-        <div class="row g-4 justify-content-center">
-            @foreach($courses as $course)
-            <div class="col-md-6 col-lg-4">
-                <div class="program-card">
-                    <div class="course-header">
-                        <h4>{{ $course->title }}</h4>
-                        <div class="ribbon">
-                            <div class="ribbon-content">{{ $course->badge_label }}</div>
+        <div class="container">
+            <h2 class="text-center mb-3">Specialized Courses & Fellowships</h2>
+            <div class="row g-4 justify-content-center">
+                @foreach($courses as $course)
+                <div class="col-md-6 col-lg-4">
+                    <div class="program-card">
+                        <div class="course-header">
+                            <h4>{{ $course->title }}</h4>
+                            <div class="ribbon">
+                                <div class="ribbon-content">{{ $course->badge_label }}</div>
+                            </div>
                         </div>
+
+                        {{-- Render subtitle only if exists --}}
+                        @if(!empty($course->sub_title))
+                            <p class="program-subtitle">{{ $course->sub_title }}</p>
+                        @endif
+
+                        {{-- Render price only if exists --}}
+                        @if(!empty($course->price))
+                            <p class="program-price">
+                                {{ is_numeric($course->price) ? '₹'.number_format($course->price) : $course->price }}
+                            </p>
+                        @endif
+
+                        {{-- Features list --}}
+                        <ul class="program-list">
+                            @foreach($course->features as $feature)
+                                <li><i class="fas fa-check-circle"></i> {{ $feature }}</li>
+                            @endforeach
+                        </ul>
+
+                        {{-- Button --}}
+                        <a href="#registration-form" class="btn btn-primary w-100 mt-3">
+                            {{ $course->button_text }}
+                        </a>
                     </div>
-
-                    {{-- Render subtitle only if exists --}}
-                    @if(!empty($course->sub_title))
-                        <p class="program-subtitle">{{ $course->sub_title }}</p>
-                    @endif
-
-                    {{-- Render price only if exists --}}
-                    @if(!empty($course->price))
-                        <p class="program-price">
-                            {{ is_numeric($course->price) ? '₹'.number_format($course->price) : $course->price }}
-                        </p>
-                    @endif
-
-                    {{-- Features list --}}
-                    <ul class="program-list">
-                        @foreach($course->features as $feature)
-                            <li><i class="fas fa-check-circle"></i> {{ $feature }}</li>
-                        @endforeach
-                    </ul>
-
-                    {{-- Button --}}
-                    <a href="#registration-form" class="btn btn-primary w-100 mt-3">
-                        {{ $course->button_text }}
-                    </a>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
-    </div>
-</section>
+    </section>
 
     
     <section class="section-form bg-white" id="registration-form">
@@ -352,7 +352,7 @@
                     <div class="contact-form-section">
                         <p class="lead text-center mb-4">Fill out the form below to receive detailed course information, fees, and registration links.</p>
                         {{-- START: FORM WITH @CSRF TOKEN --}}
-                        <form action="#" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('program_registration.store.frontend') }}" method="POST" enctype="multipart/form-data">
                             @csrf {{-- THIS IS THE CSRF TOKEN INPUT FIELD --}}
                             <div class="row g-3">
                                 {{-- ROW 1: Name and Email --}}
@@ -360,14 +360,14 @@
                                     <label class="form-label">Name *</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control" placeholder="Your Full Name" required>
+                                        <input type="text" class="form-control" name="name" placeholder="Your Full Name" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">E-mail Address *</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                        <input type="email" class="form-control"  name="email" placeholder="Your Email" required>
                                     </div>
                                 </div>
 
@@ -376,12 +376,12 @@
                                     <label class="form-label">Mobile</label>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                                        <input type="tel" class="form-control" placeholder="Mobile Number">
+                                        <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">How did you come to Know about us? *</label>
-                                    <select class="form-select" required>
+                                    <select class="form-select" name="source" required>
                                         <option value="" disabled selected>Select Source</option>
                                         <option>Google</option>
                                         <option>Social Media</option>
@@ -394,13 +394,16 @@
                                 {{-- ROW 3: Training Program and Attach Doc --}}
                                 <div class="col-md-4">
                                     <label class="form-label">Training Program *</label>
-                                    <select class="form-select" required>
+                                    <select class="form-select " name="training_program_id" required>
                                         <option value="" disabled selected>Select a Program or Fellowship</option>
-                                        <option>TLH Hands on Training course (4 Days)</option>
+                                             @foreach($programs as $program)
+                                                <option value="{{ $program->id }}">{{ $program->training_course  }}</option>
+                                            @endforeach
+                                        <!-- <option>TLH Hands on Training course (4 Days)</option>
                                         <option>Fellowship in Advance Gynae Laparoscopy (6 months)</option>
                                         <option>Reproductive Medicine (IVF & IUI) (6 months)</option>
                                         <option>Critical Care Nursing Certification (2 weeks)</option>
-                                        <option>General Enquiry / Other</option>
+                                        <option>General Enquiry / Other</option> -->
                                     </select>
                                 </div>
                                 <div class="col-md-4">
@@ -411,7 +414,7 @@
                                 {{-- ROW 4: Location --}}
                                 <div class="col-12">
                                     <label class="form-label">Location</label>
-                                    <select class="form-select">
+                                    <select class="form-select" name="location">
                                         <option value="" disabled selected>Select Training Location (if applicable)</option>
                                         <option>Sunrise Hospital Kalindi Colony</option>
                                         <option>Other Location/Online</option>
@@ -421,7 +424,7 @@
                                 {{-- ROW 5: Message --}}
                                 <div class="col-12">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control" rows="3" placeholder="Briefly describe your training goals."></textarea>
+                                    <textarea class="form-control" name="message" rows="3" placeholder="Briefly describe your training goals."></textarea>
                                 </div>
 
                                 {{-- ROW 6: Captcha and Submit - Adjusted column structure for submit button --}}

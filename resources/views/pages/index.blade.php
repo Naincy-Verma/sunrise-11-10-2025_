@@ -147,7 +147,7 @@
     <section class="appointment-section">
         <h2>Book Your Appointment Now</h2>
 
-        <form class="appointment-form" action="{{ route('appointments.store') }}" method="post">
+        <form class="appointment-form" action="{{ route('appointments.store') }}" method="POST">
             @csrf
              <input type="hidden" name="source" value="index-page">
 

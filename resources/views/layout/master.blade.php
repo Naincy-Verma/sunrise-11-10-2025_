@@ -261,12 +261,12 @@
                     <h5>Quick Links</h5>
                     <!-- <a href="#">Home</a> -->
                     <a href="{{url('doctors')}}">Doctors</a>
-                    <a href="{{url('blogs')}}">Blogs</a>
+                    <a href="{{url('blog-list')}}">Blogs</a>
                     <a href="{{url('rare_case')}}">Rare Cases</a>
                      <a href="{{url('patient-education')}}">Patient Education</a>
                     <a href="{{url('health_package')}}">Health Packages</a>
                     <a href="{{url('training')}}">Training</a>
-                    <a href="#">Contact</a>
+                    <a href="{{url('contact')}}">Contact</a>
                 </div>
 
                 <!-- Specialties -->

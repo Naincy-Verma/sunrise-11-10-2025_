@@ -48,33 +48,27 @@ Route::get('/rare_case', [HomeController::class, 'rarecase'])->name('rare_case')
 Route::get('/blog-list', [HomeController::class, 'blog'])->name('blogs'); 
 Route::get('/blog-detail/{slug}', [HomeController::class, 'blogdetail'])->name('blog-detail');
 Route::get('doctors',[HomeController::class,'doctors'])->name('doctors');
-Route::view('gynae-laparoscopic-surgeries','pages.specialties.gynae_laparoscopic');
-Route::view('obstetrics-and-gynaecology','pages.specialties.obstetrics');
-Route::view('pediatricians','pages.specialties.pediatrician');
-Route::view('ent','pages.specialties.infertility');
-Route::view('general-surgery','pages.specialties.laparoscopic_surgeon');
-Route::view('orthopedics','pages.specialties.orthopedics');
-Route::view('reconstructive-uro-surgery','pages.specialties.uro_surgery');
-Route::view('critical-cases-icu','pages.specialties.cardiac_science');
-Route::view('bariatric-surgery','pages.specialties.bariatric_surgery');
-Route::view('internal-medicine','pages.specialties.internal_medicine');
-Route::view('patient_education','pages.patient_education');
+// Route::view('gynae-laparoscopic-surgeries','pages.specialties.gynae_laparoscopic');
+// Route::view('obstetrics-and-gynaecology','pages.specialties.obstetrics');
+// Route::view('pediatricians','pages.specialties.pediatrician');
+// Route::view('ent','pages.specialties.infertility');
+// Route::view('general-surgery','pages.specialties.laparoscopic_surgeon');
+// Route::view('orthopedics','pages.specialties.orthopedics');
+// Route::view('reconstructive-uro-surgery','pages.specialties.uro_surgery');
+// Route::view('critical-cases-icu','pages.specialties.cardiac_science');
+// Route::view('bariatric-surgery','pages.specialties.bariatric_surgery');
+// Route::view('internal-medicine','pages.specialties.internal_medicine');
+Route::get('patient-education', [HomeController::class, 'patient_education'])->name('patient-education');
 Route::get('video-testimonial', [HomeController::class, 'video_testimonial'])->name('video-testimonial');
 Route::get('patient-testimonial', [HomeController::class, 'patient_testimonial'])->name('patient-testimonial');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
 Route::get('/specialty-detail/{slug}', [HomeController::class, 'specialtyDetail'])->name('specialty.detail');
-
-// Route::view('training','pages.training');
 Route::get('health_package', [HomeController::class, 'packages'])->name('package');
-
 Route::get('/training', [HomeController::class, 'training'])->name('training');
-
-// Route::get('health_package', [HomeController::class, 'packages'])->name('package');
-
-
-//Frontend Rputes
 Route::post('/appointments/store', [HomeController::class, 'storeAppointment'])->name('appointments.store');
+Route::get('/get-states/{countryId}', [HomeController::class, 'getStates'])->name('cities.get-states');
+Route::get('/get-cities/{stateId}', [HomeController::class, 'getCities'])->name('cities.get-cities');
 
 
 // admin Route
@@ -84,6 +78,7 @@ Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logo
 
 // Dashboard (protected)
 Route::middleware('auth')->group(function () {
+
     Route::get('admin/dashboard', function () {
         return view('admin.pages.dashboard'); 
     })->name('admin.dashboard');
@@ -100,8 +95,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{specialty}', [SpecialityController::class, 'destroy'])->name('specialties.destroy');
         Route::get('/{specialty}', [SpecialityController::class, 'show'])->name('specialties.show');
     });
-
-    
 
     Route::prefix('admin/doctors')->group(function () {
         Route::get('/', [DoctorController::class, 'index'])->name('doctors.index');        
@@ -254,7 +247,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/cities/{id}/edit', [CityController::class, 'edit'])->name('cities.edit');
         Route::put('/cities/{id}', [CityController::class, 'update'])->name('cities.update');
         Route::delete('/cities/{id}', [CityController::class, 'destroy'])->name('cities.destroy');
-        Route::get('/get-states/{id}', [CityController::class, 'getStates'])->name('cities.get-states');
+        Route::get('/get-states/{countryId}', [CityController::class, 'getStates'])->name('cities.get-states');
+
 
         // --- TimeSlot Routes ---
         Route::get('/time-slots', [TimeSlotController::class, 'index'])->name('time-slots.index');

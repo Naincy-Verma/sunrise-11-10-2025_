@@ -73,7 +73,9 @@ class CityController extends Controller
     // AJAX: get states by country
     public function getStates($countryId)
     {
-        $states = State::where('country_id', $countryId)->get();
+        $states = State::where('country_id', $countryId)->get(['id', 'name']);
         return response()->json($states);
     }
+
+
 }

@@ -8,7 +8,8 @@ class Package extends Model
 {
     protected $fillable =[
         'heading',
-        'tests'
+        'tests',
+        'color'
     ];
 
     protected $casts =[

@@ -43,6 +43,7 @@
                                 <tr>
                                     <th style="width: 60px;">No.</th>
                                     <th>Heading</th>
+                                    <th>Color</th>
                                     <th style="width: 40%;">Tests</th>
                                     <th style="width: 180px;">Actions</th>
                                 </tr>
@@ -52,6 +53,11 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td class="fw-semibold">{{ $package->heading }}</td>
+                                        <td>
+                                            <span class="d-inline-block px-3 py-1 rounded" 
+                                                  style="background-color: {{ $package->color }}; color: #fff; border: 1px solid {{ $package->color }};">
+                                                {{ $package->color }}
+                                            </span>
                                         <td>
                                             <div class="tests-wrapper">
                                                 @php

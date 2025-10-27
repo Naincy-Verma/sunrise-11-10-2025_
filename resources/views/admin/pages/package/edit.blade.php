@@ -89,6 +89,13 @@
                 value="{{ old('heading', $package->heading) }}" placeholder="Enter heading" required>
             </div>
           </div>
+          <div class="col-lg-6">
+            <div class="form-group mb-3">
+              <label>Color <span class="text-danger">*</span></label>
+              <input type="text" name="color" id="color" class="form-control"
+                value="{{ old('color', $package->color) }}" placeholder="Enter color code (e.g., #FF0000)" required>
+            </div>
+          </div>
 
           <div class="col-lg-6">
             <div class="form-group mb-3">

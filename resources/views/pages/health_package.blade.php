@@ -87,7 +87,8 @@
                         @foreach($packages as $package)
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="category-card">
-                                    <div class="card-header-accent header-blood">
+                                    <!-- Apply package color dynamically -->
+                                    <div class="card-header-accent" style="background-color: {{ $package->color }};">
                                         <i class="bi bi-droplet-fill me-2"></i> {{ strtoupper($package->heading) }}
                                     </div>
                                     <ul class="list-group list-group-flush">
@@ -102,7 +103,6 @@
                         @endforeach
                     </div>
                 </div>
-
 
                 {{-- Right Sidebar Area for Appointment Form (4 columns on large screens) --}}
                 <div class="col-lg-4">

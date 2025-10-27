@@ -18,9 +18,13 @@ use App\Models\Package;
 use App\Models\Excellence; 
 use App\Models\TrainingProgram; 
 use App\Models\SpecializedCourse; 
-
+use App\Models\PatientEducation;
 use Illuminate\Http\Request;
-USE App\Models\Appointment;
+use App\Models\Appointment;
+use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
+use App\Models\Timeslot;
 
 class HomeController extends Controller
 {
@@ -56,7 +60,8 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', ));
+       
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
       // Only fetch id and title for the dropdown
 
     
@@ -64,9 +69,15 @@ class HomeController extends Controller
 
     public function BookAppointment()
     {
+
         $type = $this->is_mobile();
         $specialties_form = Speciality::select('id', 'title')->get();
-        return view('pages.book-appointment', compact('type', 'specialties_form'));
+        $countries = Country::all();
+        $states = State::with('country')->get();
+        $doctors = Doctor::all();
+        $cities = City::all();
+        $timeslots = Timeslot::all();
+        return view('pages.book-appointment', compact('type', 'specialties_form', 'countries', 'states', 'doctors', 'cities', 'timeslots'));
     }
 
 
@@ -150,7 +161,7 @@ class HomeController extends Controller
 
         // Save to appointments table
         Appointment::create([
-            'title' => 'Mr.', // default placeholder
+            'title' => 'N/A', // default placeholder
             'first_name' => $request->name,
             'middle_name' => '',
             'last_name' => '',
@@ -188,8 +199,26 @@ class HomeController extends Controller
     {
         $excellence = Excellence::first();
         $programs = TrainingProgram::orderBy('s_no', 'asc')->get();
-          $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
+        $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
         return view('pages.training', compact('excellence', 'programs', 'courses'));
     }
+    
+    public function patient_education()
+    {
+        $educations = PatientEducation::all()->groupBy('heading');
 
+        return view('pages.patient_education', compact('educations'));
+    }
+     public function getStates($countryId)
+    {
+        $states = State::where('country_id', $countryId)->get(['id', 'name']);
+        return response()->json($states);
+    }
+    public function getCities($stateId)
+    {
+        $cities = City::where('state_id', $stateId)->get(['id', 'name']);
+        return response()->json($cities);
+    }
+
+    
 }

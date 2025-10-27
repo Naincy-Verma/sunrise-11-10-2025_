@@ -64,8 +64,7 @@ class HomeController extends Controller
         $testimonials = PatientTestimonial::all();
         $specialties_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        $timeSlots = TimeSlot::where('status', 'active')->get();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors', 'timeSlots'));
+        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
       // Only fetch id and title for the dropdown
 
     
@@ -270,7 +269,6 @@ class HomeController extends Controller
     {
         // Fetch all specialties for the dropdown
         $specialties_form = Speciality::select('id', 'title')->get();
-
         // Return contact page with the variable
         return view('pages.contact-us', compact('specialties_form'));
     }

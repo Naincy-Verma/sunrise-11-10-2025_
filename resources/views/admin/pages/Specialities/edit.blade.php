@@ -36,7 +36,7 @@
                 <h4 class="card-title">Course Details</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('specialties.update', $specialty->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('specialities.update', $speciality->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -44,7 +44,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Title</label>
-                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $specialty->title) }}" placeholder="Enter title" required>
+                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title', $speciality->title) }}" placeholder="Enter title" required>
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Slug</label>
-                                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $specialty->slug) }}" placeholder="Will be generated automatically" readonly>
+                                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug', $speciality->slug) }}" placeholder="Will be generated automatically" readonly>
                             </div>
                         </div>
 
@@ -60,7 +60,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Description</label>
-                                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description">{{ old('description', $specialty->description) }}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description">{{ old('description', $speciality->description) }}</textarea>
                             </div>
                         </div>
 
@@ -82,8 +82,8 @@
                                             </div>
                                         </div>
                                         <img id="imagePreview" class="preview-img" alt="Image Preview" 
-                                             src="{{ $specialty->image ? asset($specialty->image) : '' }}" 
-                                             style="{{ $specialty->image ? 'display:block;' : 'display:none;' }}">
+                                             src="{{ $speciality->image ? asset($speciality->image) : '' }}" 
+                                             style="{{ $speciality->image ? 'display:block;' : 'display:none;' }}">
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +107,8 @@
                                             </div>
                                         </div>
                                         <img id="iconPreview" class="preview-img" alt="Icon Preview" 
-                                             src="{{ $specialty->icon ? asset($specialty->icon) : '' }}" 
-                                             style="{{ $specialty->icon ? 'display:block;' : 'display:none;' }}">
+                                             src="{{ $speciality->icon ? asset($speciality->icon) : '' }}" 
+                                             style="{{ $speciality->icon ? 'display:block;' : 'display:none;' }}">
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +117,7 @@
                         <!-- Submit/Cancel -->
                         <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <a href="{{ route('specialties.index') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('specialities.index') }}" class="btn btn-light">Cancel</a>
                         </div>
                     </div>
                 </form>

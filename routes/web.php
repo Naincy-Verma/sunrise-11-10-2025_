@@ -66,8 +66,8 @@ Route::get('patient-education', [HomeController::class, 'patient_education'])->n
 Route::get('video-testimonial', [HomeController::class, 'video_testimonial'])->name('video-testimonial');
 Route::get('patient-testimonial', [HomeController::class, 'patient_testimonial'])->name('patient-testimonial');
 Route::get('faq', [HomeController::class, 'faq'])->name('faq');
-Route::get('/specialties/{slug}', [HomeController::class, 'specialtyDetail']);
-Route::get('/specialty-detail/{slug}', [HomeController::class, 'specialtyDetail'])->name('specialty.detail');
+Route::get('/specialities/{slug}', [HomeController::class, 'specialityDetail']);
+Route::get('/speciality-detail/{slug}', [HomeController::class, 'specialityDetail'])->name('speciality.detail');
 Route::get('health_package', [HomeController::class, 'packages'])->name('package');
 Route::post('/quick-enquiry', [HomeController::class, 'quickEnquiry'])->name('quick.enquiry.submit');
 
@@ -99,16 +99,14 @@ Route::middleware('auth')->group(function () {
     })->name('admin.dashboard');
 
 
-    Route::prefix('specialties')->group(function () {
-        Route::get('/', [SpecialityController::class, 'index'])->name('specialties.index');
-        Route::get('/create', [SpecialityController::class, 'create'])->name('specialties.create');
-        Route::post('/store', [SpecialityController::class, 'store'])->name('specialties.store');
-        
-        // Parameter routes must be last
-        Route::get('/{specialty}/edit', [SpecialityController::class, 'edit'])->name('specialties.edit');
-        Route::put('/{specialty}', [SpecialityController::class, 'update'])->name('specialties.update');
-        Route::delete('/{specialty}', [SpecialityController::class, 'destroy'])->name('specialties.destroy');
-        Route::get('/{specialty}', [SpecialityController::class, 'show'])->name('specialties.show');
+    Route::prefix('specialities')->group(function () {
+        Route::get('/', [SpecialityController::class, 'index'])->name('specialities.index');
+        Route::get('/create', [SpecialityController::class, 'create'])->name('specialities.create');
+        Route::post('/store', [SpecialityController::class, 'store'])->name('specialities.store');
+        Route::get('/{speciality}/edit', [SpecialityController::class, 'edit'])->name('specialities.edit');
+        Route::put('/{speciality}', [SpecialityController::class, 'update'])->name('specialities.update');
+        Route::delete('/{speciality}', [SpecialityController::class, 'destroy'])->name('specialities.destroy');
+        Route::get('/{speciality}', [SpecialityController::class, 'show'])->name('specialities.show');
     });
 
     Route::prefix('admin/doctors')->group(function () {

@@ -103,7 +103,8 @@
 
 <body>
     @php
-    $specialties = \App\Models\Speciality::where('status', 'active')->get();
+    $specialities = \App\Models\Speciality::where('status', 'active')->get();
+    $timeslots = \App\Models\TimeSlot::where('status', 'active')->get();
     @endphp
     <!-- Top Bar -->
     <div class="top-bar text-white py-2 sticky-top" style="background:#0097a7; z-index: 1031;">
@@ -148,13 +149,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="specialtiesDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                            Our Specialties
+                            Our Specialities
                         </a>
                       <ul class="dropdown-menu" aria-labelledby="specialtiesDropdown">
-                            @foreach($specialties as $specialty)
+                            @foreach($specialities as $speciality)
                                 <li>
-                                    <a class="dropdown-item" href="{{ url('specialties', $specialty->slug) }}">
-                                        {{ $specialty->title }}
+                                    <a class="dropdown-item" href="{{ url('specialities', $speciality->slug) }}">
+                                        {{ $speciality->title }}
                                     </a>
                                 </li>
                             @endforeach
@@ -180,8 +181,7 @@
                                     <label class="text-white">Mobile Number</label>  
                                     <input type="tel" name="mobile_number" class="form-control" placeholder="Enter Mobile Number" required style="border-radius: 5px;">
                                 </div>
-                              @if(isset($timeslots) && $timeslots->count())
-                                    <div class="mb-3">
+                              <div class="mb-3">
                                         <label class="text-white">Preferred Time To Call</label>
                                         <select name="time_slot_id" class="form-select" required style="border-radius: 5px;">
                                             <option value="">Preferred Time To Call</option>
@@ -192,7 +192,6 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                @endif
 
                                 <button type="submit" class="btn btn-light w-100 mb-3">Submit</button>
                                 <!-- <div class="form-check text-white mt-2">
@@ -291,10 +290,10 @@
 
                 <!-- Specialties -->
                <div class="col-lg-3 col-md-6">
-                    <h5>Specialties</h5>
-                    @foreach($specialties as $specialty)
-                        <a href="{{ url('specialties', $specialty->slug) }}">
-                            {{ $specialty->title }}
+                    <h5>Specialities</h5>
+                    @foreach($specialities as $speciality)
+                        <a href="{{ url('specialities', $speciality->slug) }}">
+                            {{ $speciality->title }}
                         </a>
                     @endforeach
                 </div>

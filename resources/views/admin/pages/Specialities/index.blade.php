@@ -6,8 +6,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Specialties List</h4>
-                    <a href="{{ route('specialties.create') }}" class="btn btn-primary">Add Specialties</a>
+                    <h4 class="card-title mb-0">Specialities List</h4>
+                    <a href="{{ route('specialities.create') }}" class="btn btn-primary">Add Speciality</a>
                 </div>
 
                 <div class="card-body">
@@ -26,51 +26,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($specialties as $index => $specialty)
+                                @forelse($specialities as $index => $speciality)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $specialty->title }}</td>
-                                        <td>{{ $specialty->slug }}</td>
-                                        <td>{!! \Illuminate\Support\Str::limit($specialty->description, 80) !!}</td>
+                                        <td>{{ $speciality->title }}</td>
+                                        <td>{{ $speciality->slug }}</td>
+                                        <td>{!! Str::limit($speciality->description, 80) !!}</td>
                                         <td>
-                                            @if($specialty->image)
-                                                <img src="{{ asset($specialty->image) }}" alt="Image" style="width:50px;">
+                                            @if($speciality->image)
+                                                <img src="{{ asset($speciality->image) }}" alt="Image" style="width:50px;">
                                             @endif
                                         </td>
                                         <td>
-                                            @if($specialty->icon)
-                                                <img src="{{ asset($specialty->icon) }}" alt="Icon" style="width:50px;">
+                                            @if($speciality->icon)
+                                                <img src="{{ asset($speciality->icon) }}" alt="Icon" style="width:50px;">
                                             @endif
                                         </td>
-                                        <td>{{ $specialty->status ? 'Active' : 'Inactive' }}</td>
+                                        <td>{{ $speciality->status ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <!-- View Button -->
-                                            <a href="{{ route('specialties.show', $specialty->id) }}" class="btn btn-info btn-sm" title="View">
+                                            <a href="{{ route('specialities.show', $speciality->id) }}" class="btn btn-info btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-
-                                            <!-- Edit Button -->
-                                            <a href="{{ route('specialties.edit', $specialty->id) }}" class="btn btn-primary btn-sm" title="Edit">
+                                            <a href="{{ route('specialities.edit', $speciality->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-
-                                            <!-- Delete Button -->
-                                            <form action="{{ route('specialties.destroy', $specialty->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                            <form action="{{ route('specialities.destroy', $speciality->id) }}" method="POST" class="d-inline delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $specialty->title }}">
+                                                <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $speciality->title }}">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
-
-                                @if($specialties->isEmpty())
+                                @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No specialties found.</td>
+                                        <td colspan="8" class="text-center">No specialities found.</td>
                                     </tr>
-                                @endif
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -80,6 +73,7 @@
     </div>
 </div>
 @endsection
+
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -97,12 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+                if (result.isConfirmed) form.submit();
             });
         });
     });

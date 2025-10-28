@@ -10,12 +10,12 @@
         <div class="container container-custom">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <h5 class="mb-3">{{ $specialty->title }}</h5>
+                    <h5 class="mb-3">{{ $speciality->title }}</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Our Specialties</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{{ $specialty->title }}</li>
+                            <li class="breadcrumb-item"><a href="#">Our Specialities</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $speciality->title }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -29,12 +29,12 @@
             <div class="row">
                 <!-- Left Column -->
                 <div class="col-lg-8">
-                    @if($specialty->image)
-                        <img src="{{ asset($specialty->image) }}" alt="{{ $specialty->title }}" class="content-image mb-4">
+                    @if($speciality->image)
+                        <img src="{{ asset($speciality->image) }}" alt="{{ $speciality->title }}" class="content-image mb-4">
                     @endif
 
                     <!-- Description -->
-                    <div>{!! $specialty->description !!}</div>
+                    <div>{!! $speciality->description !!}</div>
                 </div>
 
                 <!-- Right Column - Form -->
@@ -45,7 +45,7 @@
                         </h4>
                         <form action="{{ route('appointments.store') }}" method="POST">
                             @csrf
-                            <input type="hidden" name="source" value="specialties-page">
+                            <input type="hidden" name="source" value="{{ $speciality->title }}">
                             <div class="row g-3">
                                 <!-- Full Name -->
                                 <div class="col-12">
@@ -67,7 +67,7 @@
                                 <div class="col-12">
                                     <select class="form-select" name="speciality" required>
                                         <option>Select Speciality</option>
-                                        @foreach($specialties_form as $speciality)
+                                        @foreach($specialities_form as $speciality)
                                             <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
                                         @endforeach
                                     </select>

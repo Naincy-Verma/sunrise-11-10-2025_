@@ -204,10 +204,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('/specialties') }}">All Specialities</a>
+                                <a href="{{ url('/specialities') }}">All Specialities</a>
                             </li>
                             <li>
-                                <a href="{{ url('/specialties/create') }}">Add Speciality</a>
+                                <a href="{{ url('/specialities/create') }}">Add Speciality</a>
                             </li>
                         </ul>
                     </li>

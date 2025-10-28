@@ -55,16 +55,16 @@ class HomeController extends Controller
     public function index()
     {
         $type = $this->is_mobile();
-        $specialties = Speciality::get();
+        $specialities = Speciality::get();
         $cases = RareCase::get();
         $events = CommunityEvent::get();
         $blogs = Blog::get();
         $faqs = Faq::get();
         $videos = VideoTestimonial::all();
         $testimonials = PatientTestimonial::all();
-        $specialties_form = Speciality::select('id', 'title')->get();
+        $specialities_form = Speciality::select('id', 'title')->get();
         $doctors = Doctor::all();
-        return view('pages.index', compact('type', 'specialties', 'specialties_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
+        return view('pages.index', compact('type', 'specialities', 'specialities_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
       // Only fetch id and title for the dropdown
 
     
@@ -84,11 +84,11 @@ class HomeController extends Controller
     }
 
 
-    public function specialtyDetail($slug)
+    public function specialityDetail($slug)
     {
-        $specialty = Speciality::where('slug', $slug)->firstOrFail();
-         $specialties_form = Speciality::select('id', 'title')->get();
-        return view('pages.specialties.specialty_detail', compact('specialty', 'specialties_form'));
+        $speciality = Speciality::where('slug', $slug)->firstOrFail();
+        $specialities_form = Speciality::select('id', 'title')->get();
+        return view('pages.specialties.speciality_detail', compact('speciality', 'specialities_form'));
     }
 
     public function rarecase()

@@ -91,16 +91,16 @@
             </p>
 
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
-                @foreach($specialties as $specialty)
+                @foreach($specialities as $speciality)
                     <div class="col">
-                        <a href="{{ url('specialties', $specialty->slug) }}">
+                        <a href="{{ url('specialities', $speciality->slug) }}">
                             <div class="card h-100 shadow-sm border-0 rounded-4">
                                 <div class="card-body d-flex flex-column align-items-center">
                                     <div class="rounded-3 d-flex align-items-center justify-content-center mb-3"
                                         style="width:70px;height:70px;font-size:32px;color:#1664c0;">
-                                        <img src="{{ asset($specialty->icon) }}" width="110px" alt="{{ $specialty->title }}" />
+                                        <img src="{{ asset($speciality->icon) }}" width="110px" alt="{{ $speciality->title }}" />
                                     </div>
-                                    <h6 class="fw-semibold">{{ $specialty->title }}</h6>
+                                    <h6 class="fw-semibold">{{ $speciality->title }}</h6>
                                 </div>
                             </div>
                         </a>
@@ -179,7 +179,7 @@
                         <i class="bi bi-hospital"></i>
                         <select class="form-control" name="speciality" required>
                              <option value="">Select Speciality</option>
-                            @foreach($specialties_form as $speciality)
+                            @foreach($specialities_form as $speciality)
                                 <option value="{{ $speciality->id }}">{{ $speciality->title }}</option>
                             @endforeach
                         </select>

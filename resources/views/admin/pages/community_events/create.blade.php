@@ -33,7 +33,7 @@
     <div class="col-sm-6 d-flex justify-content-sm-end">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('community-events.index') }}">Community Events</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.community-events.index') }}">Community Events</a></li>
         <li class="breadcrumb-item active">Add Event</li>
       </ol>
     </div>
@@ -44,7 +44,7 @@
       <h4 class="card-title">Event Details</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('community-events.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.community-events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -111,7 +111,7 @@
         <!-- Buttons -->
         <div class="col-12 text-end mt-3">
             <button type="submit" class="btn btn-primary">Save Event</button>
-            <a href="{{ route('community-events.index') }}" class="btn btn-light">Cancel</a>
+            <a href="{{ route('admin.community-events.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

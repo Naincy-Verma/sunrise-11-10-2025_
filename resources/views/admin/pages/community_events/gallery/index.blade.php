@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="mb-0">Community Event Gallery</h4>
-        <a href="{{ route('community-events.index') }}" class="btn btn-secondary">
+        <a href="{{ route('admin.community-events.index') }}" class="btn btn-secondary">
             <i class="fas fa-arrow-left me-1"></i> Back to Events
         </a>
     </div>
@@ -23,7 +23,7 @@
                         @if($gallery->caption)
                             <p class="card-text text-muted small mb-2">{{ $gallery->caption }}</p>
                         @endif
-                        <form action="{{ route('community-gallery.destroy', $gallery->id) }}" method="POST" class="delete-form d-inline">
+                        <form action="{{ route('admin.community-gallery.destroy', $gallery->id) }}" method="POST" class="delete-form d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="button" 

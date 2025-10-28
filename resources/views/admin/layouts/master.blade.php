@@ -269,10 +269,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('community-events') }}">All Community Events</a>
+                                <a href="{{ url('admin/community-events') }}">All Community Events</a>
                             </li>
                             <li>
-                                <a href="{{ url('community-events/create') }}">Add Community Event</a>
+                                <a href="{{ url('admin/community-events/create') }}">Add Community Event</a>
                             </li>
                         </ul>
                     </li>

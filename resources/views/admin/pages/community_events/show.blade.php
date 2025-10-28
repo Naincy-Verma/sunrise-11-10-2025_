@@ -45,7 +45,7 @@
         <div class="col-sm-6 d-flex justify-content-sm-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('community-events.index') }}">Community Events</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.community-events.index') }}">Community Events</a></li>
                 <li class="breadcrumb-item active">View Event</li>
             </ol>
         </div>
@@ -89,7 +89,7 @@
             </div>
 
             <div class="text-end mt-4">
-                <a href="{{ route('community-events.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.community-events.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to List
                 </a>
             </div>

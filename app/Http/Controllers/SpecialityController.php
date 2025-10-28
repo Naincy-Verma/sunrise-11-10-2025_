@@ -19,7 +19,7 @@ class SpecialityController extends Controller
     public function create()
     {
         return view('admin.pages.specialities.create');
-    }
+    }                                                                                                         
 
     // Store a new specialty
     public function store(Request $request)

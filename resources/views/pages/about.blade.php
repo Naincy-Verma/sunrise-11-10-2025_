@@ -176,7 +176,7 @@
                     <!-- Mission Card -->
                     <div class="col-lg-6 col-md-12 mb-4">
                         <div class="mission-vision-card">
-                            <div class="card-icon vission-icon">
+                            <div class="card-icon vision-icon">
                                 <i class="{{ $vision->icon_mission }}"></i>
                             </div>
                             <h3 class="card-title">{{ $vision->heading_mission }}</h3>
@@ -216,7 +216,7 @@
                 <h2 class="mb-4">Our Milestones</h2>
             </div>
 
-            <div class="timeline">
+            <div class="timeline ">
                 @foreach($milestones as $key => $item)
                     <div class="timeline-item" data-aos="{{ $key % 2 == 0 ? 'fade-right' : 'fade-left' }}">
                         <div class="timeline-content">

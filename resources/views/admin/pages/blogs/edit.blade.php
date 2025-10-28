@@ -34,7 +34,7 @@
     <div class="col-sm-6 d-flex justify-content-sm-end">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('blogs.index') }}">Blogs</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
         <li class="breadcrumb-item active">Edit Blog</li>
       </ol>
     </div>
@@ -46,7 +46,7 @@
       <h4 class="card-title">Update Blog Details</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.blogs.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -126,7 +126,7 @@
 
         <div class="col-12 text-end mt-3">
             <button type="submit" class="btn btn-primary">Update Blog</button>
-            <a href="{{ route('blogs.index') }}" class="btn btn-light">Cancel</a>
+            <a href="{{ route('admin.blogs.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

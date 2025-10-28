@@ -23,7 +23,7 @@
         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('specialties.index') }}">Courses</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.specialities.index') }}">Courses</a></li>
                 <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Course</a></li>
             </ol>
         </div>
@@ -36,7 +36,7 @@
                 <h4 class="card-title">Course Details</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('specialities.update', $speciality->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.specialities.update', $speciality->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
@@ -117,7 +117,7 @@
                         <!-- Submit/Cancel -->
                         <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <a href="{{ route('specialities.index') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('admin.specialities.index') }}" class="btn btn-light">Cancel</a>
                         </div>
                     </div>
                 </form>

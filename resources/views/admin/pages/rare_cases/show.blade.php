@@ -11,7 +11,7 @@
         <div class="col-sm-6 d-flex justify-content-sm-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('rare-cases.index') }}">Rare Cases</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.rare-cases.index') }}">Rare Cases</a></li>
                 <li class="breadcrumb-item active">View Rare Case</li>
             </ol>
         </div>
@@ -33,7 +33,7 @@
             </div>
             @endif
 
-            <a href="{{ route('rare-cases.index') }}" class="btn btn-light mt-3">Back to List</a>
+            <a href="{{ route('admin.rare-cases.index') }}" class="btn btn-light mt-3">Back to List</a>
         </div>
     </div>
 </div>

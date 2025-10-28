@@ -94,106 +94,96 @@ Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logo
 // Dashboard (protected)
 Route::middleware('auth')->group(function () {
 
-    Route::get('admin/dashboard', function () {
-        return view('admin.pages.dashboard'); 
-    })->name('admin.dashboard');
+        Route::get('admin/dashboard', function () {
+            return view('admin.pages.dashboard'); 
+        })->name('admin.dashboard');
 
 
-    Route::prefix('specialities')->group(function () {
-        Route::get('/', [SpecialityController::class, 'index'])->name('specialities.index');
-        Route::get('/create', [SpecialityController::class, 'create'])->name('specialities.create');
-        Route::post('/store', [SpecialityController::class, 'store'])->name('specialities.store');
-        Route::get('/{speciality}/edit', [SpecialityController::class, 'edit'])->name('specialities.edit');
-        Route::put('/{speciality}', [SpecialityController::class, 'update'])->name('specialities.update');
-        Route::delete('/{speciality}', [SpecialityController::class, 'destroy'])->name('specialities.destroy');
-        Route::get('/{speciality}', [SpecialityController::class, 'show'])->name('specialities.show');
-    });
+    Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::prefix('admin/doctors')->group(function () {
-        Route::get('/', [DoctorController::class, 'index'])->name('doctors.index');        
-        Route::get('/create', [DoctorController::class, 'create'])->name('doctors.create');
-        Route::post('/store', [DoctorController::class, 'store'])->name('doctors.store');   
-        Route::get('/{doctor}', [DoctorController::class, 'show'])->name('doctors.show');
-        Route::get('/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');   
-        Route::put('/{id}/update', [DoctorController::class, 'update'])->name('doctors.update'); 
-        Route::delete('/{id}/delete', [DoctorController::class, 'destroy'])->name('doctors.destroy'); 
-    });
+        Route::get('/specialities', [SpecialityController::class, 'index'])->name('specialities.index');
+        Route::get('/specialities/create', [SpecialityController::class, 'create'])->name('specialities.create');
+        Route::post('/specialities/store', [SpecialityController::class, 'store'])->name('specialities.store');
+        Route::get('/specialities/{speciality}/edit', [SpecialityController::class, 'edit'])->name('specialities.edit');
+        Route::put('/specialities/{speciality}', [SpecialityController::class, 'update'])->name('specialities.update');
+        Route::delete('/specialities/{speciality}', [SpecialityController::class, 'destroy'])->name('specialities.destroy');
+        Route::get('/specialities/{speciality}', [SpecialityController::class, 'show'])->name('specialities.show');
 
-    Route::prefix('/rare-cases')->group(function () {
-        Route::get('/', [RareCaseController::class, 'index'])->name('rare-cases.index');
-        Route::get('/create', [RareCaseController::class, 'create'])->name('rare-cases.create');
-        Route::post('/store', [RareCaseController::class, 'store'])->name('rare-cases.store');
-        Route::get('/{id}', [RareCaseController::class, 'show'])->name('rare-cases.show');
-        Route::get('/{id}/edit', [RareCaseController::class, 'edit'])->name('rare-cases.edit');
-        Route::put('/{id}/update', [RareCaseController::class, 'update'])->name('rare-cases.update');
-        Route::delete('/{id}/delete', [RareCaseController::class, 'destroy'])->name('rare-cases.destroy');
-    });
+        Route::get('/doctors', [DoctorController::class, 'index'])->name('doctors.index');        
+        Route::get('/doctors/create', [DoctorController::class, 'create'])->name('doctors.create');
+        Route::post('/doctors/store', [DoctorController::class, 'store'])->name('doctors.store');   
+        Route::get('/doctors/{doctor}', [DoctorController::class, 'show'])->name('doctors.show');
+        Route::get('/doctors/{id}/edit', [DoctorController::class, 'edit'])->name('doctors.edit');   
+        Route::put('/doctors/{id}/update', [DoctorController::class, 'update'])->name('doctors.update'); 
+        Route::delete('/doctors/{id}/delete', [DoctorController::class, 'destroy'])->name('doctors.destroy'); 
 
 
-    Route::prefix('/blogs')->group(function () {
-        Route::get('/', [BlogController::class, 'index'])->name('blogs.index');             
-        Route::get('/create', [BlogController::class, 'create'])->name('blogs.create');     
-        Route::post('/store', [BlogController::class, 'store'])->name('blogs.store');       
-        Route::get('/{id}', [BlogController::class, 'show'])->name('blogs.show');           
-        Route::get('/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');    
-        Route::put('/{id}/update', [BlogController::class, 'update'])->name('blogs.update');
-        Route::delete('/{id}/delete', [BlogController::class, 'destroy'])->name('blogs.destroy');
-    });
+        Route::get('/rare-cases', [RareCaseController::class, 'index'])->name('rare-cases.index');
+        Route::get('/rare-cases/create', [RareCaseController::class, 'create'])->name('rare-cases.create');
+        Route::post('/rare-cases/store', [RareCaseController::class, 'store'])->name('rare-cases.store');
+        Route::get('/rare-cases/{id}', [RareCaseController::class, 'show'])->name('rare-cases.show');
+        Route::get('/rare-cases/{id}/edit', [RareCaseController::class, 'edit'])->name('rare-cases.edit');
+        Route::put('/rare-cases/{id}/update', [RareCaseController::class, 'update'])->name('rare-cases.update');
+        Route::delete('/rare-cases/{id}/delete', [RareCaseController::class, 'destroy'])->name('rare-cases.destroy');
+ 
 
-    Route::prefix('/community-events')->group(function () {
-        Route::get('/', [CommunityEventController::class, 'index'])->name('community-events.index');
-        Route::get('/create', [CommunityEventController::class, 'create'])->name('community-events.create');
-        Route::post('/store', [CommunityEventController::class, 'store'])->name('community-events.store');
-        Route::get('/{id}', [CommunityEventController::class, 'show'])->name('community-events.show');
-        Route::get('/{id}/edit', [CommunityEventController::class, 'edit'])->name('community-events.edit');
-        Route::put('/{id}/update', [CommunityEventController::class, 'update'])->name('community-events.update');
-        Route::delete('/{id}/delete', [CommunityEventController::class, 'destroy'])->name('community-events.destroy');
-    });
+        Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');             
+        Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');     
+        Route::post('/blogs/store', [BlogController::class, 'store'])->name('blogs.store');       
+        Route::get('/blogs/{id}', [BlogController::class, 'show'])->name('blogs.show');           
+        Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');    
+        Route::put('/blogs/{id}/update', [BlogController::class, 'update'])->name('blogs.update');
+        Route::delete('/blogs/{id}/delete', [BlogController::class, 'destroy'])->name('blogs.destroy');
+ 
+    
+        Route::get('/community-events', [CommunityEventController::class, 'index'])->name('community-events.index');
+        Route::get('/community-events/create', [CommunityEventController::class, 'create'])->name('community-events.create');
+        Route::post('/community-events/store', [CommunityEventController::class, 'store'])->name('community-events.store');
+        Route::get('/community-events/{id}', [CommunityEventController::class, 'show'])->name('community-events.show');
+        Route::get('/community-events/{id}/edit', [CommunityEventController::class, 'edit'])->name('community-events.edit');
+        Route::put('/community-events/{id}/update', [CommunityEventController::class, 'update'])->name('community-events.update');
+        Route::delete('/community-events/{id}/delete', [CommunityEventController::class, 'destroy'])->name('community-events.destroy');
+ 
 
-    // Community Gallery Page Routes
-    Route::prefix('community-gallery')->group(function () {
-        Route::get('/{event_id}/create', [CommunityEventGalleryController::class, 'create'])->name('community-gallery.create');
-        Route::post('/store', [CommunityEventGalleryController::class, 'store'])->name('community-gallery.store');
-        Route::get('/', [CommunityEventGalleryController::class, 'index'])->name('community-gallery.index');
-        Route::get('/{event_id}', [CommunityEventGalleryController::class, 'show'])->name('community-gallery.show');
-        Route::delete('/{id}/delete', [CommunityEventGalleryController::class, 'destroy'])->name('community-gallery.destroy');
-    });
+        // Community Gallery Page Routes
+
+        Route::get('community-gallery/{event_id}/create', [CommunityEventGalleryController::class, 'create'])->name('community-gallery.create');
+        Route::post('community-gallery/store', [CommunityEventGalleryController::class, 'store'])->name('community-gallery.store');
+        Route::get('community-gallery', [CommunityEventGalleryController::class, 'index'])->name('community-gallery.index');
+        Route::get('community-gallery/{event_id}', [CommunityEventGalleryController::class, 'show'])->name('community-gallery.show');
+        Route::delete('community-gallery/{id}/delete', [CommunityEventGalleryController::class, 'destroy'])->name('community-gallery.destroy');
+
 
        // --- Patient Testimonial Page Routes ---
-    Route::prefix('/patient-testimonials')->group(function () {
-        Route::get('/', [PatientTestimonialController::class, 'index'])->name('patient_testimonials.index');
-        Route::get('/create', [PatientTestimonialController::class, 'create'])->name('patient_testimonials.create');
-        Route::post('/store', [PatientTestimonialController::class, 'store'])->name('patient_testimonials.store');
-        Route::get('/{id}', [PatientTestimonialController::class, 'show'])->name('patient_testimonials.show');
-        Route::get('/{id}/edit', [PatientTestimonialController::class, 'edit'])->name('patient_testimonials.edit');
-        Route::put('/{id}/update', [PatientTestimonialController::class, 'update'])->name('patient_testimonials.update');
-        Route::delete('/{id}/delete', [PatientTestimonialController::class, 'destroy'])->name('patient_testimonials.destroy');
-    });
+        Route::get('/patient-testimonials', [PatientTestimonialController::class, 'index'])->name('patient_testimonials.index');
+        Route::get('/patient-testimonials/create', [PatientTestimonialController::class, 'create'])->name('patient_testimonials.create');
+        Route::post('/patient-testimonials/store', [PatientTestimonialController::class, 'store'])->name('patient_testimonials.store');
+        Route::get('/patient-testimonials/{id}', [PatientTestimonialController::class, 'show'])->name('patient_testimonials.show');
+        Route::get('/patient-testimonials/{id}/edit', [PatientTestimonialController::class, 'edit'])->name('patient_testimonials.edit');
+        Route::put('/patient-testimonials/{id}/update', [PatientTestimonialController::class, 'update'])->name('patient_testimonials.update');
+        Route::delete('/patient-testimonials/{id}/delete', [PatientTestimonialController::class, 'destroy'])->name('patient_testimonials.destroy');
 
-    // Video Testimonial Page Routes
-    Route::prefix('/video-testimonials')->group(function () {
-        Route::get('/', [VideoTestimonialController::class, 'index'])->name('video_testimonials.index');
-        Route::get('/create', [VideoTestimonialController::class, 'create'])->name('video_testimonials.create');
-        Route::post('/store', [VideoTestimonialController::class, 'store'])->name('video_testimonials.store');
-        Route::get('/{id}', [VideoTestimonialController::class, 'show'])->name('video_testimonials.show');
-        Route::get('/{id}/edit', [VideoTestimonialController::class, 'edit'])->name('video_testimonials.edit');
-        Route::put('/{id}/update', [VideoTestimonialController::class, 'update'])->name('video_testimonials.update');
-        Route::delete('/{id}/delete', [VideoTestimonialController::class, 'destroy'])->name('video_testimonials.destroy');
-    });
 
-    // FAQ Page Routes
-    Route::prefix('/faqs')->group(function () {
-        Route::get('/', [FaqController::class, 'index'])->name('faqs.index');
-        Route::get('/create', [FaqController::class, 'create'])->name('faqs.create');
-        Route::post('/store', [FaqController::class, 'store'])->name('faqs.store');
-        Route::get('/{id}', [FaqController::class, 'show'])->name('faqs.show');
-        Route::get('/{id}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
-        Route::put('/{id}/update', [FaqController::class, 'update'])->name('faqs.update');
-        Route::delete('/{id}/delete', [FaqController::class, 'destroy'])->name('faqs.destroy');
-    });
+        // Video Testimonial Page Routes
+        Route::get('/video-testimonials', [VideoTestimonialController::class, 'index'])->name('video_testimonials.index');
+        Route::get('/video-testimonials/create', [VideoTestimonialController::class, 'create'])->name('video_testimonials.create');
+        Route::post('/video-testimonials/store', [VideoTestimonialController::class, 'store'])->name('video_testimonials.store');
+        Route::get('/video-testimonials/{id}', [VideoTestimonialController::class, 'show'])->name('video_testimonials.show');
+        Route::get('/video-testimonials/{id}/edit', [VideoTestimonialController::class, 'edit'])->name('video_testimonials.edit');
+        Route::put('/video-testimonials/{id}/update', [VideoTestimonialController::class, 'update'])->name('video_testimonials.update');
+        Route::delete('/video-testimonials/{id}/delete', [VideoTestimonialController::class, 'destroy'])->name('video_testimonials.destroy');
 
-    // About Page Routes
-    Route::prefix('admin')->name('admin.')->group(function () {
+        // FAQ Page Routes
+        Route::get('/faqs', [FaqController::class, 'index'])->name('faqs.index');
+        Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+        Route::post('/faqs/store', [FaqController::class, 'store'])->name('faqs.store');
+        Route::get('/faqs/{id}', [FaqController::class, 'show'])->name('faqs.show');
+        Route::get('/faqs/{id}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+        Route::put('/faqs/{id}/update', [FaqController::class, 'update'])->name('faqs.update');
+        Route::delete('/faqs/{id}/delete', [FaqController::class, 'destroy'])->name('faqs.destroy');
+
+       // About Page Routes
+   
         Route::get('/about', [AboutController::class, 'index'])->name('about.index');
         Route::get('/about/create', [AboutController::class, 'create'])->name('about.create');
         Route::post('/about/store', [AboutController::class, 'store'])->name('about.store');
@@ -299,7 +289,8 @@ Route::middleware('auth')->group(function () {
         Route::delete('patient-education/{id}', [PatientEducationController::class, 'destroy'])->name('patient-education.destroy');
         Route::get('patient-education/{id}', [PatientEducationController::class, 'show'])->name('patient-education.show');
 
-            // --- Excellences CRUD Routes ---
+        // --- Excellences CRUD Routes ---
+
         Route::get('excellences', [ExcellenceController::class, 'index'])->name('excellences.index');
         Route::get('excellences/create', [ExcellenceController::class, 'create'])->name('excellences.create');
         Route::post('excellences', [ExcellenceController::class, 'store'])->name('excellences.store');
@@ -307,7 +298,8 @@ Route::middleware('auth')->group(function () {
         Route::put('excellences/{id}', [ExcellenceController::class, 'update'])->name('excellences.update');
         Route::delete('excellences/{id}', [ExcellenceController::class, 'destroy'])->name('excellences.destroy');
 
-            // --- Training Program CRUD routes ---
+        // --- Training Program CRUD routes ---
+
         Route::get('training_program', [TrainingProgramController::class, 'index'])->name('training_program.index');
         Route::get('training_program/create', [TrainingProgramController::class, 'create'])->name('training_program.create');
         Route::post('training_program', [TrainingProgramController::class, 'store'])->name('training_program.store');

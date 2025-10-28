@@ -133,8 +133,8 @@
 
         <!-- Footer Buttons -->
         <div class="card-footer text-end">
-            <a href="{{ route('doctors.index') }}" class="btn btn-secondary me-2">Back</a>
-            <a href="{{ route('doctors.edit', $doctor->id) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('admin.doctors.index') }}" class="btn btn-secondary me-2">Back</a>
+            <a href="{{ route('admin.doctors.edit', $doctor->id) }}" class="btn btn-primary">Edit</a>
         </div>
 
     </div>

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Rare Cases List</h4>
-                    <a href="{{ route('rare-cases.create') }}" class="btn btn-primary">Add Rare Case</a>
+                    <a href="{{ route('admin.rare-cases.create') }}" class="btn btn-primary">Add Rare Case</a>
                 </div>
 
                 <div class="card-body">
@@ -38,17 +38,17 @@
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Actions">
                                                 <!-- View Button -->
-                                                <a href="{{ route('rare-cases.show', $case->id) }}" class="btn btn-info btn-sm" title="View">
+                                                <a href="{{ route('admin.rare-cases.show', $case->id) }}" class="btn btn-info btn-sm" title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
 
                                                 <!-- Edit Button -->
-                                                <a href="{{ route('rare-cases.edit', $case->id) }}" class="btn btn-primary btn-sm" title="Edit">
+                                                <a href="{{ route('admin.rare-cases.edit', $case->id) }}" class="btn btn-primary btn-sm" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 <!-- Delete Button -->
-                                                <form action="{{ route('rare-cases.destroy', $case->id) }}" method="POST" class="d-inline delete-form">
+                                                <form action="{{ route('admin.rare-cases.destroy', $case->id) }}" method="POST" class="d-inline delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $case->title }}">

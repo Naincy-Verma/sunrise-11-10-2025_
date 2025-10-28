@@ -48,8 +48,8 @@
 
         <!-- Footer: Back & Edit buttons -->
         <div class="card-footer text-end">
-            <a href="{{ route('specialities.index') }}" class="btn btn-secondary me-2">Back</a>
-            <a href="{{ route('specialities.edit', $speciality->id) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('admin.specialities.index') }}" class="btn btn-secondary me-2">Back</a>
+            <a href="{{ route('admin.specialities.edit', $speciality->id) }}" class="btn btn-primary">Edit</a>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@
                 <!-- Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Blogs List</h4>
-                    <a href="{{ route('blogs.create') }}" class="btn btn-primary">Add Blog</a>
+                    <a href="{{ route('admin.blogs.create') }}" class="btn btn-primary">Add Blog</a>
                 </div>
 
                 <!-- Body -->
@@ -51,17 +51,17 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <!-- View -->
-                                                <a href="{{ route('blogs.show', $blog->id) }}" class="btn btn-info btn-sm me-2" title="View">
+                                                <a href="{{ route('admin.blogs.show', $blog->id) }}" class="btn btn-info btn-sm me-2" title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
 
                                                 <!-- Edit -->
-                                                <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-primary btn-sm me-2" title="Edit">
+                                                <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="btn btn-primary btn-sm me-2" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 <!-- Delete -->
-                                                <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST" class="delete-form m-0">
+                                                <form action="{{ route('admin.blogs.destroy', $blog->id) }}" method="POST" class="delete-form m-0">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $blog->title }}">

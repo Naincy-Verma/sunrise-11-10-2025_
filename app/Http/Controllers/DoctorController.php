@@ -72,7 +72,7 @@ class DoctorController extends Controller
         // ✅ Save doctor
         Doctor::create($validated);
 
-        return redirect()->route('doctors.index')->with('success', 'Doctor added successfully!');
+        return redirect()->route('admin.doctors.index')->with('success', 'Doctor added successfully!');
     }
 
     // Show a single doctor (admin)
@@ -140,7 +140,7 @@ class DoctorController extends Controller
 
         $doctor->update($validated);
 
-        return redirect()->route('doctors.index')->with('success', 'Doctor updated successfully!');
+        return redirect()->route('admin.doctors.index')->with('success', 'Doctor updated successfully!');
     }
 
     // Delete doctor
@@ -154,7 +154,7 @@ class DoctorController extends Controller
         }
 
         $doctor->delete();
-        return redirect()->route('doctors.index')->with('success', 'Doctor deleted successfully!');
+        return redirect()->route('admin.doctors.index')->with('success', 'Doctor deleted successfully!');
     }
 
     // Frontend doctor detail page

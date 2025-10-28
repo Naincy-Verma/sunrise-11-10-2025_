@@ -37,7 +37,7 @@
                 <h4 class="card-title">Courses Details</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('specialities.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.specialities.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -102,7 +102,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ route('specialities.index') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('admin.specialities.index') }}" class="btn btn-light">Cancel</a>
                         </div>
                     </div>
                 </form>

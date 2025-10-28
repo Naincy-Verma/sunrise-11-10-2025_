@@ -49,7 +49,7 @@ class RareCaseController extends Controller
 
         RareCase::create($data);
 
-        return redirect()->route('rare-cases.index')->with('success', 'Rare Case Added Successfully!');
+        return redirect()->route('admin.rare-cases.index')->with('success', 'Rare Case Added Successfully!');
     }
 
     // Show edit form
@@ -88,7 +88,7 @@ class RareCaseController extends Controller
 
         $case->update($data);
 
-        return redirect()->route('rare-cases.index')->with('success', 'Rare Case Updated Successfully!');
+        return redirect()->route('admin.rare-cases.index')->with('success', 'Rare Case Updated Successfully!');
     }
 
     // Delete a case
@@ -102,6 +102,6 @@ class RareCaseController extends Controller
 
         $case->delete();
 
-        return redirect()->route('rare-cases.index')->with('success', 'Rare Case Deleted Successfully!');
+        return redirect()->route('admin.rare-cases.index')->with('success', 'Rare Case Deleted Successfully!');
     }
 }

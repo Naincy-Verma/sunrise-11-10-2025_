@@ -48,7 +48,7 @@ class VideoTestimonialController extends Controller
 
         VideoTestimonial::create($data);
 
-        return redirect()->route('video_testimonials.index')->with('success', 'Video Testimonial Added Successfully!');
+        return redirect()->route('admin.video_testimonials.index')->with('success', 'Video Testimonial Added Successfully!');
     }
 
     // Edit form
@@ -84,7 +84,7 @@ class VideoTestimonialController extends Controller
 
         $video->update($data);
 
-        return redirect()->route('video_testimonials.index')->with('success', 'Video Testimonial Updated Successfully!');
+        return redirect()->route('admin.video_testimonials.index')->with('success', 'Video Testimonial Updated Successfully!');
     }
 
     // Delete
@@ -98,6 +98,6 @@ class VideoTestimonialController extends Controller
 
         $video->delete();
 
-        return redirect()->route('video_testimonials.index')->with('success', 'Video Testimonial Deleted Successfully!');
+        return redirect()->route('admin.video_testimonials.index')->with('success', 'Video Testimonial Deleted Successfully!');
     }
 }

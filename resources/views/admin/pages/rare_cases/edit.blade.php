@@ -24,7 +24,7 @@
         <div class="col-sm-6 d-flex justify-content-sm-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('rare-cases.index') }}">Rare Cases</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.rare-cases.index') }}">Rare Cases</a></li>
                 <li class="breadcrumb-item active">Edit Rare Case</li>
             </ol>
         </div>
@@ -35,7 +35,7 @@
             <h4 class="card-title">Rare Case Details</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('rare-cases.update', $case->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.rare-cases.update', $case->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -75,7 +75,7 @@
 
                 <div class="col-12 text-end mt-3">
                     <button type="submit" class="btn btn-primary">Update Rare Case</button>
-                    <a href="{{ route('rare-cases.index') }}" class="btn btn-light">Cancel</a>
+                    <a href="{{ route('admin.rare-cases.index') }}" class="btn btn-light">Cancel</a>
                 </div>
             </form>
         </div>

@@ -43,7 +43,7 @@
         <div class="col-sm-6 d-flex justify-content-sm-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('blogs.index') }}">Blogs</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.blogs.index') }}">Blogs</a></li>
                 <li class="breadcrumb-item active">View Blog</li>
             </ol>
         </div>
@@ -87,7 +87,7 @@
 
             <!-- Back Button -->
             <div class="mt-4">
-                <a href="{{ route('blogs.index') }}" class="btn btn-secondary">
+                <a href="{{ route('admin.blogs.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left me-1"></i> Back to List
                 </a>
             </div>

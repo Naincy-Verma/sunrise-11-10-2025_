@@ -102,13 +102,13 @@ class SpecialityController extends Controller
 
         $speciality->update($data);
 
-        return redirect()->route('specialities.index')->with('success', 'Speciality updated successfully.');
+        return redirect()->route('admin.specialities.index')->with('success', 'Speciality updated successfully.');
     }
 
     // Delete specialty
     public function destroy(Speciality $speciality)
     {
         $speciality->delete();
-        return redirect()->route('specialities.index')->with('success', 'Speciality deleted successfully.');
+        return redirect()->route('admin.specialities.index')->with('success', 'Speciality deleted successfully.');
     }
 }

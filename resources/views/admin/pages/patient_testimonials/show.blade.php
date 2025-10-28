@@ -31,7 +31,7 @@
         <div class="col-sm-6 d-flex justify-content-sm-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('patient_testimonials.index') }}">Testimonials</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.patient_testimonials.index') }}">Testimonials</a></li>
                 <li class="breadcrumb-item active">View Testimonial</li>
             </ol>
         </div>
@@ -58,8 +58,8 @@
             @endif
 
             <div class="mt-3">
-                <a href="{{ route('patient_testimonials.index') }}" class="btn btn-light">Back</a>
-                <a href="{{ route('patient_testimonials.edit', $testimonial->id) }}" class="btn btn-primary">Edit</a>
+                <a href="{{ route('admin.patient_testimonials.index') }}" class="btn btn-light">Back</a>
+                <a href="{{ route('admin.patient_testimonials.edit', $testimonial->id) }}" class="btn btn-primary">Edit</a>
             </div>
         </div>
     </div>

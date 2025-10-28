@@ -36,7 +36,7 @@
     <div class="col-sm-6 d-flex justify-content-sm-end">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('video_testimonials.index') }}">Video Testimonials</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.video_testimonials.index') }}">Video Testimonials</a></li>
         <li class="breadcrumb-item active">Edit Video Testimonial</li>
       </ol>
     </div>
@@ -48,7 +48,7 @@
       <h4 class="card-title">Update Video Testimonial</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('video_testimonials.update', $video->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.video_testimonials.update', $video->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -119,7 +119,7 @@
         <!-- Submit Buttons -->
         <div class="col-12 text-end mt-3">
             <button type="submit" class="btn btn-primary">Update Video Testimonial</button>
-            <a href="{{ route('video_testimonials.index') }}" class="btn btn-light">Cancel</a>
+            <a href="{{ route('admin.video_testimonials.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

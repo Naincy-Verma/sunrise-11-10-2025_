@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-body">
-      <form action="{{ route('faqs.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.faqs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <!-- Question -->
@@ -63,7 +63,7 @@
         <!-- Buttons -->
         <div class="text-end mt-3">
           <button type="submit" class="btn btn-primary">Save</button>
-          <a href="{{ route('faqs.index') }}" class="btn btn-light">Cancel</a>
+          <a href="{{ route('admin.faqs.index') }}" class="btn btn-light">Cancel</a>
         </div>
 
       </form>

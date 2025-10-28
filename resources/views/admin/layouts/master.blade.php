@@ -20,14 +20,13 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin-assets/images/favicon.png')}}" />
 
     <!-- Font-awesone cdn -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- PAGE TITLE HERE -->
     <title>Edumin - Bootstrap Admin Dashboard</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- STYLESHEETS -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -36,6 +35,7 @@
     <link rel="stylesheet" href="{{asset('admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin-assets/css/skin.css')}}">
     @yield('css')
+
 </head>
 
 <body>
@@ -204,15 +204,16 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('/specialities') }}">All Specialities</a>
+                                <a href="{{ url('admin/specialities') }}">All Specialities</a>
                             </li>
                             <li>
-                                <a href="{{ url('/specialities/create') }}">Add Speciality</a>
+                                <a href="{{ url('admin/specialities/create') }}">Add Specialities</a>
                             </li>
                         </ul>
                     </li>
 
                     <!-- Our Doctors -->
+
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                             <i class="la la-calendar"></i>
@@ -236,10 +237,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('rare-cases') }}">All Rare Cases</a>
+                                <a href="{{ url('admin/rare-cases') }}">All Rare Cases</a>
                             </li>
                             <li>
-                                <a href="{{ url('rare-cases/create') }}">Add Rare Case</a>
+                                <a href="{{ url('admin/rare-cases/create') }}">Add Rare Case</a>
                             </li>
                         </ul>
                     </li>
@@ -252,10 +253,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('blogs') }}">All Blogs</a>
+                                <a href="{{ url('admin/blogs') }}">All Blogs</a>
                             </li>
                             <li>
-                                <a href="{{ url('blogs/create') }}">Add Blog</a>
+                                <a href="{{ url('admin/blogs/create') }}">Add Blog</a>
                             </li>
                         </ul>
                     </li>
@@ -284,10 +285,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('patient-testimonials') }}">All Patient Testimonials</a>
+                                <a href="{{ url('admin/patient-testimonials') }}">All Patient Testimonials</a>
                             </li>
                             <li>
-                                <a href="{{ url('patient-testimonials/create') }}">Add Patient Testimonial</a>
+                                <a href="{{ url('admin/patient-testimonials/create') }}">Add Patient Testimonial</a>
                             </li>
                         </ul>
                     </li>
@@ -300,10 +301,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('video-testimonials') }}">All Video Testimonials</a>
+                                <a href="{{ url('admin/video-testimonials') }}">All Video Testimonials</a>
                             </li>
                             <li>
-                                <a href="{{ url('video-testimonials/create') }}">Add Video Testimonial</a>
+                                <a href="{{ url('admin/video-testimonials/create') }}">Add Video Testimonial</a>
                             </li>
                         </ul>
                     </li>
@@ -316,10 +317,10 @@
                         </a>
                         <ul aria-expanded="false">
                             <li>
-                                <a href="{{ url('faqs') }}">All Faq</a>
+                                <a href="{{ url('admin/faqs') }}">All Faq</a>
                             </li>
                             <li>
-                                <a href="{{ url('faqs/create') }}">Add FAQ</a>
+                                <a href="{{ url('admin/faqs/create') }}">Add FAQ</a>
                             </li>
                         </ul>
                     </li>

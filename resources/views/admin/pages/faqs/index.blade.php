@@ -5,7 +5,7 @@
   <div class="card">
     <div class="card-header d-flex justify-content-between">
       <h4 class="card-title mb-0">FAQs</h4>
-      <a href="{{ route('faqs.create') }}" class="btn btn-primary">Add FAQ</a>
+      <a href="{{ route('admin.faqs.create') }}" class="btn btn-primary">Add FAQ</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -33,9 +33,9 @@
                 @endif
               </td>
               <td>
-                <a href="{{ route('faqs.show', $faq->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
-                <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-              <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" style="display:inline;" class="delete-form">
+                <a href="{{ route('admin.faqs.show', $faq->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-eye"></i></a>
+                <a href="{{ route('admin.faqs.edit', $faq->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+              <form action="{{ route('admin.faqs.destroy', $faq->id) }}" method="POST" style="display:inline;" class="delete-form">
                 @csrf
                 @method('DELETE')
                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $faq->question }}">

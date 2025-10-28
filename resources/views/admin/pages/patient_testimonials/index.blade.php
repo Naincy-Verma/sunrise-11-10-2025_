@@ -11,7 +11,7 @@
                 <!-- Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Patient Testimonials</h4>
-                    <a href="{{ route('patient_testimonials.create') }}" class="btn btn-primary">Add Testimonial</a>
+                    <a href="{{ route('admin.patient_testimonials.create') }}" class="btn btn-primary">Add Testimonial</a>
                 </div>
 
                 <!-- Body -->
@@ -50,14 +50,14 @@
                                         </td>
 
                                      <td>
-                                        <a href="{{ route('patient_testimonials.edit', $testimonial->id) }}" class="btn btn-info btn-sm" title="Edit">
+                                        <a href="{{ route('admin.patient_testimonials.edit', $testimonial->id) }}" class="btn btn-info btn-sm" title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{{ route('patient_testimonials.show', $testimonial->id) }}" class="btn btn-secondary btn-sm" title="View">
+                                        <a href="{{ route('admin.patient_testimonials.show', $testimonial->id) }}" class="btn btn-secondary btn-sm" title="View">
                                             <i class="fas fa-eye"></i>
                                         </a>
 
-                                       <form action="{{ route('patient_testimonials.destroy', $testimonial->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                       <form action="{{ route('admin.patient_testimonials.destroy', $testimonial->id) }}" method="POST" class="delete-form" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $testimonial->patient_name }}">

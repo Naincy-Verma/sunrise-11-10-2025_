@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Doctors List</h4>
-                    <a href="{{ route('doctors.create') }}" class="btn btn-primary">Add Doctor</a>
+                    <a href="{{ route('admin.doctors.create') }}" class="btn btn-primary">Add Doctor</a>
                 </div>
 
                 <div class="card-body">
@@ -43,17 +43,17 @@
                                         <td>{{ $doctor->experience }}</td>
                                         <td>
                                             <!-- View Button -->
-                                            <a href="{{ route('doctors.show', $doctor->id) }}" class="btn btn-info btn-sm" title="View">
+                                            <a href="{{ route('admin.doctors.show', $doctor->id) }}" class="btn btn-info btn-sm" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
 
                                             <!-- Edit Button -->
-                                            <a href="{{ route('doctors.edit', $doctor->id) }}" class="btn btn-primary btn-sm" title="Edit">
+                                            <a href="{{ route('admin.doctors.edit', $doctor->id) }}" class="btn btn-primary btn-sm" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
                                             <!-- Delete Button -->
-                                            <form action="{{ route('doctors.destroy', $doctor->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                            <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="POST" class="delete-form" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $doctor->name }}">

@@ -48,7 +48,7 @@ class PatientTestimonialController extends Controller
 
         PatientTestimonial::create($data);
 
-        return redirect()->route('patient_testimonials.index')->with('success', 'Testimonial Added Successfully!');
+        return redirect()->route('admin.patient_testimonials.index')->with('success', 'Testimonial Added Successfully!');
     }
 
     // Edit form
@@ -86,7 +86,7 @@ class PatientTestimonialController extends Controller
 
         $testimonial->update($data);
 
-        return redirect()->route('patient_testimonials.index')->with('success', 'Testimonial Updated Successfully!');
+        return redirect()->route('admin.patient_testimonials.index')->with('success', 'Testimonial Updated Successfully!');
     }
 
     // Delete testimonial
@@ -101,6 +101,6 @@ class PatientTestimonialController extends Controller
 
         $testimonial->delete();
 
-        return redirect()->route('patient_testimonials.index')->with('success', 'Testimonial Deleted Successfully!');
+        return redirect()->route('admin.patient_testimonials.index')->with('success', 'Testimonial Deleted Successfully!');
     }
 }

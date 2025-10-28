@@ -17,8 +17,8 @@
       @endif
 
       <div class="mt-3">
-        <a href="{{ route('faqs.index') }}" class="btn btn-light">Back</a>
-        <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-primary">Edit</a>
+        <a href="{{ route('admin.faqs.index') }}" class="btn btn-light">Back</a>
+        <a href="{{ route('admin.faqs.edit', $faq->id) }}" class="btn btn-primary">Edit</a>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
                 <!-- Header -->
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Video Testimonials</h4>
-                    <a href="{{ route('video_testimonials.create') }}" class="btn btn-primary">Add Video Testimonial</a>
+                    <a href="{{ route('admin.video_testimonials.create') }}" class="btn btn-primary">Add Video Testimonial</a>
                 </div>
 
                 <!-- Body -->
@@ -50,15 +50,15 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('video_testimonials.edit', $video->id) }}" class="btn btn-info btn-sm" title="Edit">
+                                            <a href="{{ route('admin.video_testimonials.edit', $video->id) }}" class="btn btn-info btn-sm" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <a href="{{ route('video_testimonials.show', $video->id) }}" class="btn btn-secondary btn-sm" title="View">
+                                            <a href="{{ route('admin.video_testimonials.show', $video->id) }}" class="btn btn-secondary btn-sm" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
 
-                                            <form action="{{ route('video_testimonials.destroy', $video->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                            <form action="{{ route('admin.video_testimonials.destroy', $video->id) }}" method="POST" class="delete-form" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $video->patient_name }}">

@@ -53,7 +53,7 @@ class FaqController extends Controller
 
         Faq::create($data);
 
-        return redirect()->route('faqs.index')->with('success', 'FAQ Added Successfully!');
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ Added Successfully!');
     }
 
     // Show edit form
@@ -94,7 +94,7 @@ class FaqController extends Controller
 
         $faq->update($data);
 
-        return redirect()->route('faqs.index')->with('success', 'FAQ Updated Successfully!');
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ Updated Successfully!');
     }
 
     // Delete FAQ
@@ -108,7 +108,7 @@ class FaqController extends Controller
 
         $faq->delete();
 
-        return redirect()->route('faqs.index')->with('success', 'FAQ Deleted Successfully!');
+        return redirect()->route('admin.faqs.index')->with('success', 'FAQ Deleted Successfully!');
     }
 
     // Frontend Display (for website)

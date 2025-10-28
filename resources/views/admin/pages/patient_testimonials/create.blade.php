@@ -37,7 +37,7 @@
     <div class="col-sm-6 d-flex justify-content-sm-end">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('patient_testimonials.index') }}">Testimonials</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('admin.patient_testimonials.index') }}">Testimonials</a></li>
         <li class="breadcrumb-item active">Add Testimonial</li>
       </ol>
     </div>
@@ -49,7 +49,7 @@
       <h4 class="card-title">Testimonial Details</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('patient_testimonials.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.patient_testimonials.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -103,7 +103,7 @@
         <!-- Submit Buttons -->
         <div class="col-12 text-end mt-3">
             <button type="submit" class="btn btn-primary">Save Testimonial</button>
-            <a href="{{ route('patient_testimonials.index') }}" class="btn btn-light">Cancel</a>
+            <a href="{{ route('admin.patient_testimonials.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

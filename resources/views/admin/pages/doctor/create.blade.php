@@ -41,7 +41,7 @@
           <a href="{{ route('admin.dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-          <a href="{{ route('doctors.index') }}">Doctors</a>
+          <a href="{{ route('admin.doctors.index') }}">Doctors</a>
         </li>
         <li class="breadcrumb-item active">Add Doctor</li>
       </ol>
@@ -53,7 +53,7 @@
       <h4 class="card-title">Doctor Details</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('doctors.store') }}" method="POST" enctype="multipart/form-data"> 
+      <form action="{{ route('admin.doctors.store') }}" method="POST" enctype="multipart/form-data"> 
         @csrf 
         <div class="row">
           <div class="col-lg-12">
@@ -181,7 +181,7 @@
         <!-- Submit Buttons -->
         <div class="col-12 text-end mt-3">
           <button type="submit" class="btn btn-primary">Save Doctor</button>
-          <a href="{{ route('doctors.index') }}" class="btn btn-light">Cancel</a>
+          <a href="{{ route('admin.doctors.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

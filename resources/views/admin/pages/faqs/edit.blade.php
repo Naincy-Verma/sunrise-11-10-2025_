@@ -7,7 +7,7 @@
       <h4 class="card-title">Edit FAQ</h4>
     </div>
     <div class="card-body">
-      <form action="{{ route('faqs.update', $faq->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.faqs.update', $faq->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -33,7 +33,7 @@
 
         <div class="text-end mt-3">
           <button type="submit" class="btn btn-primary">Update</button>
-          <a href="{{ route('faqs.index') }}" class="btn btn-light">Cancel</a>
+          <a href="{{ route('admin.faqs.index') }}" class="btn btn-light">Cancel</a>
         </div>
       </form>
     </div>

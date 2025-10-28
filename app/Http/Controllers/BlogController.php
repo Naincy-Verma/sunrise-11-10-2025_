@@ -55,7 +55,7 @@ class BlogController extends Controller
 
         Blog::create($data);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog Added Successfully!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog Added Successfully!');
     }
 
     // Show edit form
@@ -96,7 +96,7 @@ class BlogController extends Controller
 
         $blog->update($data);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog Updated Successfully!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog Updated Successfully!');
     }
 
     // Delete a blog
@@ -110,6 +110,6 @@ class BlogController extends Controller
 
         $blog->delete();
 
-        return redirect()->route('blogs.index')->with('success', 'Blog Deleted Successfully!');
+        return redirect()->route('admin.blogs.index')->with('success', 'Blog Deleted Successfully!');
     }
 }

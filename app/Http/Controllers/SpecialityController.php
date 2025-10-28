@@ -54,7 +54,7 @@ class SpecialityController extends Controller
 
         Speciality::create($data);
 
-        return redirect()->route('specialities.index')->with('success', 'Speciality created successfully.');
+        return redirect()->route('admin.specialities.index')->with('success', 'Speciality created successfully.');
     }
 
     // Show a single specialty

@@ -17,14 +17,14 @@
     <div class="row page-titles mx-0">
         <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-                <h4>Edit Course</h4>
+                <h4>Edit Specialities</h4>
             </div>
         </div>
         <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('admin.specialities.index') }}">Courses</a></li>
-                <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Course</a></li>
+                <li class="breadcrumb-item active"><a href="{{ route('admin.specialities.index') }}">Specialities</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Specialities</a></li>
             </ol>
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Course Details</h4>
+                <h4 class="card-title">Specialities Details</h4>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.specialities.update', $speciality->id) }}" method="POST" enctype="multipart/form-data">

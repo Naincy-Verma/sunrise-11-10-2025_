@@ -53,7 +53,7 @@ class CommunityEventController extends Controller
 
         CommunityEvent::create($data);
 
-        return redirect()->route('community-events.index')
+        return redirect()->route('admin.community-events.index')
                          ->with('success', 'Community Event Added Successfully!');
     }
 
@@ -111,7 +111,7 @@ class CommunityEventController extends Controller
 
         $event->update($data);
 
-        return redirect()->route('community-events.index')
+        return redirect()->route('admin.community-events.index')
                          ->with('success', 'Community Event Updated Successfully!');
     }
 
@@ -126,7 +126,7 @@ class CommunityEventController extends Controller
 
         $event->delete();
 
-        return redirect()->route('community-events.index')
+        return redirect()->route('admin.community-events.index')
                          ->with('success', 'Community Event Deleted Successfully!');
     }
 }

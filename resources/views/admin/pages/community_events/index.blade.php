@@ -7,7 +7,7 @@
             <div class="card shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="card-title mb-0">Community Events List</h4>
-                    <a href="{{ route('community-events.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.community-events.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Add Community Event
                     </a>
                 </div>
@@ -50,21 +50,21 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <!-- View Event -->
-                                                <a href="{{ route('community-events.show', $event->id) }}" 
+                                                <a href="{{ route('admin.community-events.show', $event->id) }}" 
                                                 class="btn btn-info btn-sm" 
                                                 title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
 
                                                 <!-- Edit Event -->
-                                                <a href="{{ route('community-events.edit', $event->id) }}" 
+                                                <a href="{{ route('admin.community-events.edit', $event->id) }}" 
                                                 class="btn btn-primary btn-sm" 
                                                 title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 
                                                 <!-- Delete Event -->
-                                                <form action="{{ route('community-events.destroy', $event->id) }}" 
+                                                <form action="{{ route('admin.community-events.destroy', $event->id) }}" 
                                                     method="POST" 
                                                     class="d-inline delete-form">
                                                     @csrf
@@ -79,12 +79,12 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="{{ route('community-gallery.create', ['event_id' => $event->id]) }}" 
+                                                <a href="{{ route('admin.community-gallery.create', ['event_id' => $event->id]) }}" 
                                                 class="btn btn-sm text-white" 
                                                 style="background: linear-gradient(45deg, #fbb034, #ffdd00); border:none;">
                                                 <i class="fas fa-images me-1"></i> Add
                                                 </a>
-                                                <a href="{{ route('community-gallery.show', $event->id) }}" 
+                                                <a href="{{ route('admin.community-gallery.show', $event->id) }}" 
                                                 class="btn btn-sm text-white" 
                                                 style="background: linear-gradient(45deg, #38ef7d, #11998e); border:none;">
                                                 <i class="fas fa-photo-video me-1"></i> View

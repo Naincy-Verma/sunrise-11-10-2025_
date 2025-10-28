@@ -50,7 +50,7 @@
           </div> @endif
         </div>
         <div class="gallery-overlay d-flex flex-column justify-content-center align-items-center py-3">
-          <form action="{{ route('community-gallery.destroy', $gallery->id) }}" method="POST" class="delete-form"> @csrf @method('DELETE') <button type="button" class="btn btn-sm btn-danger delete-btn">
+          <form action="{{ route('admin.community-gallery.destroy', $gallery->id) }}" method="POST" class="delete-form"> @csrf @method('DELETE') <button type="button" class="btn btn-sm btn-danger delete-btn">
               <i class="fas fa-trash-alt"></i> Delete </button>
           </form>
         </div>
@@ -59,7 +59,7 @@
     @empty <p class="text-muted">No gallery images found for this event.</p> @endforelse </div>
   <div class="row">
     <div class="col-12">
-      <a href="{{ route('community-events.index') }}" class="btn btn-primary text-white">
+      <a href="{{ route('admin.community-events.index') }}" class="btn btn-primary text-white">
         <i class="fas fa-arrow-left"></i> Back to Events </a>
     </div>
   </div>

@@ -164,4 +164,24 @@ document.addEventListener('DOMContentLoaded', function() {
         removeButtons: 'PasteFromWord'
     });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.querySelector('input[name="title"]');
+    const slugInput = document.querySelector('input[name="slug"]');
+
+    if (titleInput && slugInput) {
+        titleInput.addEventListener('input', function() {
+            let slug = this.value
+                .toLowerCase()                    // lowercase
+                .replace(/[^a-z0-9\s-]/g, '')     // remove special chars
+                .trim()                           // trim spaces
+                .replace(/\s+/g, '-')             // replace spaces with dashes
+                .replace(/-+/g, '-');             // remove multiple dashes
+
+            slugInput.value = slug;
+        });
+    }
+});
+</script>
+
 @endsection

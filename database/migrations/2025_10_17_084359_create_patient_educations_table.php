@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('patient_educations', function (Blueprint $table) {
             $table->id();
             $table->string('heading');
-            $table->text('description');
+            $table->json('description');
             $table->timestamps();
         });
     }

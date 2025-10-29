@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,132 +12,134 @@ class DoctorController extends Controller
     // Show all doctors
     public function index()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::with('speciality')->get();
         return view('admin.pages.doctor.index', compact('doctors'));
     }
 
     // Show create form
     public function create()
     {
-        return view('admin.pages.doctor.create');
+        $specialities = Speciality::all();
+        return view('admin.pages.doctor.create', compact('specialities'));
     }
 
     // Store doctor
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'speciality_id' => 'nullable|exists:our_specialties,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'experience' => 'nullable|string',
             'designation' => 'nullable|string',
             'qualification' => 'nullable|string',
-            'speciality' => 'nullable|string',
+           
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'profile_url' => 'nullable|string|max:255',
             'appointment_url' => 'nullable|url',
+
             'brief_profile_heading' => 'nullable|string',
             'brief_profile_description' => 'nullable|string',
-            'metrics' => 'nullable|array',
-            'metrics.*' => 'nullable|string',
-            'notable_records' => 'nullable|string',
+            'brief_profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'brief_notable_records' => 'nullable|string',
+            'brief_metrics' => 'nullable|array',
+
             'professional_heading' => 'nullable|string',
-            'professional_subheading' => 'nullable|string',
-            'professional_description' => 'nullable|string',
+            'professional_description' => 'nullable|array',
+
+            'training_heading' => 'nullable|string',
+            'training_description' => 'nullable|array',
             'training_record' => 'nullable|string',
+
             'specialized_heading' => 'nullable|string',
             'specialized_subheading' => 'nullable|string',
-            'specialized_title' => 'nullable|string',
-            'specialized_description' => 'nullable|string',
+            'specialized_description' => 'nullable|array',
+
+            'area_specialized_heading' => 'nullable|string',
             'areas_of_specialization' => 'nullable|array',
-            'areas_of_specialization.*' => 'nullable|string',
+
             'contributions_heading' => 'nullable|string',
             'contributions_description' => 'nullable|string',
             'latest_achievement' => 'nullable|string',
         ]);
 
-        // ✅ Generate unique slug from name
-        $validated['slug'] = Str::slug($request->name);
-
-        // ✅ Upload Profile Image
+        // ✅ Upload images
         if ($request->hasFile('profile_image')) {
-            $image = $request->file('profile_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('admin-assets/images/admin-image/doctors'), $imageName);
+            $imageName = time().'_profile.'.$request->file('profile_image')->getClientOriginalExtension();
+            $request->file('profile_image')->move(public_path('admin-assets/images/admin-image/doctors'), $imageName);
             $validated['profile_image'] = $imageName;
         }
 
-        // ✅ Convert arrays to JSON
-        $validated['metrics'] = json_encode($request->metrics);
-        $validated['areas_of_specialization'] = json_encode($request->areas_of_specialization);
+        if ($request->hasFile('brief_profile_image')) {
+            $briefImageName = time().'_brief.'.$request->file('brief_profile_image')->getClientOriginalExtension();
+            $request->file('brief_profile_image')->move(public_path('admin-assets/images/admin-image/doctors'), $briefImageName);
+            $validated['brief_profile_image'] = $briefImageName;
+        }
 
-        // ✅ Save doctor
-        Doctor::create($validated);
+        // ✅ Save Doctor
+        $doctor = new Doctor();
+    $doctor->fill($validated);
+    $doctor->save();
 
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor added successfully!');
     }
 
-    // Show a single doctor (admin)
-    public function show(Doctor $doctor)
-    {
-        return view('admin.pages.doctor.show', compact('doctor'));
-    }
-
-    // Edit form
+    // Edit
     public function edit($id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('admin.pages.doctor.edit', compact('doctor'));
+        $specialities = Speciality::all();
+        return view('admin.pages.doctor.edit', compact('doctor', 'specialities'));
     }
 
-    // Update doctor
+    // Update
     public function update(Request $request, $id)
     {
         $doctor = Doctor::findOrFail($id);
 
         $validated = $request->validate([
+            'speciality_id' => 'nullable|exists:our_specialties,id',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'experience' => 'nullable|string',
             'designation' => 'nullable|string',
             'qualification' => 'nullable|string',
-            'speciality' => 'nullable|string',
+           
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'profile_url' => 'nullable|string|max:255',
             'appointment_url' => 'nullable|url',
             'brief_profile_heading' => 'nullable|string',
             'brief_profile_description' => 'nullable|string',
-            'metrics' => 'nullable|array',
-            'metrics.*' => 'nullable|string',
-            'notable_records' => 'nullable|string',
+            'brief_profile_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'brief_notable_records' => 'nullable|string',
+            'brief_metrics' => 'nullable|array',
             'professional_heading' => 'nullable|string',
-            'professional_subheading' => 'nullable|string',
-            'professional_description' => 'nullable|string',
+            'professional_description' => 'nullable|array',
+            'training_heading' => 'nullable|string',
+            'training_description' => 'nullable|array',
             'training_record' => 'nullable|string',
             'specialized_heading' => 'nullable|string',
             'specialized_subheading' => 'nullable|string',
-            'specialized_title' => 'nullable|string',
-            'specialized_description' => 'nullable|string',
+            'specialized_description' => 'nullable|array',
+            'area_specialized_heading' => 'nullable|string',
             'areas_of_specialization' => 'nullable|array',
-            'areas_of_specialization.*' => 'nullable|string',
             'contributions_heading' => 'nullable|string',
             'contributions_description' => 'nullable|string',
             'latest_achievement' => 'nullable|string',
         ]);
 
-        // ✅ Generate unique slug from name
-        $validated['slug'] = Str::slug($request->name);
-
-        // ✅ Upload new image if available
+        // ✅ Upload image if new one provided
         if ($request->hasFile('profile_image')) {
-            $image = $request->file('profile_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('admin-assets/images/admin-image/doctors'), $imageName);
+            $imageName = time().'_profile.'.$request->file('profile_image')->getClientOriginalExtension();
+            $request->file('profile_image')->move(public_path('admin-assets/images/admin-image/doctors'), $imageName);
             $validated['profile_image'] = $imageName;
         }
 
-        // ✅ Convert arrays to JSON
-        $validated['metrics'] = json_encode($request->metrics);
-        $validated['areas_of_specialization'] = json_encode($request->areas_of_specialization);
+        if ($request->hasFile('brief_profile_image')) {
+            $briefImageName = time().'_brief.'.$request->file('brief_profile_image')->getClientOriginalExtension();
+            $request->file('brief_profile_image')->move(public_path('admin-assets/images/admin-image/doctors'), $briefImageName);
+            $validated['brief_profile_image'] = $briefImageName;
+        }
 
         $doctor->update($validated);
 
@@ -147,20 +150,13 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         $doctor = Doctor::findOrFail($id);
-
-        $imagePath = public_path('admin-assets/images/admin-image/doctors/' . $doctor->profile_image);
-        if ($doctor->profile_image && file_exists($imagePath)) {
-            unlink($imagePath);
+        if ($doctor->profile_image && file_exists(public_path('admin-assets/images/admin-image/doctors/'.$doctor->profile_image))) {
+            unlink(public_path('admin-assets/images/admin-image/doctors/'.$doctor->profile_image));
         }
-
+        if ($doctor->brief_profile_image && file_exists(public_path('admin-assets/images/admin-image/doctors/'.$doctor->brief_profile_image))) {
+            unlink(public_path('admin-assets/images/admin-image/doctors/'.$doctor->brief_profile_image));
+        }
         $doctor->delete();
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor deleted successfully!');
-    }
-
-    // Frontend doctor detail page
-    public function doctorDetail($slug)
-    {
-        $doctor = Doctor::where('slug', $slug)->firstOrFail();
-        return view('pages.team-details', compact('doctor'));
     }
 }

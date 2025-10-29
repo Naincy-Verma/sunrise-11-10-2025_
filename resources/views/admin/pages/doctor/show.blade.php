@@ -1,142 +1,103 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="container-fluid mt-4">
-    <div class="card shadow">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">{{ $doctor->name }}</h4>
+                    <a href="{{ route('admin.doctors.index') }}" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
 
-        <!-- Header -->
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">{{ $doctor->name }}</h3>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            @if($doctor->profile_image)
+                                <img src="{{ asset('admin-assets/images/admin-image/doctors/' . $doctor->profile_image) }}" 
+                                     class="img-fluid rounded mb-3" 
+                                     alt="{{ $doctor->name }}">
+                            @endif
+                            <p><strong>Speciality:</strong> {{ $doctor->speciality->name ?? '—' }}</p>
+                            <p><strong>Designation:</strong> {{ $doctor->designation }}</p>
+                            <p><strong>Experience:</strong> {{ $doctor->experience }}</p>
+                        </div>
+
+                        <div class="col-md-9">
+                            <h5>Brief Profile</h5>
+                            <p>{{ $doctor->brief_profile_description }}</p>
+
+                            @if($doctor->brief_notable_records)
+                                <h6 class="mt-3">Notable Records</h6>
+                                <p>{!! $doctor->brief_notable_records !!}</p>
+                            @endif
+
+                            @if($doctor->brief_metrics)
+                                <h6 class="mt-3">Metrics</h6>
+                                <ul>
+                                    @foreach($doctor->brief_metrics as $metric)
+                                        <li>{{ $metric }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if($doctor->professional_description)
+                                <h5 class="mt-4">{{ $doctor->professional_heading }}</h5>
+                                <ul>
+                                    @foreach($doctor->professional_description as $desc)
+                                        <li>{{ $desc }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if($doctor->training_description)
+                                <h5 class="mt-4">{{ $doctor->training_heading }}</h5>
+                                <ul>
+                                    @foreach($doctor->training_description as $desc)
+                                        <li>{{ $desc }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if($doctor->training_record)
+                                <h6>Training Records</h6>
+                                <div>{!! $doctor->training_record !!}</div>
+                            @endif
+
+                            @if($doctor->specialized_description)
+                                <h5 class="mt-4">{{ $doctor->specialized_heading }}</h5>
+                                <ul>
+                                    @foreach($doctor->specialized_description as $item)
+                                        <li>{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if($doctor->areas_of_specialization)
+                                <h5 class="mt-4">{{ $doctor->area_specialized_heading }}</h5>
+                                <ul>
+                                    @foreach($doctor->areas_of_specialization as $area)
+                                        <li>{{ $area }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+
+                            @if($doctor->contributions_description)
+                                <h5 class="mt-4">{{ $doctor->contributions_heading }}</h5>
+                                <div>{!! $doctor->contributions_description !!}</div>
+                            @endif
+
+                            @if($doctor->latest_achievement)
+                                <h5 class="mt-4">Latest Achievement</h5>
+                                <div>{!! $doctor->latest_achievement !!}</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Card Body -->
-        <div class="card-body">
-
-            <!-- 🏠 Homepage Section -->
-            <h5 class="border-bottom pb-2 mb-4 text-primary fw-bold">
-                Homepage Section
-            </h5>
-
-            <div class="row mb-3">
-                <div class="col-md-6"><strong>Designation:</strong> {{ $doctor->designation }}</div>
-                <div class="col-md-6"><strong>Qualification:</strong> {{ $doctor->qualification }}</div>
-            </div>
-
-            <div class="row mb-3">
-                <div class="col-md-6"><strong>Speciality:</strong> {{ $doctor->speciality }}</div>
-                <div class="col-md-6"><strong>Experience:</strong> {{ $doctor->experience }}</div>
-            </div>
-
-            @if($doctor->profile_image)
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <strong>Profile Image:</strong><br>
-                    <img src="{{ asset('admin-assets/images/admin-image/doctors/' . $doctor->profile_image) }}" 
-                         class="img-thumbnail mt-2" style="width:160px; height:160px; object-fit:cover; border-radius:10px;">
-                </div>
-            </div>
-            @endif
-
-            <div class="mb-4">
-                <strong>Short Description:</strong>
-                <div class="p-3 bg-light border rounded">
-                    {!! $doctor->description !!}
-                </div>
-            </div>
-
-            <!-- ✅ Profile & Appointment URLs -->
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <strong>Profile URL:</strong><br>
-                    @if($doctor->profile_url)
-                        <a href="{{ $doctor->profile_url }}" target="_blank">{{ $doctor->profile_url }}</a>
-                    @else
-                        <span class="text-muted">Not available</span>
-                    @endif
-                </div>
-                <div class="col-md-6">
-                    <strong>Appointment URL:</strong><br>
-                    @if($doctor->appointment_url)
-                        <a href="{{ $doctor->appointment_url }}" target="_blank">{{ $doctor->appointment_url }}</a>
-                    @else
-                        <span class="text-muted">Not available</span>
-                    @endif
-                </div>
-            </div>
-
-            <hr class="my-4">
-
-            <!-- 📄 Detail Page Section -->
-            <h5 class="border-bottom pb-2 mb-4 text-primary fw-bold">
-                Detail Page Section
-            </h5>
-
-            <div class="mb-4">
-                <strong>Brief Profile Heading:</strong> {{ $doctor->brief_profile_heading }}<br>
-                <strong>Brief Profile Description:</strong>
-                <div class="p-3 bg-light border rounded mt-2">
-                    {!! $doctor->brief_profile_description !!}
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Metrics:</strong>
-                <div class="p-3 bg-light border rounded">
-                    {!! $doctor->metrics !!}
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Notable Records:</strong>
-                <div class="p-3 bg-light border rounded">
-                    {!! $doctor->notable_records !!}
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Professional Achievements:</strong>
-                <div class="p-3 bg-light border rounded">
-                    <p><strong>Heading:</strong> {{ $doctor->professional_heading }}</p>
-                    <p><strong>Subheading:</strong> {{ $doctor->professional_subheading }}</p>
-                    <p>{!! $doctor->professional_description !!}</p>
-                    <p><strong>Training Record:</strong> {!! $doctor->training_record !!}</p>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Specialized Procedures:</strong>
-                <div class="p-3 bg-light border rounded">
-                    <p><strong>Heading:</strong> {{ $doctor->specialized_heading }}</p>
-                    <p><strong>Subheading:</strong> {{ $doctor->specialized_subheading }}</p>
-                    <p><strong>Title:</strong> {{ $doctor->specialized_title }}</p>
-                    <p>{!! $doctor->specialized_description !!}</p>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Areas of Specialization:</strong>
-                <div class="p-3 bg-light border rounded">
-                    {!! $doctor->areas_of_specialization !!}
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <strong>Professional Contributions:</strong>
-                <div class="p-3 bg-light border rounded">
-                    <p><strong>Heading:</strong> {{ $doctor->contributions_heading }}</p>
-                    <p>{!! $doctor->contributions_description !!}</p>
-                    <p><strong>Latest Achievement:</strong> {{ $doctor->latest_achievement }}</p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Footer Buttons -->
-        <div class="card-footer text-end">
-            <a href="{{ route('admin.doctors.index') }}" class="btn btn-secondary me-2">Back</a>
-            <a href="{{ route('admin.doctors.edit', $doctor->id) }}" class="btn btn-primary">Edit</a>
-        </div>
-
     </div>
 </div>
 @endsection

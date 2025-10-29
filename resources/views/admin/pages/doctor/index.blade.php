@@ -16,8 +16,8 @@
                     @endif
 
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
+                        <table class="table table-bordered table-striped align-middle">
+                            <thead class="table-dark">
                                 <tr>
                                     <th>No.</th>
                                     <th>Image</th>
@@ -29,7 +29,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($doctors as $index => $doctor)
+                                @forelse($doctors as $index => $doctor)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>
@@ -38,22 +38,19 @@
                                             @endif
                                         </td>
                                         <td>{{ $doctor->name }}</td>
-                                        <td>{{ $doctor->speciality }}</td>
+                                        <td>{{ $doctor->speciality->name ?? '—' }}</td>
                                         <td>{{ $doctor->designation }}</td>
                                         <td>{{ $doctor->experience }}</td>
                                         <td>
-                                            <!-- View Button -->
                                             <a href="{{ route('admin.doctors.show', $doctor->id) }}" class="btn btn-info btn-sm" title="View">
                                                 <i class="fas fa-eye"></i>
                                             </a>
 
-                                            <!-- Edit Button -->
                                             <a href="{{ route('admin.doctors.edit', $doctor->id) }}" class="btn btn-primary btn-sm" title="Edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
 
-                                            <!-- Delete Button -->
-                                            <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="POST" class="delete-form" style="display:inline;">
+                                            <form action="{{ route('admin.doctors.destroy', $doctor->id) }}" method="POST" class="delete-form d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm delete-btn" data-title="{{ $doctor->name }}">
@@ -62,13 +59,11 @@
                                             </form>
                                         </td>
                                     </tr>
-                                @endforeach
-
-                                @if($doctors->isEmpty())
+                                @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">No doctors found.</td>
+                                        <td colspan="7" class="text-center text-muted">No doctors found.</td>
                                     </tr>
-                                @endif
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -82,26 +77,22 @@
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-
-    deleteButtons.forEach(button => {
+    document.querySelectorAll('.delete-btn').forEach(button => {
         button.addEventListener('click', function() {
             const form = this.closest('.delete-form');
             const title = this.getAttribute('data-title');
 
             Swal.fire({
                 title: 'Are you sure?',
-                text: `You are about to delete "${title}"! This action cannot be undone.`,
+                text: `You are about to delete "${title}". This action cannot be undone.`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
                 confirmButtonText: 'Yes, delete it!',
                 cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+            }).then(result => {
+                if (result.isConfirmed) form.submit();
             });
         });
     });

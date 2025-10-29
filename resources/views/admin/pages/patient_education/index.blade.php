@@ -27,7 +27,10 @@
             <tr>
               <td>{{ $loop->iteration }}</td>
               <td>{{ $heading }}</td>
-              <td>{!! \Illuminate\Support\Str::limit($items->first()->description, 100) !!}</td>
+             
+               <td>
+                  {{ Str::limit(implode(', ', $items->first()->description ?? []), 100) }}
+              </td>
               <td>
                 <!-- Show Page -->
                 <a href="{{ route('admin.patient-education.show', $items->first()->id) }}" class="btn btn-secondary btn-sm" title="View">

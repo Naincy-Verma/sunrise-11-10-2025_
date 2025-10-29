@@ -12,6 +12,11 @@ class PatientEducation extends Model
         'description'
     ];
 
+        protected $casts = [
+        'description' => 'array',
+    ];
+
+
     public $timestamps = true;
     protected $table = "patient_educations";
 }

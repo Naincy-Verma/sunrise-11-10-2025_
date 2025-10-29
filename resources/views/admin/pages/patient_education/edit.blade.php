@@ -41,8 +41,9 @@
           <label>Description(s) <span class="text-danger">*</span></label>
           <div id="descriptionWrapper">
             @php
-              $descriptions = json_decode($education->description, true) ?? [];
+              $descriptions = $education->description ?? [];
             @endphp
+
 
             @foreach($descriptions as $desc)
               <div class="d-flex mb-2">

@@ -18,20 +18,25 @@ class Doctor extends Model
         'appointment_url',
         'brief_profile_heading',
         'brief_profile_description',
-        'metrics',
-        'notable_records',
+        'brief_profile_image',
+         'brief_notable_records',
         'professional_heading',
-        'professional_subheading',
-        'professional_description',
+        'training_heading',
         'training_record',
         'specialized_heading',
         'specialized_subheading',
-        'specialized_title',
-        'specialized_description',
-        'areas_of_specialization',
+        'area_specialized_heading',
         'contributions_heading',
         'contributions_description',
         'latest_achievement'
+    ];
+
+    protected $casts = [
+        'brief_metrics' => 'array',
+         'professional_description' => 'array',
+         'training_description' => 'array',
+         'specialized_description' => 'array',
+          'areas_of_specialization' => 'array',
     ];
 
     public $timestamps = true;

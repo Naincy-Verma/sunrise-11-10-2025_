@@ -28,12 +28,10 @@ class PatientEducationController extends Controller
             'descriptions.*' => 'required|string',
         ]);
 
-        foreach ($request->descriptions as $desc) {
-            PatientEducation::create([
-                'heading' => $request->heading,
-                'description' => $desc,
-            ]);
-        }
+        PatientEducation::create([
+        'heading' => $request->heading,
+        'description' => $request->descriptions, // Save as array (will be JSON)
+    ]);
 
         return redirect()->route('admin.patient-education.index')->with('success', 'Patient education added successfully.');
     }
@@ -52,11 +50,12 @@ class PatientEducationController extends Controller
         $request->validate([
             'heading' => 'required|string|max:255',
             'description' => 'required|string',
+            'descriptions.*' => 'required|string',
         ]);
 
         $education->update([
             'heading' => $request->heading,
-            'description' => $request->description,
+            'description' => $request->descriptions,  // Save as array (will be JSON)
         ]);
 
         return redirect()->route('admin.patient-education.index')->with('success', 'Patient education updated successfully.');

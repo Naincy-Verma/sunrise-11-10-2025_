@@ -574,12 +574,27 @@
                         </ul>
                     </li>
 
-                    <!-- Program Regusteration -->
+                    <!-- Program Registeration -->
                     <li>
                         <a class="has-arrow" href="{{route('admin.program_registration.index')}}" aria-expanded="false">
                             <i class="la la-user"></i>
                             <span class="nav-text"> Program Registeration </span>
                         </a>
+                    </li>
+
+                    <!-- Training Gallery -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Training Gallery </span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.training-gallery.index')}}">All Training Gallery </a>
+                                <a href="{{route('admin.training-gallery.index')}}">Add Training Gallery </a>
+                            </li>
+                           
+                        </ul>
                     </li>
 
                 </ul>

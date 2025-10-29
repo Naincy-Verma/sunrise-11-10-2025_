@@ -28,6 +28,7 @@ use App\Http\Controllers\SpecializedCourseController;
 use App\Http\Controllers\PatientEducationController;
 use App\Http\Controllers\ProgramRegistrationController;
 use App\Http\Controllers\QuickEnquiryController;
+use App\Http\Controllers\TrainingGalleryController;
 
 
 
@@ -319,6 +320,12 @@ Route::middleware('auth')->group(function () {
         Route::get('program_registration', [ProgramRegistrationController::class, 'index'])->name('program_registration.index');
         Route::get('program_registration/{id}', [ProgramRegistrationController::class, 'show'])->name('program_registration.show');
         Route::delete('program_registration/{id}', [ProgramRegistrationController::class, 'destroy'])->name('program_registration.destroy');
+
+        // Training Gallery Routes
+        Route::get('/training-gallery', [TrainingGalleryController::class, 'index'])->name('training-gallery.index');
+        Route::get('/training-gallery/create', [TrainingGalleryController::class, 'create'])->name('training-gallery.create');
+        Route::post('/training-gallery/store', [TrainingGalleryController::class, 'store'])->name('training-gallery.store');
+        Route::delete('/training-gallery/{id}', [TrainingGalleryController::class, 'destroy'])->name('training-gallery.destroy');
 
         // --- Qyuick Enquiry Routes ---
         Route::get('/quick-enquiries', [QuickEnquiryController::class, 'index'])->name('quick-enquiries.index');

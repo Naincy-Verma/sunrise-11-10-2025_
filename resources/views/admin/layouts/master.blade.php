@@ -34,6 +34,23 @@
     <link rel="stylesheet" href="{{asset('admin-assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('admin-assets/css/skin.css')}}">
+        <style>
+        .nav-label.first {
+            background-color: #99a93cff;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-label.first i {
+            font-size: 18px;
+            color: #fff;
+        }
+    </style>
     @yield('css')
 
 </head>
@@ -188,14 +205,17 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label first">Main Menu</li>
+                    
                     <li>
                         <a href="{{ url('admin/dashboard')}}" aria-expanded="false">
                             <i class="la la-home"></i>
                            <span class="nav-text">Dashboard </span></a>
                         </a> 
                     </li>
-
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                        Home Page
+                    </li>
                     <!-- Our Specialities -->
                     <li>
                         <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
@@ -325,7 +345,10 @@
                         </ul>
                     </li>
 
-                    <!-- About -->
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                        About Page
+                    </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -340,7 +363,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <!-- Vision Mission -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -356,7 +378,6 @@
                             </li>
                         </ul>
                     </li>
-
                     <!-- Milestones -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -372,8 +393,7 @@
                             </li>
                         </ul>
                     </li>
-
-                        <!-- Facility -->
+                    <!-- Facility -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -388,7 +408,11 @@
                             </li>
                         </ul>
                     </li>
-                            <!-- Package -->
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                        Health Packages
+                    </li>
+                    <!-- Package -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -404,7 +428,7 @@
                         </ul>
                     </li>
 
-                        <!-- Country -->
+                    <!-- Country -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -420,7 +444,7 @@
                         </ul>
                     </li>
 
-                        <!-- States -->
+                    <!-- States -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -436,7 +460,7 @@
                         </ul>
                     </li>
 
-                        <!-- City -->
+                    <!-- City -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -452,7 +476,7 @@
                         </ul>
                     </li>
 
-                        <!-- Time Slot -->
+                    <!-- Time Slot -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -467,22 +491,30 @@
                             </li>
                         </ul>
                     </li>
-
-                        <!-- Book Appointments -->
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                        Appointments & Enquiries
+                    </li>
+                    <!-- Book Appointments -->
                     <li>
                         <a class="has-arrow" href="{{route('admin.appointments.index')}}" aria-expanded="false">
-                            <!-- <i class="la la-user"></i> -->
-                            <span class="nav-text">Appointment</span>
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Appointment</span>
                         </a>
-                        <!-- <ul aria-expanded="false">
-                            <li>
-                                <a href="{{route('admin.appointments.index')}}">All Appointments</a>
-                            </li>
-                           
-                        </ul> -->
                     </li>
-
-                        <!-- Patient Education -->
+                     
+                    <!-- Quick Enquiries -->
+                    <li>
+                        <a class="has-arrow" href="{{route('admin.quick-enquiries.index')}}" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text"> Quick Enquiry </span>
+                        </a>
+                    </li>
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                       Other Pages
+                    </li>
+                    <!-- Patient Education -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -497,7 +529,7 @@
                         </ul>
                     </li>
 
-                      <!-- Excellence -->
+                    <!-- Excellence -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -512,7 +544,7 @@
                         </ul>
                     </li>
 
-                      <!--Training Program -->
+                    <!--Training Program -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -527,7 +559,7 @@
                         </ul>
                     </li>
 
-                      <!-- Specialized Course -->
+                    <!-- Specialized Course -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -542,7 +574,7 @@
                         </ul>
                     </li>
 
-                      <!-- Program Regusteration -->
+                    <!-- Program Regusteration -->
                     <li>
                         <a class="has-arrow" href="{{route('admin.program_registration.index')}}" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -550,21 +582,9 @@
                         </a>
                     </li>
 
-                      <!-- Quick Enquiries -->
-                    <li>
-                        <a class="has-arrow" href="{{route('admin.quick-enquiries.index')}}" aria-expanded="false">
-                            <i class="la la-user"></i>
-                            <span class="nav-text"> Quick Enquiry </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="page-lock-screen.html">Lock Screen</a>
-                    </li>
                 </ul>
-                </li>
-                </ul>undefined
-            </div>undefined
+              
+            </div>
         </div>
         <div class="content-body">
             <!-- row -->

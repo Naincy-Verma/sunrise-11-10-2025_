@@ -464,31 +464,33 @@
          }
     @endphp
 
-    <section class="training-gallery">
-        <div class="container">
-            <h2>Workshops & Seminars Gallery</h2>
-            <p>A look back at successful training sessions and certification ceremonies.</p>
-            <div class="gallery-grid mt-3">
-                <div class="row g-3">
-                    @forelse($galleryFiles as $gallery)
-                        <div class="col-md-3">
-                            <div class="workshop-card text-center">
-                                <img
-                                        src="{{ asset($path . '/' . $gallery->getFilename()) }}"
-                                        class="img-fluid rounded"
-                                        alt="Workshop or Seminar Image"
-                                        loading="lazy">
-                            </div>
+   <section class="training-gallery">
+    <div class="container">
+        <h2>Workshops & Seminars Gallery</h2>
+        <p>A look back at successful training sessions and certification ceremonies.</p>
+
+        <div class="gallery-grid mt-3">
+            <div class="row g-3">
+                @forelse($galleryImages as $gallery)
+                    <div class="col-md-3">
+                        <div class="workshop-card text-center">
+                           
+                            <img
+                                src="{{ asset('admin-assets/images/admin-image/training_gallery/' . $gallery->image) }}"
+                                class="img-fluid rounded"
+                                alt="Workshop or Seminar Image"
+                                loading="lazy">
                         </div>
-                    @empty
-                        <div class="col-12">
-                            <p class="text-center text-warning">No workshop images found in the '{{ $path }}' directory.</p>
-                        </div>
-                    @endforelse
-                </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>No gallery images found.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 @endsection
 

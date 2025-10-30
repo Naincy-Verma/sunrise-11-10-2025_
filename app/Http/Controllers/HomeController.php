@@ -21,6 +21,7 @@ use App\Models\SpecializedCourse;
 use App\Models\PatientEducation;
 use App\Models\ProgramRegistration; 
 use App\Models\QuickEnquiry;
+use App\Models\TrainingGallery;
 
 
 use Illuminate\Http\Request;
@@ -254,8 +255,8 @@ class HomeController extends Controller
         $programs = TrainingProgram::orderBy('s_no', 'asc')->get();
         $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
         $courses = SpecializedCourse::where('status', 'active')->orderBy('id', 'asc')->get();
-         
-        return view('pages.training', compact('excellence', 'programs', 'courses'));
+        $galleryImages = TrainingGallery::latest()->get();
+        return view('pages.training', compact('excellence', 'programs', 'courses','galleryImages'));
     }
     
     public function patient_education()

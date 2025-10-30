@@ -63,11 +63,10 @@ class HomeController extends Controller
         $videos = VideoTestimonial::all();
         $testimonials = PatientTestimonial::all();
         $specialities_form = Speciality::select('id', 'title')->get();
-        $doctors = Doctor::all();
+        $doctors = Doctor::with('speciality')->get();
+        //return $doctors;
         return view('pages.index', compact('type', 'specialities', 'specialities_form','cases', 'events', 'blogs', 'faqs', 'videos', 'testimonials', 'doctors'));
       // Only fetch id and title for the dropdown
-
-    
     }
 
     public function BookAppointment()
@@ -140,7 +139,7 @@ class HomeController extends Controller
     }
     public function doctors()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::with('speciality')->get();
         return view('pages.doctor', compact('doctors'));
     }
     public function doctorDetail($slug)

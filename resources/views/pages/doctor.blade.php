@@ -254,7 +254,7 @@
                                     <div class="doctor-info">
                                         <h5>{{ $doctor->name }}</h5>
                                         <p>{{ $doctor->qualification }}</p>
-                                        <p class="text-success">{{ $doctor->speciality }}</p>
+                                        <p class="text-success">{{ $doctor->speciality->title ?? '—' }}</p>
                                         <div class="doctor-actions d-flex">
                                             
                                             <!-- Appointment Button -->

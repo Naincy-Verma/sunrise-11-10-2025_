@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('css')
+
 <style>
     .preview-img {
         width: 140px;

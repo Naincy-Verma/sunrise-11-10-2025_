@@ -12,14 +12,14 @@ class Doctor extends Model
         'experience',
         'designation',
         'qualification',
-        'speciality',
+        'speciality_id', // ✅ correct key name
         'profile_image',
         'profile_url',
         'appointment_url',
         'brief_profile_heading',
         'brief_profile_description',
         'brief_profile_image',
-         'brief_notable_records',
+        'brief_notable_records',
         'professional_heading',
         'training_heading',
         'training_record',
@@ -33,17 +33,17 @@ class Doctor extends Model
 
     protected $casts = [
         'brief_metrics' => 'array',
-         'professional_description' => 'array',
-         'training_description' => 'array',
-         'specialized_description' => 'array',
-          'areas_of_specialization' => 'array',
+        'professional_description' => 'array',
+        'training_description' => 'array',
+        'specialized_description' => 'array',
+        'areas_of_specialization' => 'array',
     ];
 
-    public $timestamps = true;
     protected $table = "doctors";
+    public $timestamps = true;
 
     public function speciality()
     {
-        return $this->belongsTo(Speciality::class);
+        return $this->belongsTo(Speciality::class, 'speciality_id', 'id');
     }
 }

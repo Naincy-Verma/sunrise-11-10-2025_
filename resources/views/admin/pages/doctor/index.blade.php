@@ -25,6 +25,7 @@
                                     <th>Speciality</th>
                                     <th>Designation</th>
                                     <th>Experience</th>
+                                    <th>Qualification</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -38,9 +39,10 @@
                                             @endif
                                         </td>
                                         <td>{{ $doctor->name }}</td>
-                                        <td>{{ $doctor->speciality->name ?? '—' }}</td>
+                                        <td>{{ $doctor->speciality->title ?? '—' }}</td>
                                         <td>{{ $doctor->designation }}</td>
                                         <td>{{ $doctor->experience }}</td>
+                                        <td>{{ $doctor->qualification }}</td>
                                         <td>
                                             <a href="{{ route('admin.doctors.show', $doctor->id) }}" class="btn btn-info btn-sm" title="View">
                                                 <i class="fas fa-eye"></i>

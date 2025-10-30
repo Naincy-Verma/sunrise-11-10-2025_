@@ -340,7 +340,7 @@ class HomeController extends Controller
         ]);
 
         // Redirect with success message
-        return redirect()->back()->with('success', 'Your enquiry has been submitted successfully!');
+        return redirect('thank-you');
     }
 
 

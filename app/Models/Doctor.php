@@ -12,7 +12,7 @@ class Doctor extends Model
         'experience',
         'designation',
         'qualification',
-        'speciality_id', // ✅ correct key name
+        'speciality_id', 
         'profile_image',
         'profile_url',
         'appointment_url',
@@ -28,7 +28,12 @@ class Doctor extends Model
         'area_specialized_heading',
         'contributions_heading',
         'contributions_description',
-        'latest_achievement'
+        'latest_achievement',
+        'brief_metrics',
+        'professional_description',
+        'training_description',
+        'specialized_description',
+        'areas_of_specialization' 
     ];
 
     protected $casts = [

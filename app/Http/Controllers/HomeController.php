@@ -230,7 +230,7 @@ class HomeController extends Controller
         // ]);
         
 
-        return redirect('/')->with('success', 'Your appointment has been submitted successfully!');
+        return redirect('thank-you');
     }
     
     public function about()

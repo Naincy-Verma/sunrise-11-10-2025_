@@ -101,11 +101,11 @@
                             <div>{!! $doctor->brief_notable_records !!}</div>
                         @endif
 
-                        @if(!empty($doctor->brief_metrics))
+                       @if(is_array($doctor->brief_metrics))
                             <h6 class="mt-3 text-success fw-bold">Metrics</h6>
                             <ul class="list-style">
                                 @foreach($doctor->brief_metrics as $metric)
-                                    <li>{{ $metric }}</li>
+                                    <li><strong>{{ $metric['label'] ?? '' }}:</strong> {{ $metric['value'] ?? '' }}</li>
                                 @endforeach
                             </ul>
                         @endif
@@ -115,10 +115,10 @@
                     <h5 class="section-title"><i class="fas fa-trophy"></i> Professional Achievements</h5>
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->professional_heading ?? '—' }}</p>
-                        @if(!empty($doctor->professional_description))
+                        @if(is_array($doctor->professional_description))
                             <ul class="list-style">
                                 @foreach($doctor->professional_description as $desc)
-                                    <li>{{ $desc }}</li>
+                                    <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
                                 @endforeach
                             </ul>
                         @else
@@ -130,10 +130,10 @@
                     <h5 class="section-title"><i class="fas fa-graduation-cap"></i> Training Details</h5>
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->training_heading ?? '—' }}</p>
-                            @if(!empty($doctor->training_description))
+                            @if(is_array($doctor->training_description))
                                 <ul class="list-style">
                                     @foreach($doctor->training_description as $desc)
-                                        <li>{{ $desc }}</li>
+                                        <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
                                     @endforeach
                                 </ul>
                             @else
@@ -150,10 +150,10 @@
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->specialized_heading ?? '—' }}</p>
                         <p><strong>Subheading:</strong> {{ $doctor->specialized_subheading ?? '—' }}</p>
-                        @if(!empty($doctor->specialized_description))
+                        @if(is_array($doctor->specialized_description))
                             <ul class="list-style">
                                 @foreach($doctor->specialized_description as $desc)
-                                    <li>{{ $desc }}</li>
+                                    <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
                                 @endforeach
                             </ul>
                         @else

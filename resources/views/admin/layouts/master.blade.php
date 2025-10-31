@@ -8,22 +8,22 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <meta name="robots" content="" />
-    <meta name="description" content="Edumin - Bootstrap Admin Dashboard" />
-    <meta property="og:title" content="Edumin - Bootstrap Admin Dashboard" />
-    <meta property="og:description" content="Edumin - Bootstrap Admin Dashboard" />
+    <meta name="description" content="Best Gynecologist Hospital in Delhi | Sunrise Hospital" />
+    <meta property="og:title" content="Best Gynecologist Hospital in Delhi | Sunrise Hospital" />
+    <meta property="og:description" content="Best Gynecologist Hospital in Delhi | Sunrise Hospital" />
     <meta property="og:image" content="{{asset('admin-assets/social-image.png')}}" />
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="https://edumin.dexignlab.com/xhtml/error-404.html" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('assets/logo.png') }}" type="image/x-icon" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('admin-assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/logo.png') }}" />
 
     <!-- Font-awesone cdn -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- PAGE TITLE HERE -->
-    <title>Edumin - Bootstrap Admin Dashboard</title>
+    <title>Best Gynecologist Hospital in Delhi | Sunrise Hospital</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -510,26 +510,12 @@
                             <span class="nav-text"> Quick Enquiry </span>
                         </a>
                     </li>
+                    
                     <li class="nav-label first">
                         <i class="la la-bars"></i> 
-                       Other Pages
+                       Training Page
                     </li>
-                    <!-- Patient Education -->
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="la la-user"></i>
-                            <span class="nav-text">Patient Education</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li>
-                                <a href="{{route('admin.patient-education.index')}}">All Patient Education</a>
-                                <a href="{{route('admin.patient-education.create')}}">Add Patient Education</a>
-                            </li>
-                           
-                        </ul>
-                    </li>
-
-                    <!-- Excellence -->
+                     <!-- Excellence -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="la la-user"></i>
@@ -543,7 +529,6 @@
                            
                         </ul>
                     </li>
-
                     <!--Training Program -->
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -596,7 +581,26 @@
                            
                         </ul>
                     </li>
+                    <li class="nav-label first">
+                        <i class="la la-bars"></i> 
+                       Other Pages
+                    </li>
+                    <!-- Patient Education -->
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="la la-user"></i>
+                            <span class="nav-text">Patient Education</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li>
+                                <a href="{{route('admin.patient-education.index')}}">All Patient Education</a>
+                                <a href="{{route('admin.patient-education.create')}}">Add Patient Education</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
 
+                   
                 </ul>
               
             </div>

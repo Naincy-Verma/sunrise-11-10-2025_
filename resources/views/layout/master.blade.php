@@ -217,7 +217,7 @@
     </nav>
 
     <main>
-        {{-- Success Message --}}
+        <!-- {{-- Success Message --}}
         @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -233,7 +233,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif
+        @endif -->
 
         @yield('content')
     </main>

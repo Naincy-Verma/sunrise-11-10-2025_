@@ -29,6 +29,7 @@ use App\Http\Controllers\PatientEducationController;
 use App\Http\Controllers\ProgramRegistrationController;
 use App\Http\Controllers\QuickEnquiryController;
 use App\Http\Controllers\TrainingGalleryController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -95,12 +96,14 @@ Route::post('admin/logout', [AuthController::class, 'logout'])->name('admin.logo
 // Dashboard (protected)
 Route::middleware('auth')->group(function () {
 
-        Route::get('admin/dashboard', function () {
-            return view('admin.pages.dashboard'); 
-        })->name('admin.dashboard');
-
+        // Route::get('admin/dashboard', function () {
+        //     return view('admin.pages.dashboard'); 
+        // })->name('admin.dashboard');
 
     Route::prefix('admin')->name('admin.')->group(function () {
+
+         // Dashboard Route
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('/specialities', [SpecialityController::class, 'index'])->name('specialities.index');
         Route::get('/specialities/create', [SpecialityController::class, 'create'])->name('specialities.create');

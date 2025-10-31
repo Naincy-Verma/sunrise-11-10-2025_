@@ -361,29 +361,19 @@
                 @endif
 
                 {{-- 🧩 Experience Highlights Section --}}
-                  @if(!empty($doctor->brief_metrics) && is_array($doctor->brief_metrics))
-                      <div class="experience-highlights mt-5">
-                          <div class="row justify-content-center flex-nowrap overflow-auto">
-                              @foreach($doctor->brief_metrics as $metric)
-                                  {{-- For debugging --}}
-                                  {{-- <pre>{{ print_r($metric, true) }}</pre> --}}
+                @if(!empty($doctor->brief_metrics) && is_array($doctor->brief_metrics))
+                    <div class="experience-highlights">
+                        @foreach($doctor->brief_metrics as $metric)
+                            @if(!empty($metric['value']) || !empty($metric['label']))
+                                <div class="experience-card">
+                                    <span class="experience-number">{{ $metric['value'] ?? '' }}</span>
+                                    <span class="experience-label">{{ $metric['label'] ?? '' }}</span>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
 
-                                  @if(!empty($metric['value']) || !empty($metric['label']))
-                                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 flex-shrink-0" style="min-width: 200px;">
-                                          <div class="experience-card text-center p-3 border rounded shadow-sm">
-                                              <span class="experience-number d-block fw-bold fs-4 text-dark">
-                                                  {{ $metric['value'] ?? '' }}
-                                              </span>
-                                              <span class="experience-label text-muted">
-                                                  {{ $metric['label'] ?? '' }}
-                                              </span>
-                                          </div>
-                                      </div>
-                                  @endif
-                              @endforeach
-                          </div>
-                      </div>
-                  @endif
 
           </div>
         </div>

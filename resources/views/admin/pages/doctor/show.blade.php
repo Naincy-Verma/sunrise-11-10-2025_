@@ -66,6 +66,7 @@
                             </div>
 
                             <div class="col-md-9">
+                                 <p><strong>Name:</strong> {{ $doctor->name ?? '—' }}</p>
                                 <p><strong>Speciality:</strong> {{ $doctor->speciality->title ?? '—' }}</p>
                                 <p><strong>Designation:</strong> {{ $doctor->designation ?? '—' }}</p>
                                 <p><strong>Experience:</strong> {{ $doctor->experience ?? '—' }}</p>
@@ -116,6 +117,7 @@
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->professional_heading ?? '—' }}</p>
                         @if(is_array($doctor->professional_description))
+                         <h6 class="mt-3 text-success fw-bold"> Professional Description</h6>
                             <ul class="list-style">
                                 @foreach($doctor->professional_description as $desc)
                                     <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
@@ -131,6 +133,7 @@
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->training_heading ?? '—' }}</p>
                             @if(is_array($doctor->training_description))
+                             <h6 class="mt-3 text-success fw-bold"> Training Description</h6>
                                 <ul class="list-style">
                                     @foreach($doctor->training_description as $desc)
                                         <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
@@ -151,6 +154,7 @@
                         <p><strong>Heading:</strong> {{ $doctor->specialized_heading ?? '—' }}</p>
                         <p><strong>Subheading:</strong> {{ $doctor->specialized_subheading ?? '—' }}</p>
                         @if(is_array($doctor->specialized_description))
+                         <h6 class="mt-3 text-success fw-bold">Specialized Description</h6>
                             <ul class="list-style">
                                 @foreach($doctor->specialized_description as $desc)
                                     <li><strong>{{ $desc['label'] ?? '' }}:</strong> {{ $desc['value'] ?? '' }}</li>
@@ -166,6 +170,7 @@
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->area_specialized_heading ?? '—' }}</p>
                         @if(!empty($doctor->areas_of_specialization))
+                         <h6 class="mt-3 text-success fw-bold"> Area of Specialization Description</h6>
                             <ul class="list-style">
                                 @foreach($doctor->areas_of_specialization as $area)
                                     <li>{{ $area }}</li>
@@ -180,6 +185,7 @@
                     <h5 class="section-title"><i class="fas fa-hand-holding-heart"></i> Contributions</h5>
                     <div class="info-card">
                         <p><strong>Heading:</strong> {{ $doctor->contributions_heading ?? '—' }}</p>
+                         <h6 class="mt-3 text-success fw-bold"> Contribution Description</h6>
                         <div>{!! $doctor->contributions_description ?? '—' !!}</div>
                     </div>
 
